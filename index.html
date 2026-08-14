@@ -311,8 +311,9 @@ h1,h2,h3,h4{font-family:var(--disp);font-weight:700;line-height:1.08;letter-spac
 .field label .req{color:var(--accent-deep)}
 .field .inp{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
 .field .inp:focus-within{border-color:var(--accent);background:#fff}
-.field input{flex:1;width:100%;padding:13px 14px;border:0;background:transparent;font-family:var(--sans);font-size:0.96rem;color:var(--ink)}
-.field input:focus{outline:none}
+.field input,.field select{flex:1;width:100%;padding:13px 14px;border:0;background:transparent;font-family:var(--sans);font-size:0.96rem;color:var(--ink);appearance:none;-webkit-appearance:none}
+.field select:invalid{color:var(--faint)}
+.field input:focus,.field select:focus{outline:none}
 .formcard .cta{width:100%;margin-top:6px}
 .fmsg{display:none;background:var(--accent-soft);border:1px solid var(--accent-line);color:var(--accent-deep);padding:13px 15px;border-radius:12px;font-size:0.9rem;margin-bottom:14px;font-weight:600}
 .formcard .fine{display:flex;flex-direction:column;gap:4px;font-size:0.76rem;color:var(--muted);margin-top:13px;text-align:center}
@@ -389,21 +390,30 @@ h1,h2,h3,h4{font-family:var(--disp);font-weight:700;line-height:1.08;letter-spac
       <h1>Annonser som betaler for seg selv.</h1>
       <p class="sub">5000+ annonser for norske merkevarer. <b>Du betaler først når de leverer.</b></p>
       <ul class="hero-chks">
-        <li><span class="hchk"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Første annonser live innen 48 timer</li>
+        <li><span class="hchk"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Fra brief til ferdige annonser på 48 timer</li>
         <li><span class="hchk"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></span> 10+ nye annonser i uka &mdash; alt in-house</li>
         <li><span class="hchk"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Sporing som måler salg &mdash; ikke klikk</li>
       </ul>
-      <div class="price-anchor"><span class="pa-no">Andre byråer: fast honorar &mdash; uansett</span><span class="pa-yes">Hos oss: 0 kr før vi leverer</span></div>
+      <div class="price-anchor"><span class="pa-no">Vanlig byrå: fast honorar &mdash; uansett</span><span class="pa-yes">Arcads: 0 kr før vi leverer</span></div>
       <div class="formcard hero-form">
+        <div id="heroLead">
+        <div class="fhead"><b>Gratis analyse av annonsekontoen din</b><span>Tar 20 sekunder &middot; svar innen 1 virkedag</span></div>
         <div class="fmsg" id="formMsgHero">Takk! Victor tar kontakt innen 1 virkedag.</div>
         <form id="leadFormHero" novalidate>
           <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
           <div class="field"><label for="hh_name">Navn <span class="req">*</span></label><div class="inp"><input type="text" id="hh_name" name="name" placeholder="Fornavn og etternavn" autocomplete="name" required></div></div>
           <div class="field"><label for="hh_phone">Telefon <span class="req">*</span></label><div class="inp"><input type="tel" id="hh_phone" name="phone" placeholder="Så vi kan ringe deg" autocomplete="tel" required></div></div>
           <div class="field"><label for="hh_email">E-post <span class="req">*</span></label><div class="inp"><input type="email" id="hh_email" name="email" placeholder="din@epost.no" autocomplete="email" required></div></div>
+          <div class="field"><label for="hh_budget">Månedlig annonsebudsjett <span class="req">*</span></label><div class="inp"><select id="hh_budget" name="budget" required><option value="" disabled selected>Velg&hellip;</option><option>Under 10 000 kr</option><option>10&ndash;30 000 kr</option><option>30 000+ kr</option><option>Har ikke annonsert ennå</option></select></div></div>
           <button type="submit" class="cta"><span class="t">Få min gratis analyse<span class="arw"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span><span class="sub">Gratis &middot; uforpliktende &middot; svar innen 1 virkedag</span></button>
         </form>
         <div class="fine"><span>Vi deler aldri detaljene dine med noen andre.</span></div>
+        </div>
+        <div id="heroThanks" style="display:none">
+          <div class="fhead"><b id="heroThanksName">Takk!</b><span>Victor tar kontakt innen 1 virkedag. Vil du sette av tid med en gang?</span></div>
+          <a href="#book" class="cta" id="heroToCal" style="width:100%"><span class="t">Velg et tidspunkt<span class="arw"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span><span class="sub">30 minutter &middot; video med Victor</span></a>
+          <div class="fine" style="margin-top:12px"><span>Ikke noe press &mdash; han tar uansett kontakt.</span></div>
+        </div>
       </div>
       <div class="faces">
         <div class="pics">
@@ -478,10 +488,9 @@ h1,h2,h3,h4{font-family:var(--disp);font-weight:700;line-height:1.08;letter-spac
       <ul class="pain-list">
         <li><span class="xmark">&#10005;</span>Byrået fakturerer det samme uansett hva resultatene sier</li>
         <li><span class="xmark">&#10005;</span>Rapportene er fulle av visninger og klikk &mdash; men kassa merker ingenting</li>
-        <li><span class="xmark">&#10005;</span>De samme tre annonsene har kjørt i tre måneder</li>
         <li><span class="xmark">&#10005;</span>&laquo;Algoritmen må bare lære litt til&raquo; &mdash; i fjerde måneden på rad</li>
       </ul>
-      <p class="pain-out">Kjente du deg igjen på ett punkt? <b>Da er vi bygget for deg.</b></p>
+      <p class="pain-out">Kjente du deg igjen? <b>Da er vi bygget for deg.</b></p>
       <div class="center"><a href="#book" class="cta"><span class="t">Få en gratis analyse<span class="arw"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span><span class="sub">Gratis &middot; uforpliktende &middot; ingen binding</span></a></div>
     </div>
   </div>
@@ -524,9 +533,9 @@ h1,h2,h3,h4{font-family:var(--disp);font-weight:700;line-height:1.08;letter-spac
       <div class="ba-card"><div class="cl">Leid.no &middot; Tilhengerutleie</div>
         <div class="ba-before"><b>Før</b>Ødelagt sporing &mdash; skalering var gambling</div>
         <div class="ba-after"><b>Etter</b><span class="num">4,73x ROAS</span>100 000+ kr/mnd</div></div>
-      <div class="ba-card"><div class="cl">Mokki &middot; E-handel</div>
-        <div class="ba-before"><b>Før</b>God butikk allerede &mdash; i ett marked</div>
-        <div class="ba-after"><b>Etter</b><span class="num">+127 % profitt</span>år-over-år &middot; lønnsom i 3 land</div></div>
+      <div class="ba-card"><div class="cl">Badstugutta &middot; Saunaer</div>
+        <div class="ba-before"><b>Før</b>Godt produkt &mdash; færre leads</div>
+        <div class="ba-after"><b>Etter</b><span class="num">&laquo;Flere leads enn noensinne&raquo;</span>Elliots ord &mdash; ikke våre</div></div>
     </div>
   </div>
 </section>
@@ -754,6 +763,7 @@ h1,h2,h3,h4{font-family:var(--disp);font-weight:700;line-height:1.08;letter-spac
                 <div class="field"><label for="h_name">Navn <span class="req">*</span></label><div class="inp"><input type="text" id="h_name" name="name" placeholder="Fornavn og etternavn" autocomplete="name" required></div></div>
                 <div class="field"><label for="h_phone">Telefon <span class="req">*</span></label><div class="inp"><input type="tel" id="h_phone" name="phone" placeholder="Så vi kan ringe deg" autocomplete="tel" required></div></div>
                 <div class="field"><label for="h_email">E-post <span class="req">*</span></label><div class="inp"><input type="email" id="h_email" name="email" placeholder="din@epost.no" autocomplete="email" required></div></div>
+                <div class="field"><label for="h_budget">Månedlig annonsebudsjett <span class="req">*</span></label><div class="inp"><select id="h_budget" name="budget" required><option value="" disabled selected>Velg&hellip;</option><option>Under 10 000 kr</option><option>10&ndash;30 000 kr</option><option>30 000+ kr</option><option>Har ikke annonsert ennå</option></select></div></div>
                 <button type="submit" class="cta"><span class="t">Få min gratis analyse<span class="arw"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span><span class="sub">Gratis &middot; uforpliktende &middot; ingen binding</span></button>
               </form>
               <div class="fine"><span>Vi deler aldri detaljene dine med noen andre.</span></div>
@@ -800,9 +810,9 @@ function revealBooking(name){var ls=document.getElementById('leadStep'),bs=docum
   if(window.arcadsInitCal)window.arcadsInitCal();}
 function submitLead(f,msgEl,extraSource,onDone){
   if(f.company&&f.company.value){if(msgEl)msgEl.style.display='block';f.reset();return;} /* honeypot */
-  if(!f.name.value||!f.phone.value||!f.email.value){f.reportValidity();return;}
+  if(!f.name.value||!f.phone.value||!f.email.value||(f.budget&&!f.budget.value)){f.reportValidity();return;}
   var nameVal=f.name.value;
-  var p={subject:'Nytt lead — Arcads LP',lead_source:LEAD_SOURCE+(extraSource||''),name:nameVal,phone:f.phone.value,email:f.email.value,budget:'',page_url:location.href,user_agent:navigator.userAgent,_ts:Date.now()};
+  var p={subject:'Nytt lead — Arcads LP',lead_source:LEAD_SOURCE+(extraSource||''),name:nameVal,phone:f.phone.value,email:f.email.value,budget:(f.budget?f.budget.value:''),page_url:location.href,user_agent:navigator.userAgent,_ts:Date.now()};
   postTo(ARCADS_LEAD_WEBHOOK,p);storeLead(p);
   try{if(window.fbq)fbq('track','Lead',{content_name:p.lead_source});}catch(e){}
   try{if(window.gtag)gtag('event','generate_lead',{method:'form'});}catch(e){}
@@ -813,7 +823,11 @@ function submitLead(f,msgEl,extraSource,onDone){
 }
 function bindForm(id,msgId,src,onDone){var f=document.getElementById(id);if(!f)return;f.addEventListener('submit',function(e){e.preventDefault();e.stopPropagation();if(e.stopImmediatePropagation)e.stopImmediatePropagation();submitLead(e.target,document.getElementById(msgId),src,onDone);});}
 bindForm('leadForm','formMsg','',function(name){revealBooking(name);});
-bindForm('leadFormHero','formMsgHero','-hero',function(name){revealBooking(name);var b=document.getElementById('book');if(b)scrollToY(Math.max(0,b.getBoundingClientRect().top+window.pageYOffset-70),500);});
+bindForm('leadFormHero','formMsgHero','-hero',function(name){revealBooking(name);
+  var hl=document.getElementById('heroLead'),ht=document.getElementById('heroThanks'),hn=document.getElementById('heroThanksName');
+  var first=(name||'').trim().split(' ')[0];
+  if(hn&&first)hn.textContent='Takk, '+first+'!';
+  if(hl)hl.style.display='none';if(ht)ht.style.display='block';});
 var skip=document.getElementById('skipToCal');if(skip)skip.addEventListener('click',function(e){e.preventDefault();revealBooking('');});
 </script>
 
