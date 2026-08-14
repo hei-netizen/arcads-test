@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Redz Tattoo Supply — Google Ads-rapport | Arcads</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --page: #0a0a0a;
+    --surface: #141414;
+    --surface-2: #1c1c1c;
+    --ink: #ececec;
+    --ink-2: #b8b6ae;
+    --muted: #898781;
+    --grid: #262624;
+    --baseline: #383835;
+    --border: rgba(255,255,255,0.09);
+    --accent: #00C96F;        /* Arcads brand — UI-aksent, ikke seriefarge */
+    --s-green: #00ad60;       /* serie 1 (validert på #141414) */
+    --s-blue: #3987e5;        /* serie 2 */
+    --s-yellow: #c98500;      /* serie 3 */
+    --s-neutral: #6b6963;     /* nøytral "annet"-segment */
+    --critical: #d03b3b;      /* status: kritisk */
+    --good: #0ca30c;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--page);
+    color: var(--ink);
+    font-size: 1.05rem;
+    line-height: 1.6;
+  }
+  .wrap { max-width: 1060px; margin: 0 auto; padding: 0 24px; }
+
+  header.top {
+    border-bottom: 1px solid var(--border);
+    padding: 26px 0;
+  }
+  .top-inner { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  .brand { font-weight: 800; letter-spacing: 0.06em; font-size: 0.95rem; color: var(--accent); text-transform: uppercase; }
+  .stamp { color: var(--muted); font-size: 0.85rem; }
+
+  .hero { padding: 52px 0 8px; }
+  .hero h1 { font-size: clamp(1.7rem, 4.2vw, 2.6rem); line-height: 1.15; font-weight: 800; letter-spacing: -0.015em; }
+  .hero h1 .grn { color: var(--accent); }
+  .hero .sub { color: var(--ink-2); max-width: 62ch; margin-top: 14px; }
+
+  .tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 34px 0 8px; }
+  .tile { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; }
+  .tile .k { color: var(--muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  .tile .v { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.01em; margin-top: 4px; }
+  .tile .d { color: var(--ink-2); font-size: 0.85rem; margin-top: 2px; }
+  .tile.acc .v { color: var(--accent); }
+
+  section { padding: 40px 0 6px; }
+  .eyebrow { color: var(--accent); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em; }
+  h2 { font-size: clamp(1.3rem, 2.8vw, 1.7rem); font-weight: 800; margin: 6px 0 10px; letter-spacing: -0.01em; }
+  .lede { color: var(--ink-2); max-width: 68ch; margin-bottom: 22px; }
+  .lede strong, p strong { color: var(--ink); }
+
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin-bottom: 18px; }
+  .card h3 { font-size: 1.02rem; font-weight: 700; margin-bottom: 2px; }
+  .card .note { color: var(--muted); font-size: 0.85rem; margin-bottom: 16px; }
+  .scroll { overflow-x: auto; }
+  .scroll > svg { display: block; }
+
+  .legend { display: flex; gap: 18px; flex-wrap: wrap; margin: 4px 0 12px; }
+  .legend span { display: inline-flex; align-items: center; gap: 7px; color: var(--ink-2); font-size: 0.85rem; }
+  .sw { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+  th, td { text-align: right; padding: 9px 12px; border-bottom: 1px solid var(--grid); white-space: nowrap; }
+  th:first-child, td:first-child { text-align: left; }
+  th { color: var(--muted); font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; }
+  td { font-variant-numeric: tabular-nums; }
+  tr.bad td { color: var(--ink-2); }
+  tr.bad td:first-child::after { content: " ⚠"; color: var(--critical); }
+  tfoot td { font-weight: 700; border-top: 2px solid var(--baseline); border-bottom: none; }
+
+  .findings { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 18px; }
+  .finding { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; }
+  .finding .num { font-size: 1.55rem; font-weight: 800; }
+  .finding.crit .num { color: var(--critical); }
+  .finding.warn .num { color: var(--s-yellow); }
+  .finding.ok .num { color: var(--accent); }
+  .finding p { color: var(--ink-2); font-size: 0.9rem; line-height: 1.5; margin-top: 4px; }
+
+  .steps { counter-reset: step; display: grid; gap: 12px; }
+  .step { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px 18px 62px; position: relative; }
+  .step::before {
+    counter-increment: step; content: counter(step);
+    position: absolute; left: 18px; top: 18px;
+    width: 30px; height: 30px; border-radius: 50%;
+    background: rgba(0,201,111,0.12); color: var(--accent);
+    font-weight: 800; display: flex; align-items: center; justify-content: center; font-size: 0.95rem;
+  }
+  .step h4 { font-size: 1rem; font-weight: 700; }
+  .step p { color: var(--ink-2); font-size: 0.92rem; margin-top: 3px; }
+  .badge { display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; border-radius: 999px; padding: 2px 10px; margin-left: 8px; vertical-align: 2px; }
+  .badge.now { background: rgba(0,201,111,0.14); color: var(--accent); }
+  .badge.dec { background: rgba(201,133,0,0.16); color: #e3a63d; }
+  .badge.done { background: rgba(0,201,111,0.16); color: var(--accent); }
+  .done-note { background: rgba(0,201,111,0.08); border: 1px solid rgba(0,201,111,0.25); border-radius: 14px; padding: 16px 20px; margin-bottom: 18px; color: var(--ink-2); font-size: 0.95rem; }
+  .done-note strong { color: var(--accent); }
+
+  .caveats { color: var(--muted); font-size: 0.85rem; max-width: 75ch; }
+  .caveats li { margin: 4px 0 4px 18px; }
+
+  footer { border-top: 1px solid var(--border); margin-top: 48px; padding: 28px 0 44px; color: var(--muted); font-size: 0.85rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+  footer a { color: var(--ink-2); }
+
+  .tip {
+    position: fixed; pointer-events: none; z-index: 50; display: none;
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px;
+    padding: 8px 12px; font-size: 0.82rem; color: var(--ink);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.5); max-width: 260px; line-height: 1.45;
+  }
+  .tip .t-k { color: var(--muted); }
+  .tip .t-v { font-weight: 700; font-variant-numeric: tabular-nums; }
+
+  svg text { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+
+  @media (max-width: 860px) {
+    .tiles { grid-template-columns: repeat(2, 1fr); }
+    .findings { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 520px) {
+    body { font-size: 1rem; }
+    .tiles { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .tile .v { font-size: 1.45rem; }
+    .card { padding: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-inner">
+    <span class="brand">Arcads</span>
+    <span class="stamp">Redz Tattoo Supply · Google Ads · tall per 10.08.2026</span>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="hero">
+    <span class="eyebrow">Statusrapport — siste 90 dager (12.05–09.08)</span>
+    <h1>Kontoen tjener godt —<br>men <span class="grn">tre ting</span> holder den tilbake.</h1>
+    <p class="sub">Annonsene ga <strong>33 kr tilbake per krone</strong> i snitt. Samtidig står 27&nbsp;% av budsjettet i en kampanje som ikke selger, de beste kampanjene stoppes av budsjettak, og målingen kjører fortsatt på et sporingsoppsett som døde i juni.</p>
+  </div>
+
+  <div class="tiles">
+    <div class="tile"><div class="k">Annonsekost 90 d</div><div class="v">33 003 kr</div><div class="d">~366 kr/dag</div></div>
+    <div class="tile acc"><div class="k">Omsetning fra Ads</div><div class="v">1,10 mill kr</div><div class="d">450 kjøp</div></div>
+    <div class="tile acc"><div class="k">Blended ROAS</div><div class="v">33,4x</div><div class="d">siste 30 d: 25,8x</div></div>
+    <div class="tile"><div class="k">Bortkastet spend</div><div class="v">8 909 kr</div><div class="d">én PMax på 0,76x</div></div>
+  </div>
+
+  <!-- ============ KAMPANJEBILDET ============ -->
+  <section id="kampanjer">
+    <span class="eyebrow">Kampanjebildet</span>
+    <h2>Tre kampanjer bærer alt — én drar ned</h2>
+    <p class="lede">Brand-søk og maskin/ink-PMax står for hele omsetningen. Den fjerde kampanjen, <strong>PMax «PMU + spirit + butikk»</strong>, har brukt 8 909 kr på 90 dager og gitt 6 749 kr tilbake — og siste 30 dager: <strong>3 021 kr uten et eneste kjøp</strong>.</p>
+
+    <div class="card">
+      <h3>Annonsekost per kampanje, siste 90 dager</h3>
+      <div class="note">Grønn = lønnsom. Rød = under breakeven (~1,9x). ROAS ved hver stolpe.</div>
+      <div class="scroll" id="chart-camp"></div>
+    </div>
+
+    <div class="card">
+      <h3>Tallene bak</h3>
+      <div class="note">Kolonner fra lengst periode til nyest. Δ-tallet er ROAS-endring 90 d → 30 d.</div>
+      <div class="scroll">
+      <table>
+        <thead><tr><th>Kampanje</th><th>Kost 90 d</th><th>Kjøp 90 d</th><th>ROAS 90 d</th><th>Kost 30 d</th><th>ROAS 30 d</th></tr></thead>
+        <tbody>
+          <tr><td>Search — Eget navn</td><td>1 784 kr</td><td>81</td><td>89,8x</td><td>588 kr</td><td>40,8x</td></tr>
+          <tr><td>Search — Brand</td><td>8 938 kr</td><td>215</td><td>53,3x</td><td>2 909 kr</td><td>43,3x</td></tr>
+          <tr><td>PMax — Maskiner, ink &amp; stensil</td><td>13 372 kr</td><td>150</td><td>34,3x</td><td>4 396 kr</td><td>30,0x</td></tr>
+          <tr class="bad"><td>PMax — PMU, spirit &amp; butikk</td><td>8 909 kr</td><td>3</td><td>0,76x</td><td>3 021 kr</td><td>0,0x</td></tr>
+        </tbody>
+        <tfoot><tr><td>Totalt</td><td>33 003 kr</td><td>450</td><td>33,4x</td><td>10 914 kr</td><td>25,8x</td></tr></tfoot>
+      </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BUDSJETT-STRUPING ============ -->
+  <section id="budsjett">
+    <span class="eyebrow">Funn 1</span>
+    <h2>De beste kampanjene stoppes av budsjettak</h2>
+    <p class="lede">Google måler hvor stor andel av relevante søk annonsene faktisk vises på. Brand-kampanjen — som gir 43x — <strong>mister 47&nbsp;% av visningene sine fordi dagsbudsjettet er brukt opp</strong>. Det er den billigste veksten som finnes i kontoen: kunder som allerede leter etter Redz, men ikke får se annonsen.</p>
+
+    <div class="card">
+      <h3>Hvor visningene blir av, siste 30 dager</h3>
+      <div class="legend">
+        <span><span class="sw" style="background:var(--s-green)"></span>Vist (vunnet)</span>
+        <span><span class="sw" style="background:var(--s-yellow)"></span>Tapt — budsjett tomt</span>
+        <span><span class="sw" style="background:var(--s-neutral)"></span>Tapt — rangering</span>
+      </div>
+      <div class="scroll" id="chart-is"></div>
+    </div>
+  </section>
+
+  <!-- ============ SPORING ============ -->
+  <section id="sporing">
+    <span class="eyebrow">Funn 2</span>
+    <h2>Sporingen byttet motor i juni — uten opprydding</h2>
+    <p class="lede">Frem til mai ble salg målt av Reaktion-oppsettet til forrige byrå. Det <strong>sluttet å rapportere i juni</strong>, og Shopify-appens måling tok over. Kontoen byr fortsatt mot det døde oppsettet som primær kilde — det fungerer i dag kun fordi Shopify-målingen også står som primær, men 29 døde konverteringshandlinger ligger igjen og kan forstyrre smart bidding når vi skalerer.</p>
+
+    <div class="card">
+      <h3>Målt omsetning per kilde, per måned</h3>
+      <div class="legend">
+        <span><span class="sw" style="background:var(--s-blue)"></span>Reaktion (gammelt oppsett)</span>
+        <span><span class="sw" style="background:var(--s-green)"></span>Shopify Google-app (aktivt)</span>
+      </div>
+      <div class="scroll" id="chart-track"></div>
+      <div class="note" style="margin-top:10px">August viser kun 1.–9. — delvis måned.</div>
+    </div>
+  </section>
+
+  <!-- ============ TREND ============ -->
+  <section id="trend">
+    <span class="eyebrow">Funn 3</span>
+    <h2>Sommeren tok volumet — ikke lønnsomheten</h2>
+    <p class="lede">ROAS falt fra 38–56x i juni til 17–35x gjennom fellesferien. Kundene er tatovering- og PMU-studioer — de handler mindre i juli. Selv «dårlige» uker ligger <strong>langt over breakeven (~1,9x)</strong>. Poenget er ikke fallet, men at kontoen har tålt det med god margin.</p>
+
+    <div class="card">
+      <h3>ROAS per uke</h3>
+      <div class="note">Siste uke (03.08) er ikke ferdig attribuert — kjøp tilskrives annonser i inntil 30 dager etter klikk.</div>
+      <div class="scroll" id="chart-roas"></div>
+    </div>
+
+    <div class="card">
+      <h3>Omsetning fra annonser per uke</h3>
+      <div class="scroll" id="chart-rev"></div>
+    </div>
+  </section>
+
+  <!-- ============ FUNN-KORT ============ -->
+  <section>
+    <span class="eyebrow">Oppsummert</span>
+    <h2>Det viktigste i tre tall</h2>
+    <div class="findings">
+      <div class="finding crit"><div class="num">3 021 kr</div><p>brukt siste 30 dager på PMax «PMU + spirit &amp; butikk» — uten et eneste kjøp. 27&nbsp;% av kontoens forbruk.</p></div>
+      <div class="finding warn"><div class="num">47 %</div><p>av Brand-kampanjens mulige visninger går tapt fordi budsjettet er tomt — på en kampanje som gir 43 kr per krone.</p></div>
+      <div class="finding ok"><div class="num">89,8x</div><p>ROAS på «Eget navn»-kampanjen — med 20 kr/dag i budsjett. Kontoen er kraftig underinvestert der den vinner.</p></div>
+    </div>
+  </section>
+
+  <!-- ============ ANBEFALINGER ============ -->
+  <section id="plan">
+    <span class="eyebrow">Anbefalte tiltak</span>
+    <h2>Planen for de neste 30 dagene</h2>
+    <p class="lede">Rekkefølgen er bevisst: stopp lekkasjen, flytt pengene, fiks målingen — og bygg deretter strukturen som skal bære vekst.</p>
+    <div class="done-note"><strong>Oppdatering 13.08:</strong> Alle fem tiltak er godkjent og utført. De to nye kampanjene er live; Google gjennomgår annonsene (normalt 1–2 virkedager). Første evaluering etter 7 dager, full vurdering på 30-dagers vindu.</div>
+    <div class="steps">
+      <div class="step">
+        <h4>Pause PMax «PMU + spirit &amp; butikk» <span class="badge done">Utført 13.08</span></h4>
+        <p>0 kjøp på 30 dager, 0,76x på 90. Kampanjen er pauset — frigjorde ~100 kr/dag som ble brent uten retur.</p>
+      </div>
+      <div class="step">
+        <h4>Øk budsjettene der annonsene strupes <span class="badge done">Utført 13.08</span></h4>
+        <p>Brand 100 → 150 kr/dag, Eget navn 20 → 50, vinner-PMax 150 → 250. Netto +130 kr/dag — dekket nesten fullt av kuttet i punkt 1 + dokumentert av 21–47&nbsp;% budsjett-tapt visningsandel.</p>
+      </div>
+      <div class="step">
+        <h4>Rydd konverteringssporingen <span class="badge done">Utført 13.08</span></h4>
+        <p>Reaktion-oppsettet (dødt siden juni) er flyttet til sekundær. Shopify-appens kjøp står igjen som den primære kjøpshandlingen smart bidding optimaliserer mot.</p>
+      </div>
+      <div class="step">
+        <h4>Bygg egen non-brand-struktur <span class="badge done">Utført 13.08</span></h4>
+        <p>Ny kampanje «Search l Non-brand utstyr» er live: 100 kr/dag, 5 annonsegrupper (maskiner, cartridges, ink, stencil, utstyr), 42 søkeord i phrase/exact, brand- og konkurrent-negatives koblet før lansering. Kun Google Search, kun Norge.</p>
+      </div>
+      <div class="step">
+        <h4>REDZ-egne produkter i egen kampanje <span class="badge done">Utført 13.08</span></h4>
+        <p>Egne merkevarer (255–380&nbsp;% avanse, breakeven ~1,3x) har fått dedikert Shopping-kampanje filtrert på REDZ-produktene: 50 kr/dag med kontrollerte bud, klar til å skaleres på det som beviser seg.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <ul class="caveats">
+      <li>Alle tall er hentet direkte fra Google Ads API 10.08.2026 (konto 413-863-4386), perioden 12.05–09.08.2026.</li>
+      <li>Blended ROAS er brand-tung: mesteparten av dagens volum kommer fra folk som allerede søker etter Redz. Vekst i non-brand vil gi lavere snitt-ROAS — det er forventet og riktig, så lenge hver krone ligger over breakeven.</li>
+      <li>Omsetning målt i Google Ads = Shopify-appens kjøpssporing, ikke regnskapstall.</li>
+    </ul>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap top-inner">
+    <span><strong style="color:var(--accent)">ARCADS</strong> — performance marketing</span>
+    <span><a href="mailto:hei@arcads.no">hei@arcads.no</a> · arcads.no</span>
+  </div>
+</footer>
+
+<div class="tip" id="tip"></div>
+
+<script>
+(function () {
+  var tip = document.getElementById('tip');
+  function showTip(html, x, y) {
+    tip.innerHTML = html;
+    tip.style.display = 'block';
+    var w = tip.offsetWidth, h = tip.offsetHeight;
+    var px = Math.min(x + 14, window.innerWidth - w - 8);
+    var py = y - h - 12; if (py < 4) py = y + 16;
+    tip.style.left = px + 'px'; tip.style.top = py + 'px';
+  }
+  function hideTip() { tip.style.display = 'none'; }
+  function nok(n) { return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' kr'; }
+  var NS = 'http://www.w3.org/2000/svg';
+  function el(tag, attrs, parent) {
+    var e = document.createElementNS(NS, tag);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+  function css(v) { return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+  var C = {
+    green: css('--s-green'), blue: css('--s-blue'), yellow: css('--s-yellow'),
+    neutral: css('--s-neutral'), critical: css('--critical'),
+    ink: css('--ink'), ink2: css('--ink-2'), muted: css('--muted'),
+    grid: css('--grid'), baseline: css('--baseline'), accent: css('--accent')
+  };
+
+  /* ---------- Data ---------- */
+  var camp = [
+    { name: 'PMax — Maskiner, ink & stensil', cost: 13372, roas: 34.3, bad: false },
+    { name: 'Search — Brand',                 cost: 8938,  roas: 53.3, bad: false },
+    { name: 'PMax — PMU, spirit & butikk',    cost: 8909,  roas: 0.76, bad: true  },
+    { name: 'Search — Eget navn',             cost: 1784,  roas: 89.8, bad: false }
+  ];
+  var isData = [
+    { name: 'Search — Brand',                 won: 15.0, budget: 47.0, rank: 38.0 },
+    { name: 'Search — Eget navn',             won: 28.8, budget: 38.5, rank: 32.7 },
+    { name: 'PMax — PMU, spirit & butikk',    won: 22.9, budget: 32.1, rank: 45.1 },
+    { name: 'PMax — Maskiner, ink & stensil', won: 30.4, budget: 21.0, rank: 48.7 }
+  ];
+  var track = {
+    months: ['April', 'Mai', 'Juni', 'Juli', 'Aug 1.–9.'],
+    reaktion: [249103, 302084, 16693, 0, 0],
+    shopify:  [0, 23771, 481087, 348272, 71508]
+  };
+  var weeks = ['11.05','18.05','25.05','01.06','08.06','15.06','22.06','29.06','06.07','13.07','20.07','27.07','03.08'];
+  var wRoas = [36.6, 38.1, 40.5, 24.0, 36.7, 38.1, 43.4, 55.6, 24.9, 29.9, 20.4, 34.5, 16.7];
+  var wRev  = [88220, 102563, 94575, 66151, 98383, 99903, 109468, 131952, 70072, 77421, 50832, 83189, 44357];
+
+  function mountW(id) {
+    var host = document.getElementById(id);
+    return Math.max(330, Math.min(host.clientWidth || 900, 980));
+  }
+
+  /* ---------- 1: Horisontale kostnads-stolper ---------- */
+  (function () {
+    var host = document.getElementById('chart-camp');
+    var W = mountW('chart-camp'), rowH = 54, padL = 10, padR = 150, padT = 6;
+    var H = padT + camp.length * rowH + 26;
+    var svg = el('svg', { width: W, height: H, viewBox: '0 0 ' + W + ' ' + H, role: 'img',
+      'aria-label': 'Annonsekost per kampanje siste 90 dager' }, host);
+    var max = 13372, plotW = W - padL - padR;
+    camp.forEach(function (d, i) {
+      var y = padT + i * rowH;
+      var bw = Math.max(6, d.cost / max * plotW);
+      var color = d.bad ? C.critical : C.green;
+      el('text', { x: padL, y: y + 14, fill: C.ink2, 'font-size': 13 }, svg)
+        .textContent = d.name + (d.bad ? ' ⚠' : '');
+      var bar = el('rect', { x: padL, y: y + 22, width: bw, height: 16, rx: 4, fill: color }, svg);
+      var lbl = el('text', { x: padL + bw + 10, y: y + 34, fill: C.ink, 'font-size': 13, 'font-weight': 700 }, svg);
+      lbl.textContent = nok(d.cost) + ' · ' + String(d.roas).replace('.', ',') + 'x';
+      var hit = el('rect', { x: 0, y: y, width: W, height: rowH, fill: 'transparent' }, svg);
+      hit.addEventListener('mousemove', function (ev) {
+        showTip('<div>' + d.name + '</div><div class="t-k">Kost 90 d: <span class="t-v">' + nok(d.cost) +
+          '</span></div><div class="t-k">ROAS: <span class="t-v">' + String(d.roas).replace('.', ',') + 'x</span></div>', ev.clientX, ev.clientY);
+      });
+      hit.addEventListener('mouseleave', hideTip);
+    });
+    el('line', { x1: padL, y1: padT, x2: padL, y2: H - 22, stroke: C.baseline, 'stroke-width': 1 }, svg);
+  })();
+
+  /* ---------- 2: 100 % stablet visningsandel ---------- */
+  (function () {
+    var host = document.getElementById('chart-is');
+    var W = mountW('chart-is'), rowH = 56, padL = 10, padR = 16, padT = 4;
+    var H = padT + isData.length * rowH + 8;
+    var svg = el('svg', { width: W, height: H, viewBox: '0 0 ' + W + ' ' + H, role: 'img',
+      'aria-label': 'Visningsandel vunnet og tapt per kampanje' }, host);
+    var plotW = W - padL - padR, gap = 2;
+    isData.forEach(function (d, i) {
+      var y = padT + i * rowH;
+      el('text', { x: padL, y: y + 14, fill: C.ink2, 'font-size': 13 }, svg).textContent = d.name;
+      var segs = [
+        { v: d.won, c: C.green, n: 'Vist' },
+        { v: d.budget, c: C.yellow, n: 'Tapt — budsjett tomt' },
+        { v: d.rank, c: C.neutral, n: 'Tapt — rangering' }
+      ];
+      var x = padL;
+      segs.forEach(function (s, j) {
+        var w = s.v / 100 * plotW - (j < 2 ? gap : 0);
+        var r = el('rect', { x: x, y: y + 22, width: Math.max(w, 2), height: 18, fill: s.c,
+          rx: (j === 0 || j === 2) ? 4 : 0 }, svg);
+        if (w > 46) {
+          el('text', { x: x + w / 2, y: y + 35, fill: '#0a0a0a', 'font-size': 11.5, 'font-weight': 700,
+            'text-anchor': 'middle' }, svg).textContent = Math.round(s.v) + ' %';
+        }
+        r.addEventListener('mousemove', function (ev) {
+          showTip('<div>' + d.name + '</div><div class="t-k">' + s.n + ': <span class="t-v">' +
+            String(s.v).replace('.', ',') + ' %</span></div>', ev.clientX, ev.clientY);
+        });
+        r.addEventListener('mouseleave', hideTip);
+        x += s.v / 100 * plotW;
+      });
+    });
+  })();
+
+  /* ---------- 3: Sporing — grupperte stolper per måned ---------- */
+  (function () {
+    var host = document.getElementById('chart-track');
+    var W = mountW('chart-track'), H = 260, padL = 56, padR = 12, padT = 12, padB = 30;
+    var svg = el('svg', { width: W, height: H, viewBox: '0 0 ' + W + ' ' + H, role: 'img',
+      'aria-label': 'Målt omsetning per sporingskilde per måned' }, host);
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var max = 500000;
+    [0, 125000, 250000, 375000, 500000].forEach(function (v) {
+      var y = padT + plotH - v / max * plotH;
+      el('line', { x1: padL, y1: y, x2: W - padR, y2: y, stroke: v === 0 ? C.baseline : C.grid, 'stroke-width': 1 }, svg);
+      el('text', { x: padL - 8, y: y + 4, fill: C.muted, 'font-size': 11, 'text-anchor': 'end' }, svg)
+        .textContent = v === 0 ? '0' : (v / 1000) + 'k';
+    });
+    var n = track.months.length, slot = plotW / n, bw = Math.min(34, slot / 3);
+    track.months.forEach(function (m, i) {
+      var cx = padL + slot * i + slot / 2;
+      var pairs = [
+        { v: track.reaktion[i], c: C.blue, n: 'Reaktion' },
+        { v: track.shopify[i], c: C.green, n: 'Shopify-app' }
+      ];
+      pairs.forEach(function (p, j) {
+        var h = p.v / max * plotH;
+        var x = cx - bw - 1 + j * (bw + 2);
+        if (p.v > 0) {
+          var r = el('rect', { x: x, y: padT + plotH - h, width: bw, height: Math.max(h, 3), fill: p.c, rx: 3 }, svg);
+          r.addEventListener('mousemove', function (ev) {
+            showTip('<div>' + m + ' — ' + p.n + '</div><div class="t-v">' + nok(p.v) + '</div>', ev.clientX, ev.clientY);
+          });
+          r.addEventListener('mouseleave', hideTip);
+        }
+      });
+      el('text', { x: cx, y: H - 8, fill: C.muted, 'font-size': 11.5, 'text-anchor': 'middle' }, svg).textContent = m;
+    });
+  })();
+
+  /* ---------- 4: ROAS per uke — linje ---------- */
+  (function () {
+    var host = document.getElementById('chart-roas');
+    var W = mountW('chart-roas'), H = 250, padL = 44, padR = 16, padT = 14, padB = 30;
+    var svg = el('svg', { width: W, height: H, viewBox: '0 0 ' + W + ' ' + H, role: 'img',
+      'aria-label': 'ROAS per uke' }, host);
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var max = 60;
+    [0, 20, 40, 60].forEach(function (v) {
+      var y = padT + plotH - v / max * plotH;
+      el('line', { x1: padL, y1: y, x2: W - padR, y2: y, stroke: v === 0 ? C.baseline : C.grid, 'stroke-width': 1 }, svg);
+      el('text', { x: padL - 8, y: y + 4, fill: C.muted, 'font-size': 11, 'text-anchor': 'end' }, svg).textContent = v + 'x';
+    });
+    var xs = wRoas.map(function (_, i) { return padL + i / (wRoas.length - 1) * plotW; });
+    var ys = wRoas.map(function (v) { return padT + plotH - v / max * plotH; });
+    el('path', { d: xs.map(function (x, i) { return (i ? 'L' : 'M') + x + ' ' + ys[i]; }).join(' '),
+      fill: 'none', stroke: C.green, 'stroke-width': 2, 'stroke-linejoin': 'round' }, svg);
+    var bey = padT + plotH - 1.9 / max * plotH;
+    el('line', { x1: padL, y1: bey, x2: W - padR, y2: bey, stroke: C.critical, 'stroke-width': 1, 'stroke-dasharray': '4 4' }, svg);
+    el('text', { x: W - padR, y: bey - 6, fill: C.critical, 'font-size': 11, 'text-anchor': 'end' }, svg)
+      .textContent = 'breakeven ~1,9x';
+    weeks.forEach(function (w, i) {
+      if (i % 2 === 0) el('text', { x: xs[i], y: H - 8, fill: C.muted, 'font-size': 11, 'text-anchor': 'middle' }, svg).textContent = w;
+    });
+    [7, 12].forEach(function (i) {
+      el('text', { x: xs[i], y: ys[i] - 10, fill: C.ink, 'font-size': 12, 'font-weight': 700, 'text-anchor': 'middle' }, svg)
+        .textContent = String(wRoas[i]).replace('.', ',') + 'x';
+    });
+    var dot = el('circle', { r: 4.5, fill: C.green, stroke: '#141414', 'stroke-width': 2, opacity: 0 }, svg);
+    var hit = el('rect', { x: padL, y: 0, width: plotW, height: H, fill: 'transparent' }, svg);
+    hit.addEventListener('mousemove', function (ev) {
+      var rect = svg.getBoundingClientRect();
+      var rx = (ev.clientX - rect.left) * (W / rect.width);
+      var i = Math.round((rx - padL) / plotW * (wRoas.length - 1));
+      i = Math.max(0, Math.min(wRoas.length - 1, i));
+      dot.setAttribute('cx', xs[i]); dot.setAttribute('cy', ys[i]); dot.setAttribute('opacity', 1);
+      showTip('<div>Uke fra ' + weeks[i] + '</div><div class="t-k">ROAS: <span class="t-v">' +
+        String(wRoas[i]).replace('.', ',') + 'x</span></div>', ev.clientX, ev.clientY);
+    });
+    hit.addEventListener('mouseleave', function () { dot.setAttribute('opacity', 0); hideTip(); });
+  })();
+
+  /* ---------- 5: Omsetning per uke — stolper ---------- */
+  (function () {
+    var host = document.getElementById('chart-rev');
+    var W = mountW('chart-rev'), H = 250, padL = 52, padR = 12, padT = 14, padB = 30;
+    var svg = el('svg', { width: W, height: H, viewBox: '0 0 ' + W + ' ' + H, role: 'img',
+      'aria-label': 'Omsetning fra annonser per uke' }, host);
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var max = 140000;
+    [0, 35000, 70000, 105000, 140000].forEach(function (v) {
+      var y = padT + plotH - v / max * plotH;
+      el('line', { x1: padL, y1: y, x2: W - padR, y2: y, stroke: v === 0 ? C.baseline : C.grid, 'stroke-width': 1 }, svg);
+      el('text', { x: padL - 8, y: y + 4, fill: C.muted, 'font-size': 11, 'text-anchor': 'end' }, svg)
+        .textContent = v === 0 ? '0' : (v / 1000) + 'k';
+    });
+    var n = wRev.length, slot = plotW / n, bw = Math.min(30, slot - 4);
+    wRev.forEach(function (v, i) {
+      var h = v / max * plotH;
+      var x = padL + slot * i + (slot - bw) / 2;
+      var r = el('rect', { x: x, y: padT + plotH - h, width: bw, height: h, fill: C.green, rx: 4 }, svg);
+      r.addEventListener('mousemove', function (ev) {
+        showTip('<div>Uke fra ' + weeks[i] + '</div><div class="t-v">' + nok(v) + '</div>', ev.clientX, ev.clientY);
+      });
+      r.addEventListener('mouseleave', hideTip);
+      if (i % 2 === 0) el('text', { x: padL + slot * i + slot / 2, y: H - 8, fill: C.muted, 'font-size': 11, 'text-anchor': 'middle' }, svg).textContent = weeks[i];
+    });
+    var peak = 7, peakX = padL + slot * peak + slot / 2;
+    el('text', { x: peakX, y: padT + plotH - wRev[peak] / max * plotH - 8, fill: C.ink, 'font-size': 12, 'font-weight': 700, 'text-anchor': 'middle' }, svg)
+      .textContent = '132k';
+  })();
+})();
+</script>
+</body>
+</html>
