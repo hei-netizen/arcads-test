@@ -363,6 +363,18 @@ h1,h2,h3,h4{font-family:var(--disp);font-weight:700;line-height:1.08;letter-spac
 .inc b{color:#fff}
 @media(max-width:920px){.final-grid{grid-template-columns:1fr;gap:26px}}
 @media(max-width:900px){.hero-chks li,.price-anchor{justify-content:center}.hero-form{margin:0 auto 18px}}
+
+/* ---- curve-pass (test) ---- */
+.steps{list-style:none;display:grid;gap:18px;padding:0;margin:22px 0 0}
+.steps li{display:flex;gap:14px;line-height:1.55;color:var(--on-dark-dim);font-size:0.98rem}
+.steps b{color:#fff}
+.st-no{font-family:var(--disp);font-weight:700;font-size:0.82rem;color:var(--accent);letter-spacing:.06em;flex:none;padding-top:3px}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.svc{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:26px 24px;box-shadow:var(--sh-sm)}
+.svc-no{font-family:var(--disp);font-weight:700;font-size:0.82rem;color:var(--accent-text);letter-spacing:.06em}
+.svc h3{font-size:1.12rem;margin:10px 0 8px}
+.svc p{font-size:0.95rem;color:var(--muted);line-height:1.6}
+@media(max-width:840px){.svc-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -388,7 +400,7 @@ h1,h2,h3,h4{font-family:var(--disp);font-weight:700;line-height:1.08;letter-spac
   <div class="hero-grid">
     <div>
       <h1>Annonser som betaler for seg selv.</h1>
-      <p class="sub">5000+ annonser for norske merkevarer. <b>Du betaler først når de leverer.</b></p>
+      <p class="sub">5000+ annonser for norske merkevarer. 94 % av kundene får større bunnlinje innen tre måneder &mdash; <b>og du betaler først når det leverer.</b></p>
       <ul class="hero-chks">
         <li><span class="hchk"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Fra brief til ferdige annonser på 48 timer</li>
         <li><span class="hchk"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></span> 10+ nye annonser i uka &mdash; alt in-house</li>
@@ -642,6 +654,21 @@ h1,h2,h3,h4{font-family:var(--disp);font-weight:700;line-height:1.08;letter-spac
 </section>
 
 <!-- ===== CASER SOM FEED-ADS ===== -->
+<!-- ===== TJENESTER (test) ===== -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="center reveal" style="max-width:560px;margin:0 auto 34px">
+      <span class="eyebrow">Det vi kjører</span>
+      <h2 class="h-lg">Tre ting. Gjort skikkelig.</h2>
+    </div>
+    <div class="svc-grid reveal">
+      <div class="svc"><span class="svc-no">01</span><h3>Meta Ads</h3><p>UGC, statics og video i volum &mdash; vi skalerer det som selger, og pauser det som ikke gjør det.</p></div>
+      <div class="svc"><span class="svc-no">02</span><h3>Google Ads</h3><p>Search, Shopping og PMax. Vi luker ut søketermene som brenner penger &mdash; hver eneste uke.</p></div>
+      <div class="svc"><span class="svc-no">03</span><h3>Kreativ produksjon</h3><p>Hooks, UGC, statics og video &mdash; 10+ nye annonser i uka, alt in-house. Ingen freelancere å vente på.</p></div>
+    </div>
+  </div>
+</section>
+
 <section class="section" id="caser">
   <div class="wrap">
     <div class="center" style="max-width:640px;margin:0 auto">
@@ -745,13 +772,13 @@ h1,h2,h3,h4{font-family:var(--disp);font-weight:700;line-height:1.08;letter-spac
       <h2>Få en gratis analyse av annonsekontoen din.</h2>
       <div class="final-grid">
         <div class="fg-left">
-          <p>30 minutter på video med Victor. Ingen pitch, ingen forpliktelser. Dette får du:</p>
-          <ul class="inc">
-            <li><span class="hchk"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><b>Hvor pengene lekker.</b> Søketermer, plasseringer og budsjett som brenner uten å selge.</span></li>
-            <li><span class="hchk"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><b>30-dagersplanen.</b> Hva vi ville gjort først &mdash; i rekkefølge, med tall.</span></li>
-            <li><span class="hchk"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><b>Et ærlig svar.</b> Kan vi ikke hjelpe deg, sier vi det rett ut.</span></li>
-          </ul>
-          <p class="fine">Analysen er din uansett &mdash; om du blir kunde eller ikke.</p>
+          <p>Fyll ut, så skjer dette &mdash; ikke noe mer, ikke noe mindre:</p>
+          <ol class="steps">
+            <li><span class="st-no">01</span><span><b>Victor tar kontakt innen én virkedag.</b> Du snakker med han som faktisk skal gjøre jobben.</span></li>
+            <li><span class="st-no">02</span><span><b>30 minutter på video.</b> Vi går gjennom annonsekontoen din sammen &mdash; hvor pengene lekker, og hva vi ville gjort de første 30 dagene.</span></li>
+            <li><span class="st-no">03</span><span><b>Du sitter igjen med analysen.</b> Uansett om du blir kunde eller ikke &mdash; den er din.</span></li>
+            <li><span class="st-no">04</span><span><b>Ærlig svar.</b> Er vi ikke riktig match, sier vi det rett ut. Vi tjener uansett ingenting før du gjør det.</span></li>
+          </ol>
         </div>
         <div class="fg-right">
           <div class="formcard">
