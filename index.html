@@ -10,6 +10,9 @@
      kursiv-aksent i overskrifter, varm krem-palett (#F9F8F4/#F2EDE4),
      mørke ink-CTA-er (grønn kun som aksent), flate editorial-flater.
      cal.com-booking nederst (#book).
+     + apple-design-pass v5 (test): draggbar annonsevegg m/momentum,
+     press-feedback på pointer-down, scroll-edge-nav (ikke hard divider),
+     animert FAQ, størrelses-spesifikk tracking, reduced-motion/-transparency.
      ============================================================ -->
 <meta name="description" content="Annonser som betaler for seg selv. 5000+ laget for norske merkevarer, 10+ nye i uka. 100% resultatbasert — du betaler først når de leverer. Få en gratis analyse.">
 <link rel="canonical" href="https://arcads.no/">
@@ -54,7 +57,9 @@ html{scroll-behavior:auto}
 body{font-family:var(--sans);color:var(--ink);background:var(--bg);line-height:1.65;overflow-x:hidden}
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
-h1,h2,h3,h4{font-family:var(--disp);font-weight:700;line-height:1.08;letter-spacing:-0.032em;overflow-wrap:break-word}
+h1,h2,h3,h4{font-family:var(--disp);font-weight:700;line-height:1.08;overflow-wrap:break-word}
+h1,h2{letter-spacing:-0.032em}
+h3,h4{letter-spacing:-0.016em;line-height:1.2}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
 .section{padding:84px 0}
 @media(max-width:760px){.section{padding:54px 0}}
@@ -75,6 +80,9 @@ h1,h2,h3,h4{font-family:var(--disp);font-weight:700;line-height:1.08;letter-spac
 .btn-white span.sub{color:var(--muted)}
 .btn-soft{display:inline-flex;align-items:center;gap:9px;background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:var(--pill);padding:13px 24px;font-weight:600;font-size:0.9rem;cursor:pointer;transition:.2s}
 .btn-soft:hover{border-color:var(--ink)}
+/* press-feedback på pointer-down, ikke på release */
+.cta:active,.btn-white:active{transform:translateY(0) scale(.97);transition-duration:.05s}
+.btn-soft:active,.nav-cta:active{transform:scale(.97);transition-duration:.05s}
 
 /* ---- topstrip (social proof før alt annet) ---- */
 .topstrip{background:var(--dark);color:#fff;text-align:center;padding:9px 14px;font-size:0.85rem;font-weight:500}
@@ -83,7 +91,8 @@ h1,h2,h3,h4{font-family:var(--disp);font-weight:700;line-height:1.08;letter-spac
 @media(max-width:600px){.topstrip{font-size:0.78rem}.topstrip .ts-x{display:none}}
 
 /* ---- nav ---- */
-.nav{position:sticky;top:0;z-index:60;background:rgba(249,248,244,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{position:sticky;top:0;z-index:60;background:rgba(249,248,244,.82);-webkit-backdrop-filter:blur(14px) saturate(180%);backdrop-filter:blur(14px) saturate(180%);border-bottom:1px solid transparent;transition:border-color .35s,box-shadow .35s}
+.nav.scrolled{border-bottom-color:var(--line);box-shadow:0 14px 30px -24px rgba(15,13,10,.22)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px;max-width:var(--maxw);margin:0 auto;padding:0 24px}
 .nav .brand img{height:28px;width:auto;display:block}
 .nav-links{display:flex;align-items:center;gap:26px}
@@ -127,6 +136,12 @@ h1,h2,h3,h4{font-family:var(--disp);font-weight:700;line-height:1.08;letter-spac
 .wad img{width:100%;aspect-ratio:4/5;object-fit:cover}
 .wad figcaption{position:absolute;left:9px;bottom:8px;background:rgba(255,255,255,.95);backdrop-filter:blur(4px);padding:4px 10px;border-radius:var(--pill);font-size:0.7rem;font-weight:700}
 @media(prefers-reduced-motion:reduce){.wcol{animation:none}}
+/* fluid annonsevegg (apple-pass): JS tar over — 1:1 drag + momentum */
+.wall.js-live .wcol{animation:none;will-change:transform}
+.wall.js-live{cursor:grab}
+.wall.js-live.dragging{cursor:grabbing}
+.wall.js-live .wad img{-webkit-user-drag:none;user-select:none;-webkit-user-select:none}
+.wall.js-live .wad figcaption{user-select:none;-webkit-user-select:none}
 /* sitat-bobler over veggen */
 .qb{position:absolute;background:var(--paper);border:1px solid var(--line);border-radius:5px 16px 16px 16px;padding:12px 16px;box-shadow:var(--sh);font-size:0.9rem;line-height:1.4;max-width:240px;z-index:3;color:var(--ink)}
 .qb b{display:block;font-family:var(--disp);font-weight:700;font-size:0.8rem;color:var(--ink);margin-top:6px}
@@ -235,7 +250,14 @@ h1,h2,h3,h4{font-family:var(--disp);font-weight:700;line-height:1.08;letter-spac
 .faq summary::-webkit-details-marker{display:none}
 .faq summary .pm{width:28px;height:28px;border-radius:50%;background:var(--accent-soft);color:var(--accent-deep);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex:none;transition:.3s}
 .faq details[open] summary .pm{transform:rotate(45deg);background:var(--accent);color:var(--accent-ink)}
+.faq details:not([open]) summary:active .pm{transform:scale(.86)}
+.faq details[open] summary:active .pm{transform:rotate(45deg) scale(.86)}
 .faq .ans{padding:0 0 20px;color:var(--ink);font-size:1.04rem;max-width:72ch;line-height:1.65}
+/* myk åpne/lukke (progressiv — krever interpolate-size, ellers som før) */
+.faq details{interpolate-size:allow-keywords}
+.faq details::details-content{opacity:0;block-size:0;overflow-y:clip;transition:content-visibility .34s allow-discrete,opacity .34s cubic-bezier(.2,.7,.2,1),block-size .34s cubic-bezier(.2,.7,.2,1)}
+.faq details[open]::details-content{opacity:1;block-size:auto}
+@media(prefers-reduced-motion:reduce){.faq details::details-content{transition:content-visibility .15s allow-discrete,opacity .15s ease;block-size:auto}}
 
 /* ---- booking ---- */
 .final{background:var(--dark);color:#fff;border-radius:26px;padding:64px 40px 44px;text-align:center;box-shadow:var(--sh);scroll-margin-top:80px}
@@ -309,7 +331,7 @@ h1,h2,h3,h4{font-family:var(--disp);font-weight:700;line-height:1.08;letter-spac
 .field{margin-bottom:14px}
 .field label{display:block;font-size:0.82rem;font-weight:700;margin-bottom:6px;color:var(--ink)}
 .field label .req{color:var(--accent-deep)}
-.field .inp{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
+.field .inp{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden;transition:border-color .15s,background .15s}
 .field .inp:focus-within{border-color:var(--accent);background:#fff}
 .field input,.field select{flex:1;width:100%;padding:13px 14px;border:0;background:transparent;font-family:var(--sans);font-size:0.96rem;color:var(--ink);appearance:none;-webkit-appearance:none}
 .field select:invalid{color:var(--faint)}
@@ -381,6 +403,16 @@ h1,h2,h3,h4{font-family:var(--disp);font-weight:700;line-height:1.08;letter-spac
 .wallbox{margin-top:6px}
 @media(min-width:901px){.wall{height:1120px}}
 @media(max-width:900px){.hero-grid{align-items:center}}
+
+/* ---- apple-pass (test): reduced transparency/contrast ---- */
+@media(prefers-reduced-transparency:reduce){
+  .nav{background:var(--bg);-webkit-backdrop-filter:none;backdrop-filter:none}
+  .wad figcaption{background:#fff;-webkit-backdrop-filter:none;backdrop-filter:none}
+}
+@media(prefers-contrast:more){
+  .nav{background:var(--bg)}
+  .nav.scrolled{border-bottom-color:var(--ink)}
+}
 </style>
 </head>
 <body>
@@ -823,9 +855,98 @@ h1,h2,h3,h4{font-family:var(--disp);font-weight:700;line-height:1.08;letter-spac
 </footer>
 
 <script>
-/* ---- smooth scroll ---- */
-function scrollToY(y,dur){var s=window.pageYOffset,d=y-s,t0=null;function f(t){if(t0===null)t0=t;var p=Math.min((t-t0)/dur,1);var e=p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2;window.scrollTo(0,s+d*e);if(p<1)requestAnimationFrame(f);}requestAnimationFrame(f);}
+/* ---- smooth scroll (apple-pass: avbrytbar + reduced-motion) ---- */
+var scrollRAF=null;
+function scrollToY(y,dur){
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){window.scrollTo(0,y);return;}
+  if(scrollRAF)cancelAnimationFrame(scrollRAF);
+  var s=window.pageYOffset,d=y-s,t0=null;
+  function f(t){if(t0===null)t0=t;var p=Math.min((t-t0)/dur,1);var e=p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2;window.scrollTo(0,s+d*e);scrollRAF=p<1?requestAnimationFrame(f):null;}
+  scrollRAF=requestAnimationFrame(f);
+}
+/* brukeren tar alltid over: avbryt animasjonen ved egen scroll-input */
+['wheel','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,function(){if(scrollRAF){cancelAnimationFrame(scrollRAF);scrollRAF=null;}},{passive:true});});
 document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){var h=a.getAttribute('href');if(!h||h.length<2)return;var t=document.querySelector(h);if(!t)return;e.preventDefault();scrollToY(Math.max(0,t.getBoundingClientRect().top+window.pageYOffset-70),500);});});
+
+/* ---- nav scroll-edge (kant først når innhold faktisk ligger under) ---- */
+(function(){var nav=document.querySelector('.nav');if(!nav)return;var on=false;
+function chk(){var s=window.pageYOffset>8;if(s!==on){on=s;nav.classList.toggle('scrolled',s);}}
+window.addEventListener('scroll',chk,{passive:true});chk();})();
+
+/* ---- fluid annonsevegg: 1:1 drag, velocity handoff, momentum ---- */
+(function(){
+  if(!window.matchMedia)return;
+  if(!matchMedia('(pointer:fine)').matches)return;               /* touch beholder nativ side-scroll */
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var wall=document.querySelector('.wall');if(!wall)return;
+  var cols=[].slice.call(wall.querySelectorAll('.wcol'));if(cols.length<1)return;
+  var DUR=[46,60,52],DIR=[1,-1,1];
+  var st=cols.map(function(c,i){return{el:c,off:0,loop:1,speed:0,dur:DUR[i%3]||50,dir:DIR[i%3]||1,orig:c.children.length/2};});
+  function measure(){st.forEach(function(s){
+    var k=s.el.children;                                        /* periode = avstand original → første duplikat */
+    s.loop=Math.max(1,k.length>s.orig?k[s.orig].offsetTop-k[0].offsetTop:s.el.scrollHeight/2);
+    s.speed=s.dir*s.loop/s.dur;
+  });}
+  function coverage(){st.forEach(function(s){                    /* kolonnen må dekke loop + vindu — ellers tomrom */
+    var need=s.loop+wall.clientHeight+40,guard=0;
+    function contentH(){var k=s.el.children,l=k[k.length-1];return l.offsetTop-k[0].offsetTop+l.offsetHeight;} /* ikke scrollHeight — grid strekker søsken */
+    while(contentH()<need&&guard<4){
+      for(var k=0;k<s.orig;k++){var c=s.el.children[k].cloneNode(true);c.setAttribute('aria-hidden','true');s.el.appendChild(c);}
+      guard++;
+    }
+  });}
+  function remeasure(){measure();coverage();}
+  remeasure();window.addEventListener('resize',remeasure);window.addEventListener('load',remeasure);
+  wall.classList.add('js-live');
+  var hover=false,factor=1,extra=0,dragging=false,lastY=0,hist=[];
+  wall.addEventListener('mouseenter',function(){hover=true;});
+  wall.addEventListener('mouseleave',function(){hover=false;});
+  wall.addEventListener('pointerdown',function(e){
+    if(e.button!==0||e.pointerType==='touch')return;             /* touch = nativ scroll, alltid */
+    dragging=true;wall.classList.add('dragging');
+    try{wall.setPointerCapture(e.pointerId);}catch(err){}
+    lastY=e.clientY;hist=[[performance.now(),e.clientY]];extra=0;
+    e.preventDefault();
+  });
+  wall.addEventListener('pointermove',function(e){
+    if(!dragging)return;
+    var dy=e.clientY-lastY;lastY=e.clientY;
+    st.forEach(function(s){s.off-=dy;});                         /* 1:1 med pekeren, hele veien */
+    var n=performance.now();hist.push([n,e.clientY]);
+    while(hist.length>2&&n-hist[0][0]>90)hist.shift();           /* kort historikk → utløsningsfart */
+  });
+  function endDrag(){
+    if(!dragging)return;
+    dragging=false;wall.classList.remove('dragging');
+    var v=0;
+    if(hist.length>1){var a=hist[0],b=hist[hist.length-1],dt=(b[0]-a[0])/1000;if(dt>0.004)v=(b[1]-a[1])/dt;}
+    extra=-v;                                                    /* animasjonen arver fingerens fart */
+  }
+  wall.addEventListener('pointerup',endDrag);
+  wall.addEventListener('pointercancel',endDrag);
+  var running=false,prev=0;
+  function tick(n){
+    if(!running)return;
+    var dt=Math.min(0.05,(n-prev)/1000);prev=n;
+    var target=(hover&&!dragging)?0:1;                           /* hover-pause glir, stopper ikke hardt */
+    factor+=(target-factor)*(1-Math.exp(-dt/0.3));
+    if(!dragging){
+      extra*=Math.exp(-dt/0.5);                                  /* eksponentiell utrulling, som scroll */
+      if(Math.abs(extra)<0.5)extra=0;
+      st.forEach(function(s){s.off+=(s.speed*factor+extra)*dt;});
+    }
+    st.forEach(function(s){
+      var y=((s.off%s.loop)+s.loop)%s.loop;
+      s.el.style.transform='translateY('+(-y).toFixed(2)+'px)';
+    });
+    requestAnimationFrame(tick);
+  }
+  var io2=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(e.isIntersecting&&!running){running=true;prev=performance.now();requestAnimationFrame(tick);}
+    else if(!e.isIntersecting){running=false;}
+  });});
+  io2.observe(wall);
+})();
 
 /* ---- scroll reveal ---- */
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0.1});
