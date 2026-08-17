@@ -5,10 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Arcads — Annonser som betaler for seg selv. 100% resultatbasert</title>
 <!-- ============================================================
-     ARCADS.NO v15 — «Editorial-redesign» (test)
-     Full restyle av v14/v5: Instrument Serif-aksenter (endelig),
-     hairline-seksjoner m/nummererte kickers i stedet for kort+skygge,
-     topstrip/pills/check-sirkler fjernet, én CTA-stil, flate skjemaer.
+     ARCADS.NO v16 — «Editorial-redesign + klarhets-pass» (test)
+     v15-restyle (Instrument Serif, hairlines, flate skjemaer, én CTA-stil)
+     + klarhet etter Victors feedback «vanskelig å følge med på»:
+     dekorativ nummerering fjernet (01–11/i-iii/a-c — tall kun der rekkefølge
+     er ekte: prosess + booking-steg), serif-italic kun på signaturpunkter,
+     stablet section-header (én lese-akse), vekslende bakgrunner for
+     seksjons-chunking, ✕/✓-markører tilbake, FØR/ETTER-labels per celle.
      Innhold, claims, lead-flyt (Make-webhook, felt-IDer, cal.com) og
      apple-passets fysikk (draggbar vegg, press-feedback) uendret.
      ============================================================ -->
@@ -60,12 +63,17 @@ h3,h4{font-weight:650;letter-spacing:-0.014em;line-height:1.2}
 .section{padding:96px 0}
 @media(max-width:760px){.section{padding:60px 0}}
 
-/* ---- editorial section-header: hairline + kicker + h2 venstre, lede høyre ---- */
-.shead{border-top:1px solid var(--line);padding-top:26px;margin-bottom:52px;display:grid;grid-template-columns:1.15fr 0.85fr;gap:18px 64px;align-items:end}
-.shead .kick{grid-column:1/-1;font-size:0.72rem;font-weight:650;letter-spacing:.17em;text-transform:uppercase;color:var(--faint)}
-.shead h2{font-size:clamp(1.9rem,3.6vw,2.7rem)}
-.shead .slede{font-size:1.05rem;color:var(--muted);max-width:44ch;line-height:1.6;justify-self:end;align-self:end}
-@media(max-width:860px){.shead{grid-template-columns:1fr;gap:14px;margin-bottom:38px}.shead .slede{justify-self:start}}
+/* ---- editorial section-header: hairline + kicker + h2 + lede, én lese-akse ---- */
+.shead{border-top:1px solid var(--line);padding-top:26px;margin-bottom:48px}
+.shead .kick{display:block;font-size:0.72rem;font-weight:650;letter-spacing:.17em;text-transform:uppercase;color:var(--faint);margin-bottom:16px}
+.shead h2{font-size:clamp(2rem,3.8vw,2.9rem);max-width:24ch}
+.shead .slede{font-size:1.08rem;color:var(--muted);max-width:56ch;line-height:1.6;margin-top:14px}
+@media(max-width:860px){.shead{margin-bottom:36px}}
+.sect-paper{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.sect-paper .shead{border-top:0;padding-top:0}
+.sect-paper .cmt .bub{background:var(--bg);border-color:var(--line)}
+.sect-paper .cmt .av{background:var(--bg)}
+.sect-paper .q-col li{border-color:var(--line)}
 
 /* ---- CTA (én stil: enlinjes, ingen dobbeltdekk) ---- */
 .cta{display:inline-flex;align-items:center;gap:11px;background:var(--ink);color:#fff;border:0;cursor:pointer;border-radius:12px;padding:16px 28px;font-family:var(--sans);font-weight:600;font-size:0.99rem;line-height:1;transition:background .2s,transform .2s}
@@ -201,10 +209,10 @@ h3,h4{font-weight:650;letter-spacing:-0.014em;line-height:1.2}
 
 /* ---- pain (editorial linjer, ikke ✕-sirkler) ---- */
 .pain{max-width:820px}
-.pain-list{list-style:none;margin:34px 0 0;padding:0}
-.pain-list li{display:grid;grid-template-columns:56px 1fr;gap:20px;align-items:baseline;padding:20px 0;border-top:1px solid var(--line);font-size:1.14rem;color:var(--ink2);line-height:1.55}
+.pain-list{list-style:none;margin:0;padding:0}
+.pain-list li{display:grid;grid-template-columns:40px 1fr;gap:18px;align-items:baseline;padding:20px 0;border-top:1px solid var(--line);font-size:1.14rem;color:var(--ink2);line-height:1.55}
 .pain-list li:last-child{border-bottom:1px solid var(--line)}
-.pain-list .no{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--faint)}
+.pain-list .x{font-weight:600;font-size:1rem;color:var(--faint)}
 .pain-out{margin-top:34px;font-size:clamp(1.4rem,2.4vw,1.8rem);font-weight:700;letter-spacing:-0.025em;line-height:1.25}
 .pain-out .si{font-weight:400;letter-spacing:-0.005em}
 .pain-cta{margin-top:26px}
@@ -225,15 +233,16 @@ h3,h4{font-weight:650;letter-spacing:-0.014em;line-height:1.2}
 .c-after{margin-top:34px}
 
 /* ---- før/etter som tabell ---- */
-.ba-table{border-top:1px solid var(--line);margin-top:10px}
-.ba-row{display:grid;grid-template-columns:0.9fr 1.1fr 1fr;gap:28px;padding:26px 0;border-bottom:1px solid var(--line);align-items:baseline}
-.ba-row.hdr{padding:14px 0;font-size:0.7rem;font-weight:650;letter-spacing:.15em;text-transform:uppercase;color:var(--faint)}
-.ba-row .cl{font-weight:650;font-size:1.02rem;letter-spacing:-0.01em}
+.ba-table{border-top:1px solid var(--line)}
+.ba-row{display:grid;grid-template-columns:0.85fr 1.1fr 1.05fr;gap:28px;padding:26px 0;border-bottom:1px solid var(--line);align-items:start}
+.ba-row .cl{font-weight:650;font-size:1.05rem;letter-spacing:-0.01em}
 .ba-row .cl span{display:block;font-weight:450;font-size:0.82rem;color:var(--faint);margin-top:2px}
+.ba-row .tag{display:block;font-size:0.66rem;font-weight:650;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-bottom:6px}
+.ba-row .aft .tag{color:var(--accent-text)}
 .ba-row .bfr{color:var(--muted);font-size:0.98rem;line-height:1.5}
 .ba-row .aft{font-size:0.95rem;color:var(--muted)}
 .ba-row .aft .num{display:block;font-family:var(--serif);font-size:1.9rem;line-height:1.1;color:var(--ink);margin-bottom:3px;letter-spacing:-0.01em}
-@media(max-width:760px){.ba-row{grid-template-columns:1fr;gap:8px;padding:22px 0}.ba-row.hdr{display:none}.ba-row .bfr:before{content:"Før — ";font-weight:650;color:var(--faint)}}
+@media(max-width:760px){.ba-row{grid-template-columns:1fr;gap:14px;padding:22px 0}}
 
 /* ---- modellen (mørk editorial) ---- */
 .model{background:var(--dark);color:var(--on-dark);padding:110px 0}
@@ -246,8 +255,8 @@ h3,h4{font-weight:650;letter-spacing:-0.014em;line-height:1.2}
 .model .mp{color:var(--on-dark-dim);font-size:1.12rem;max-width:50ch;line-height:1.65}
 .model .mp b{color:var(--on-dark);font-weight:600}
 .model ul{list-style:none;display:grid;gap:0;margin-top:30px;max-width:52ch}
-.model li{display:grid;grid-template-columns:34px 1fr;gap:14px;align-items:baseline;padding:15px 0;border-top:1px solid rgba(244,241,232,.14);font-size:1rem;color:var(--on-dark);line-height:1.5}
-.model li .d{font-family:var(--serif);font-style:italic;color:var(--accent);font-size:0.95rem}
+.model li{display:grid;grid-template-columns:26px 1fr;gap:14px;align-items:baseline;padding:15px 0;border-top:1px solid rgba(244,241,232,.14);font-size:1rem;color:var(--on-dark);line-height:1.5}
+.model li .d{color:var(--accent);font-weight:600}
 .model .mcta{margin-top:60px}
 .btn-white{display:inline-flex;align-items:center;gap:11px;background:var(--on-dark);color:var(--ink);border:0;cursor:pointer;border-radius:12px;padding:16px 28px;font-family:var(--sans);font-weight:600;font-size:0.99rem;line-height:1;transition:background .2s,transform .2s}
 .btn-white:hover{background:#fff;transform:translateY(-1px)}
@@ -354,9 +363,9 @@ h3,h4{font-weight:650;letter-spacing:-0.014em;line-height:1.2}
 .q-col ul{list-style:none;padding:0;margin:0}
 .q-col li{padding:14px 0;border-bottom:1px solid var(--line);font-size:0.99rem;color:var(--ink2);line-height:1.55}
 .q-col.q-no li{color:var(--muted)}
-.q-col .sgn{font-family:var(--serif);font-style:italic;margin-right:10px}
-.q-col .sgn.ok{color:var(--accent-deep)}
-.q-col .sgn.nei{color:var(--faint)}
+.q-col .gl{font-weight:700;margin-right:12px;font-size:0.95rem}
+.q-col .gl.ok{color:var(--accent-deep)}
+.q-col .gl.nei{color:var(--faint)}
 
 /* ---- booking ---- */
 .final{background:var(--dark);color:var(--on-dark);border-radius:20px;padding:72px 64px 60px;scroll-margin-top:80px}
@@ -522,11 +531,14 @@ h3,h4{font-weight:650;letter-spacing:-0.014em;line-height:1.2}
 <section class="section" style="padding-bottom:0">
   <div class="wrap">
     <div class="pain reveal">
-      <div class="shead" style="margin-bottom:0;border-top:0;padding-top:0"><span class="kick">01 &middot; Kjenner du deg igjen?</span></div>
+      <header class="shead" style="margin-bottom:34px">
+        <span class="kick">Ærlig sjekk</span>
+        <h2>Kjenner du deg igjen?</h2>
+      </header>
       <ul class="pain-list">
-        <li><span class="no">i.</span><span>Byrået fakturerer det samme uansett hva resultatene sier</span></li>
-        <li><span class="no">ii.</span><span>Rapportene er fulle av visninger og klikk &mdash; men kassa merker ingenting</span></li>
-        <li><span class="no">iii.</span><span>&laquo;Algoritmen må bare lære litt til&raquo; &mdash; i fjerde måneden på rad</span></li>
+        <li><span class="x">&#10005;</span><span>Byrået fakturerer det samme uansett hva resultatene sier</span></li>
+        <li><span class="x">&#10005;</span><span>Rapportene er fulle av visninger og klikk &mdash; men kassa merker ingenting</span></li>
+        <li><span class="x">&#10005;</span><span>&laquo;Algoritmen må bare lære litt til&raquo; &mdash; i fjerde måneden på rad</span></li>
       </ul>
       <p class="pain-out">Kjente du deg igjen? <span class="si">Da er vi bygget for deg.</span></p>
       <div class="pain-cta"><a href="#book" class="cta oncream">Få en gratis analyse<span class="arr">&rarr;</span></a><div class="micro">Gratis &middot; uforpliktende &middot; ingen binding</div></div>
@@ -535,11 +547,11 @@ h3,h4{font-weight:650;letter-spacing:-0.014em;line-height:1.2}
 </section>
 
 <!-- ===== KOMMENTARFELTET ===== -->
-<section class="section" id="resultater">
+<section class="section sect-paper" id="resultater">
   <div class="wrap">
     <header class="shead reveal">
-      <span class="kick">02 &middot; Resultater</span>
-      <h2>Ikke ta vårt ord <span class="si">for det.</span></h2>
+      <span class="kick">Resultater</span>
+      <h2>Ikke ta vårt ord for det.</h2>
       <p class="slede">Ekte meldinger, rett fra chatten vår. Vi har ikke pyntet på dem &mdash; derfor ser de sånn ut.</p>
     </header>
     <div class="rev-line reveal"><span class="n">94%</span><small>får større bunnlinje innen 3 måneder</small></div>
@@ -562,26 +574,25 @@ h3,h4{font-weight:650;letter-spacing:-0.014em;line-height:1.2}
 <section class="section" style="padding-top:0">
   <div class="wrap">
     <header class="shead reveal">
-      <span class="kick">03 &middot; Før / etter</span>
+      <span class="kick">Før / etter</span>
       <h2>&laquo;Det er en tidsepoke <span class="si">før og etter.</span>&raquo;</h2>
       <p class="slede">Thommy i Leid.no sa det først. Tallene sier det samme:</p>
     </header>
     <div class="ba-table reveal">
-      <div class="ba-row hdr"><span>Kunde</span><span>Før</span><span>Etter</span></div>
       <div class="ba-row">
         <div class="cl">Marlow<span>Tannklinikk &middot; UK</span></div>
-        <div class="bfr">0 målte leads &mdash; noensinne</div>
-        <div class="aft"><span class="num">11 leads i uka</span>CPL &pound;17</div>
+        <div class="bfr"><span class="tag">Før</span>0 målte leads &mdash; noensinne</div>
+        <div class="aft"><span class="tag">Etter</span><span class="num">11 leads i uka</span>CPL &pound;17</div>
       </div>
       <div class="ba-row">
         <div class="cl">Leid.no<span>Tilhengerutleie</span></div>
-        <div class="bfr">Ødelagt sporing &mdash; skalering var gambling</div>
-        <div class="aft"><span class="num">4,73x ROAS</span>100 000+ kr/mnd</div>
+        <div class="bfr"><span class="tag">Før</span>Ødelagt sporing &mdash; skalering var gambling</div>
+        <div class="aft"><span class="tag">Etter</span><span class="num">4,73x ROAS</span>100 000+ kr/mnd</div>
       </div>
       <div class="ba-row">
         <div class="cl">Badstugutta<span>Saunaer</span></div>
-        <div class="bfr">Godt produkt &mdash; færre leads</div>
-        <div class="aft"><span class="num">&laquo;Flere leads enn noensinne&raquo;</span>Elliots ord &mdash; ikke våre</div>
+        <div class="bfr"><span class="tag">Før</span>Godt produkt &mdash; færre leads</div>
+        <div class="aft"><span class="tag">Etter</span><span class="num">&laquo;Flere leads enn noensinne&raquo;</span>Elliots ord &mdash; ikke våre</div>
       </div>
     </div>
   </div>
@@ -592,13 +603,13 @@ h3,h4{font-weight:650;letter-spacing:-0.014em;line-height:1.2}
   <div class="wrap">
     <div class="mgrid">
       <div class="reveal">
-        <span class="kick">04 &middot; Modellen vår</span>
+        <span class="kick">Modellen vår</span>
         <h2>Ingen resultater.<br><span class="si">Ingen regning.</span></h2>
         <p class="mp">Tjener du ikke mer, tjener ikke vi noe. Så enkelt er det. Vi tar risikoen &mdash; du beholder marginene. <b>At det går bra med deg er bokstavelig talt forretningsmodellen vår.</b></p>
         <ul>
-          <li><span class="d">a.</span><span>100% resultatbasert &mdash; leverer vi ikke, betaler du ikke</span></li>
-          <li><span class="d">b.</span><span>10+ nye annonser testet hver eneste uke</span></li>
-          <li><span class="d">c.</span><span>Sporing som måler faktiske salg &mdash; ikke klikk og visninger</span></li>
+          <li><span class="d">&mdash;</span><span>100% resultatbasert &mdash; leverer vi ikke, betaler du ikke</span></li>
+          <li><span class="d">&mdash;</span><span>10+ nye annonser testet hver eneste uke</span></li>
+          <li><span class="d">&mdash;</span><span>Sporing som måler faktiske salg &mdash; ikke klikk og visninger</span></li>
         </ul>
         <div class="mcta"><a href="#book" class="btn-white">Få en gratis analyse<span class="arr">&rarr;</span></a></div>
       </div>
@@ -632,8 +643,8 @@ h3,h4{font-weight:650;letter-spacing:-0.014em;line-height:1.2}
 <section class="section">
   <div class="wrap">
     <header class="shead reveal">
-      <span class="kick">05 &middot; Sånn jobber vi</span>
-      <h2>Sånn ser en uke ut <span class="si">hos oss.</span></h2>
+      <span class="kick">Sånn jobber vi</span>
+      <h2>Sånn ser en uke ut hos oss.</h2>
       <p class="slede">Ingen hemmeligheter. Dette er det du faktisk betaler for:</p>
     </header>
     <div class="weekgrid">
@@ -664,8 +675,8 @@ h3,h4{font-weight:650;letter-spacing:-0.014em;line-height:1.2}
 <section class="section om" id="omoss">
   <div class="wrap">
     <header class="shead reveal" style="border-top:0;padding-top:0">
-      <span class="kick">06 &middot; Hvem du jobber med</span>
-      <h2>Dette er oss. <span class="si">Bokstavelig talt hele byrået.</span></h2>
+      <span class="kick">Hvem du jobber med</span>
+      <h2>Dette er oss. Bokstavelig talt hele byrået.</h2>
     </header>
     <div class="meetgrid">
       <img class="mphoto reveal" src="/img/founders.jpg" alt="Victor og Jona, gründerne i Arcads" width="1100" height="819">
@@ -690,8 +701,8 @@ h3,h4{font-weight:650;letter-spacing:-0.014em;line-height:1.2}
 <section class="section">
   <div class="wrap">
     <header class="shead reveal">
-      <span class="kick">07 &middot; Det vi kjører</span>
-      <h2>Tre ting. <span class="si">Gjort skikkelig.</span></h2>
+      <span class="kick">Det vi kjører</span>
+      <h2>Tre ting. Gjort skikkelig.</h2>
     </header>
     <div class="svc-rows reveal">
       <div class="svc"><span class="svc-no">01</span><h3>Meta Ads</h3><p>UGC, statics og video i volum &mdash; vi skalerer det som selger, og pauser det som ikke gjør det.</p></div>
@@ -705,8 +716,8 @@ h3,h4{font-weight:650;letter-spacing:-0.014em;line-height:1.2}
 <section class="section" id="caser" style="padding-top:0">
   <div class="wrap">
     <header class="shead reveal">
-      <span class="kick">08 &middot; Caser</span>
-      <h2>Sånn ser det ut når annonsene <span class="si">betaler for seg selv.</span></h2>
+      <span class="kick">Caser</span>
+      <h2>Sånn ser det ut når annonsene betaler for seg selv.</h2>
     </header>
     <div class="fadgrid">
       <div class="fad reveal">
@@ -745,8 +756,8 @@ h3,h4{font-weight:650;letter-spacing:-0.014em;line-height:1.2}
 <section class="section start">
   <div class="wrap">
     <header class="shead reveal" style="border-top:0;padding-top:0">
-      <span class="kick">09 &middot; Prosessen</span>
-      <h2>Sånn kommer vi <span class="si">i gang.</span></h2>
+      <span class="kick">Prosessen</span>
+      <h2>Sånn kommer vi i gang.</h2>
     </header>
     <div class="pillars reveal">
       <div class="pill"><div class="n">01</div><h3>Få en gratis analyse</h3><p>30 minutter. Vi går gjennom annonsekontoen din og viser hvor pengene lekker &mdash; før du har betalt en krone.</p></div>
@@ -761,8 +772,8 @@ h3,h4{font-weight:650;letter-spacing:-0.014em;line-height:1.2}
 <section class="section">
   <div class="wrap">
     <header class="shead reveal">
-      <span class="kick">10 &middot; FAQ</span>
-      <h2>Det folk lurer på <span class="si">før de tar kontakt.</span></h2>
+      <span class="kick">FAQ</span>
+      <h2>Det folk lurer på før de tar kontakt.</h2>
     </header>
     <div class="faq reveal">
       <details open><summary>Hva skjer i den første praten?<span class="pm">+</span></summary><div class="ans">30 minutter på video med Victor. Vi ser på annonsekontoen din sammen og viser konkret hva vi ville gjort annerledes. Ingen pitch, ingen forpliktelser &mdash; du sitter igjen med analysen uansett.</div></details>
@@ -776,28 +787,28 @@ h3,h4{font-weight:650;letter-spacing:-0.014em;line-height:1.2}
 </section>
 
 <!-- ===== KVALIFISERING ===== -->
-<section class="section" style="padding-top:0">
+<section class="section sect-paper">
   <div class="wrap">
     <header class="shead reveal">
-      <span class="kick">11 &middot; Ærlig talt</span>
-      <h2>Vi passer ikke <span class="si">for alle.</span></h2>
+      <span class="kick">Ærlig talt</span>
+      <h2>Vi passer ikke for alle.</h2>
     </header>
     <div class="qual reveal">
       <div class="q-col"><h3>Vi passer for deg hvis</h3><ul>
-        <li><span class="sgn ok">ja &mdash;</span>du selger B2C og har omsetning i dag</li>
-        <li><span class="sgn ok">ja &mdash;</span>du vil måles på salg og leads &mdash; ikke visninger og fine rapporter</li>
-        <li><span class="sgn ok">ja &mdash;</span>du er klar for tempoet: 10+ nye annonser i uka</li>
+        <li><span class="gl ok">&#10003;</span>du selger B2C og har omsetning i dag</li>
+        <li><span class="gl ok">&#10003;</span>du vil måles på salg og leads &mdash; ikke visninger og fine rapporter</li>
+        <li><span class="gl ok">&#10003;</span>du er klar for tempoet: 10+ nye annonser i uka</li>
       </ul></div>
       <div class="q-col q-no"><h3>Vi passer ikke hvis</h3><ul>
-        <li><span class="sgn nei">nei &mdash;</span>du er i oppstartsfasen uten omsetning &mdash; da brenner vi pengene dine, og det tjener ingen av oss på</li>
-        <li><span class="sgn nei">nei &mdash;</span>du vil ha et byrå som fakturerer uansett hva resultatene sier</li>
+        <li><span class="gl nei">&#10005;</span>du er i oppstartsfasen uten omsetning &mdash; da brenner vi pengene dine, og det tjener ingen av oss på</li>
+        <li><span class="gl nei">&#10005;</span>du vil ha et byrå som fakturerer uansett hva resultatene sier</li>
       </ul></div>
     </div>
   </div>
 </section>
 
 <!-- ===== BOOKING ===== -->
-<section class="section" id="book" style="padding-top:0">
+<section class="section" id="book">
   <div class="wrap">
     <div class="final reveal">
       <span id="prat"></span>
