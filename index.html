@@ -246,7 +246,7 @@ h1,h2,h3,h4{font-family:var(--disp);font-weight:700;line-height:1.08;letter-spac
 .final h2{font-size:clamp(2rem,3.8vw,3rem);color:#fff;max-width:20ch;margin:14px auto 12px}
 .final p{color:var(--on-dark-dim);max-width:48ch;margin:0 auto 28px;font-size:1.06rem;line-height:1.55}
 .calcard{max-width:780px;margin:0 auto;background:var(--paper);border-radius:var(--r);padding:18px 16px 10px;text-align:left}
-.calwrap{width:100%;min-height:460px;border-radius:12px;background:#fff}
+.calwrap{width:100%;min-height:460px;border-radius:12px;background:#fff;position:relative}
 .final .fine{font-size:0.84rem;color:var(--on-dark-dim);margin-top:16px;text-align:center}
 .final .fine a{color:#fff;font-weight:600}
 @media(max-width:620px){.final{padding:44px 18px 32px}.calcard{padding:10px 6px 6px}}
@@ -314,14 +314,18 @@ h1,h2,h3,h4{font-family:var(--disp);font-weight:700;line-height:1.08;letter-spac
 .field label .req{color:var(--accent-deep)}
 .field .inp{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
 .field .inp:focus-within{border-color:var(--accent);background:#fff}
-.field input,.field select{flex:1;width:100%;padding:13px 14px;border:0;background:transparent;font-family:var(--sans);font-size:0.96rem;color:var(--ink);appearance:none;-webkit-appearance:none}
+.field input,.field select{flex:1;width:100%;padding:13px 14px;border:0;background:transparent;font-family:var(--sans);font-size:1rem;color:var(--ink);appearance:none;-webkit-appearance:none}
+.field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%234E483D' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:34px}
 .field select:invalid{color:var(--faint)}
 .field input:focus,.field select:focus{outline:none}
 .formcard .cta{width:100%;margin-top:6px}
 .fmsg{display:none;background:var(--accent-soft);border:1px solid var(--accent-line);color:var(--accent-deep);padding:13px 15px;border-radius:12px;font-size:0.9rem;margin-bottom:14px;font-weight:600}
+.ferr{background:rgba(168,67,43,.08);border-color:rgba(168,67,43,.32);color:#A8432B}
+.ferr a{color:#A8432B;font-weight:700;text-decoration:underline}
+.cta:disabled{opacity:.6;cursor:default;transform:none}
 .formcard .fine{display:flex;flex-direction:column;gap:4px;font-size:0.76rem;color:var(--muted);margin-top:13px;text-align:center}
 .hp{position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden}
-.calwrap{width:100%;min-height:460px;border-radius:12px;background:#fff}
+.calwrap{width:100%;min-height:460px;border-radius:12px;background:#fff;position:relative}
 .modal .chk svg{width:12px;height:12px;stroke:var(--accent-ink)}
 .ba-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:34px}
 .ba-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:22px}
@@ -365,7 +369,17 @@ h1,h2,h3,h4{font-family:var(--disp);font-weight:700;line-height:1.08;letter-spac
 .inc li{display:flex;gap:12px;line-height:1.55;color:var(--on-dark-dim);font-size:0.98rem}
 .inc b{color:#fff}
 @media(max-width:920px){.final-grid{grid-template-columns:1fr;gap:26px}}
-@media(max-width:900px){.hero-chks li,.price-anchor{justify-content:center}.hero-form{margin:0 auto 18px}}
+@media(max-width:900px){.hero-chks li,.price-anchor{justify-content:center}.hero-form{margin:0 auto 18px;text-align:left}}
+
+/* ---- harden-pass (impeccable) ---- */
+.calwrap.cal-loading::before{content:"Laster kalender \2026";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--faint);font-size:.92rem}
+.calwrap iframe{position:relative;z-index:1;background:#fff}
+.cal-fb{padding:26px 18px;text-align:center;font-size:.95rem;color:var(--ink2);line-height:1.6}
+.cal-fb a{color:var(--accent-deep);font-weight:700;text-decoration:underline}
+.skiplink{position:absolute;left:-9999px;top:0;z-index:100;background:var(--ink);color:#fff;padding:12px 20px;border-radius:0 0 12px 0;font-weight:600;font-size:.92rem}
+.skiplink:focus{left:0}
+.fad .ff a,.fine a,#skipToCal{position:relative;display:inline-block;padding:12px 8px;margin:-12px -8px}
+noscript.form-ns{display:block;font-size:.85rem;color:#A8432B;margin-bottom:12px;font-weight:600}
 
 /* ---- curve-pass (test) ---- */
 .steps{list-style:none;display:grid;gap:18px;padding:0;margin:22px 0 0}
@@ -387,6 +401,8 @@ h1,h2,h3,h4{font-family:var(--disp);font-weight:700;line-height:1.08;letter-spac
 </style>
 </head>
 <body>
+<a class="skiplink" href="#top">Hopp til innholdet</a>
+<div id="srStatus" class="hp" role="status" aria-live="polite"></div>
 
 <!-- ===== TOPSTRIP: social proof før alt ===== -->
 <div class="topstrip"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 5.0 fra kundene våre <span class="ts-x">&middot; 94% får større bunnlinje innen 3 mnd</span> <span>&middot; 100% resultatbasert</span></div>
@@ -394,7 +410,7 @@ h1,h2,h3,h4{font-family:var(--disp);font-weight:700;line-height:1.08;letter-spac
 <!-- ===== NAV ===== -->
 <header class="nav">
   <div class="nav-inner">
-    <a href="#top" class="brand" aria-label="Arcads"><img src="/logos/arcads-logo.png" alt="Arcads"></a>
+    <a href="#top" class="brand" aria-label="Arcads"><img src="/logos/arcads-logo.png" alt="Arcads" width="800" height="132"></a>
     <nav class="nav-links">
       <a href="#caser" class="lnk">Caser</a>
       <a href="#omoss" class="lnk">Om oss</a>
@@ -420,18 +436,20 @@ h1,h2,h3,h4{font-family:var(--disp);font-weight:700;line-height:1.08;letter-spac
         <div id="heroLead">
         <div class="fhead"><b>Gratis analyse av annonsekontoen din</b><span>Tar 20 sekunder &middot; svar innen 1 virkedag</span></div>
         <div class="fmsg" id="formMsgHero">Takk! Victor tar kontakt innen 1 virkedag.</div>
+        <div class="fmsg ferr" id="formErrHero">Fikk ikke sendt inn. Prøv igjen &mdash; eller send e-post til <a href="mailto:victor@arcads.no">victor@arcads.no</a>.</div>
+        <noscript class="form-ns">Skjemaet krever JavaScript &mdash; send heller en e-post til victor@arcads.no.</noscript>
         <form id="leadFormHero" novalidate>
           <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
-          <div class="field"><label for="hh_name">Navn <span class="req">*</span></label><div class="inp"><input type="text" id="hh_name" name="name" placeholder="Fornavn og etternavn" autocomplete="name" required></div></div>
-          <div class="field"><label for="hh_phone">Telefon <span class="req">*</span></label><div class="inp"><input type="tel" id="hh_phone" name="phone" placeholder="Så vi kan ringe deg" autocomplete="tel" required></div></div>
-          <div class="field"><label for="hh_email">E-post <span class="req">*</span></label><div class="inp"><input type="email" id="hh_email" name="email" placeholder="din@epost.no" autocomplete="email" required></div></div>
+          <div class="field"><label for="hh_name">Navn <span class="req">*</span></label><div class="inp"><input type="text" id="hh_name" name="name" placeholder="Fornavn og etternavn" autocomplete="name" maxlength="120" required></div></div>
+          <div class="field"><label for="hh_phone">Telefon <span class="req">*</span></label><div class="inp"><input type="tel" id="hh_phone" name="phone" placeholder="Så vi kan ringe deg" autocomplete="tel" maxlength="24" pattern="[0-9+\(\)\s\-]{8,}" title="Minst 8 tegn — tall, mellomrom, +, ( )" required></div></div>
+          <div class="field"><label for="hh_email">E-post <span class="req">*</span></label><div class="inp"><input type="email" id="hh_email" name="email" placeholder="din@epost.no" autocomplete="email" maxlength="254" required></div></div>
           <div class="field"><label for="hh_budget">Månedlig annonsebudsjett <span class="req">*</span></label><div class="inp"><select id="hh_budget" name="budget" required><option value="" disabled selected>Velg&hellip;</option><option>Under 10 000 kr</option><option>10&ndash;30 000 kr</option><option>30 000+ kr</option><option>Har ikke annonsert ennå</option></select></div></div>
-          <button type="submit" class="cta"><span class="t">Få min gratis analyse<span class="arw"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span><span class="sub">Gratis &middot; uforpliktende &middot; svar innen 1 virkedag</span></button>
+          <button type="submit" class="cta"><span class="t">Få min gratis analyse<span class="arw"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span><span class="sub">Gratis &middot; uforpliktende</span></button>
         </form>
         <div class="fine"><span>Vi deler aldri detaljene dine med noen andre.</span></div>
         </div>
         <div id="heroThanks" style="display:none">
-          <div class="fhead"><b id="heroThanksName">Takk!</b><span>Victor tar kontakt innen 1 virkedag. Vil du sette av tid med en gang?</span></div>
+          <div class="fhead"><b id="heroThanksName" tabindex="-1">Takk!</b><span>Victor tar kontakt innen 1 virkedag. Vil du sette av tid med en gang?</span></div>
           <a href="#book" class="cta" id="heroToCal" style="width:100%"><span class="t">Velg et tidspunkt<span class="arw"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span><span class="sub">30 minutter &middot; video med Victor</span></a>
           <div class="fine" style="margin-top:12px"><span>Ikke noe press &mdash; han tar uansett kontakt.</span></div>
         </div>
@@ -489,12 +507,12 @@ h1,h2,h3,h4{font-family:var(--disp);font-weight:700;line-height:1.08;letter-spac
     <div class="logowall">
       <div class="lbl">Noen av dem vi jobber med</div>
       <div class="row">
-        <img src="/logos/utvendigrenhold.png" alt="Utvendigrenhold" loading="lazy">
-        <img src="/logos/frifor.png" alt="Frifor.app" loading="lazy">
-        <img src="/logos/veldigrent.png" alt="Veldigrent.no" loading="lazy">
-        <img src="/logos/raskflytting.png" alt="Rask Flytting" loading="lazy">
-        <img src="/logos/mokki.png" alt="Mokki" loading="lazy">
-        <img src="/logos/badstugutta.png" alt="Badstugutta" loading="lazy">
+        <img src="/logos/utvendigrenhold.png" alt="Utvendigrenhold" width="589" height="169" loading="lazy">
+        <img src="/logos/frifor.png" alt="Frifor.app" width="564" height="182" loading="lazy">
+        <img src="/logos/veldigrent.png" alt="Veldigrent.no" width="785" height="182" loading="lazy">
+        <img src="/logos/raskflytting.png" alt="Rask Flytting" width="250" height="58" loading="lazy">
+        <img src="/logos/mokki.png" alt="Mokki" width="700" height="188" loading="lazy">
+        <img src="/logos/badstugutta.png" alt="Badstugutta" width="311" height="162" loading="lazy">
       </div>
     </div>
   </div>
@@ -643,7 +661,7 @@ h1,h2,h3,h4{font-family:var(--disp);font-weight:700;line-height:1.08;letter-spac
       <h2 class="h-lg" style="margin-top:12px">Dette er oss. Bokstavelig talt hele byrået.</h2>
     </div>
     <div class="meetgrid">
-      <img class="mphoto reveal" src="/img/founders.jpg" alt="Victor og Jona, gründerne i Arcads" width="1100" height="819">
+      <img class="mphoto reveal" src="/img/founders.jpg" alt="Victor og Jona, gründerne i Arcads" width="1100" height="819" loading="lazy" decoding="async">
       <div class="bios reveal">
         <div class="bio">
           <h3>Victor</h3>
@@ -686,13 +704,13 @@ h1,h2,h3,h4{font-family:var(--disp);font-weight:700;line-height:1.08;letter-spac
     </div>
     <div class="fadgrid">
       <div class="fad reveal">
-        <div class="fh"><img src="/logos/leid.svg" alt="Leid.no" style="height:17px"><span class="sp">Sponset &middot; Meta + Google</span></div>
+        <div class="fh"><img src="/logos/leid.svg" alt="Leid.no" width="1633" height="300" style="height:17px"><span class="sp">Sponset &middot; Meta + Google</span></div>
         <div class="fcopy">&Oslash;delagt sporing da vi tok over. Vi fikset den &mdash; og skalerte uten &aring; gamble.</div>
         <div class="fmedia"><div class="metric">4,73<span class="u">x</span></div><div class="ms">ROAS &middot; 100&nbsp;000+ kr/mnd</div></div>
         <div class="ff"><span>Leid.no &middot; Tilhengerutleie</span><a href="caser/">Les caset &rarr;</a></div>
       </div>
       <div class="fad reveal">
-        <div class="fh"><img src="/logos/mokki.png" alt="Mokki"><span class="sp">Sponset &middot; 3 kanaler</span></div>
+        <div class="fh"><img src="/logos/mokki.png" alt="Mokki" width="700" height="188"><span class="sp">Sponset &middot; 3 kanaler</span></div>
         <div class="fcopy">Prisvinnende barnesolbriller i tre land: Norge, Tyskland og Danmark. L&oslash;nnsomt i alle tre.</div>
         <div class="fmedia"><div class="metric"><span class="u">+</span>127<span class="u">%</span></div><div class="ms">profitt &aring;r-over-&aring;r</div></div>
         <div class="ff"><span>Mokki &middot; E-handel</span><a href="caser/">Les caset &rarr;</a></div>
@@ -704,7 +722,7 @@ h1,h2,h3,h4{font-family:var(--disp);font-weight:700;line-height:1.08;letter-spac
         <div class="ff"><span>Marlow &middot; Tannklinikk (UK)</span><a href="caser/">Les caset &rarr;</a></div>
       </div>
       <div class="fad reveal">
-        <div class="fh"><img src="/logos/utvendigrenhold.png" alt="Utvendigrenhold"><span class="sp">Sponset &middot; Meta + Google</span></div>
+        <div class="fh"><img src="/logos/utvendigrenhold.png" alt="Utvendigrenhold" width="589" height="169"><span class="sp">Sponset &middot; Meta + Google</span></div>
         <div class="fcopy">Egen kampanje per lokasjon &mdash; tak- og fasadevask over hele Norge.</div>
         <div class="fmedia"><div class="metric">142</div><div class="ms">leads p&aring; &eacute;n uke &middot; 9 lokasjoner</div></div>
         <div class="ff"><span>Utvendigrenhold</span><a href="caser/">Les caset &rarr;</a></div>
@@ -794,18 +812,20 @@ h1,h2,h3,h4{font-family:var(--disp);font-weight:700;line-height:1.08;letter-spac
             <div id="leadStep">
               <div class="fhead"><b>Få en gratis analyse</b><span>Tar 20 sekunder. Victor svarer innen 1 virkedag.</span></div>
               <div class="fmsg" id="formMsg">Takk! Du kan booke tid med en gang under.</div>
+              <div class="fmsg ferr" id="formErr">Fikk ikke sendt inn. Prøv igjen &mdash; eller send e-post til <a href="mailto:victor@arcads.no">victor@arcads.no</a>.</div>
+              <noscript class="form-ns">Skjemaet krever JavaScript &mdash; send heller en e-post til victor@arcads.no.</noscript>
               <form id="leadForm" novalidate>
                 <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
-                <div class="field"><label for="h_name">Navn <span class="req">*</span></label><div class="inp"><input type="text" id="h_name" name="name" placeholder="Fornavn og etternavn" autocomplete="name" required></div></div>
-                <div class="field"><label for="h_phone">Telefon <span class="req">*</span></label><div class="inp"><input type="tel" id="h_phone" name="phone" placeholder="Så vi kan ringe deg" autocomplete="tel" required></div></div>
-                <div class="field"><label for="h_email">E-post <span class="req">*</span></label><div class="inp"><input type="email" id="h_email" name="email" placeholder="din@epost.no" autocomplete="email" required></div></div>
+                <div class="field"><label for="h_name">Navn <span class="req">*</span></label><div class="inp"><input type="text" id="h_name" name="name" placeholder="Fornavn og etternavn" autocomplete="name" maxlength="120" required></div></div>
+                <div class="field"><label for="h_phone">Telefon <span class="req">*</span></label><div class="inp"><input type="tel" id="h_phone" name="phone" placeholder="Så vi kan ringe deg" autocomplete="tel" maxlength="24" pattern="[0-9+\(\)\s\-]{8,}" title="Minst 8 tegn — tall, mellomrom, +, ( )" required></div></div>
+                <div class="field"><label for="h_email">E-post <span class="req">*</span></label><div class="inp"><input type="email" id="h_email" name="email" placeholder="din@epost.no" autocomplete="email" maxlength="254" required></div></div>
                 <div class="field"><label for="h_budget">Månedlig annonsebudsjett <span class="req">*</span></label><div class="inp"><select id="h_budget" name="budget" required><option value="" disabled selected>Velg&hellip;</option><option>Under 10 000 kr</option><option>10&ndash;30 000 kr</option><option>30 000+ kr</option><option>Har ikke annonsert ennå</option></select></div></div>
                 <button type="submit" class="cta"><span class="t">Få min gratis analyse<span class="arw"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span><span class="sub">Gratis &middot; uforpliktende &middot; ingen binding</span></button>
               </form>
               <div class="fine"><span>Vi deler aldri detaljene dine med noen andre.</span></div>
             </div>
             <div id="bookStep" style="display:none">
-              <div class="fhead"><b id="bookThanks">Takk!</b><span>Vil du sette av tid med en gang? Velg et tidspunkt &mdash; 30 minutter med Victor.</span></div>
+              <div class="fhead"><b id="bookThanks" tabindex="-1">Takk!</b><span>Vil du sette av tid med en gang? Velg et tidspunkt &mdash; 30 minutter med Victor.</span></div>
               <div class="calwrap" id="my-cal-inline-30min"></div>
               <div class="fine"><span>Victor tar uansett kontakt &mdash; bookingen er bare for å gå raskere.</span></div>
             </div>
@@ -820,7 +840,7 @@ h1,h2,h3,h4{font-family:var(--disp);font-weight:700;line-height:1.08;letter-spac
 <!-- ===== FOOTER ===== -->
 <footer class="footer">
   <div class="wrap">
-    <img src="/logos/arcads-logo.png" alt="Arcads" style="filter:brightness(0) invert(1)">
+    <img src="/logos/arcads-logo.png" alt="Arcads" width="800" height="132" loading="lazy" style="filter:brightness(0) invert(1)">
     <div class="reg">Bygget i Skien av Victor &amp; Jona &middot; <a href="mailto:victor@arcads.no">victor@arcads.no</a> &middot; Arcads ANS<br>100% resultatbasert &mdash; du betaler først når vi leverer.</div>
   </div>
 </footer>
@@ -837,33 +857,56 @@ document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
 /* ---- leads (test) ---- */
 var ARCADS_LEAD_WEBHOOK = 'https://hook.eu1.make.com/ftpj27p6hovtjk94x4hzt16yc6i9oroi'; /* Make 6202084 */
 var LEAD_SOURCE = 'arcads-forside';
-function postTo(url,obj){if(!url)return;var b=new URLSearchParams();for(var k in obj){if(obj.hasOwnProperty(k)&&k.charAt(0)!=='_')b.append(k,obj[k]);}try{if(navigator.sendBeacon&&navigator.sendBeacon(url,b))return;}catch(e){}try{fetch(url,{method:'POST',mode:'no-cors',keepalive:true,headers:{'Content-Type':'application/x-www-form-urlencoded'},body:b.toString()});}catch(e){}}
+/* harden: ærlig leveranse — sendBeacon (kø-garanti) er suksess; fetch-fallback awaites og kan feile ærlig */
+function postTo(url,obj,onOk,onErr){
+  if(!url){onOk();return;}
+  var b=new URLSearchParams();for(var k in obj){if(obj.hasOwnProperty(k)&&k.charAt(0)!=='_')b.append(k,obj[k]);}
+  try{if(navigator.sendBeacon&&navigator.sendBeacon(url,b)){onOk();return;}}catch(e){}
+  try{
+    fetch(url,{method:'POST',mode:'no-cors',keepalive:true,headers:{'Content-Type':'application/x-www-form-urlencoded'},body:b.toString()}).then(function(){onOk();},function(){onErr();});
+  }catch(e){onErr();}
+}
 function storeLead(o){try{var a=JSON.parse(localStorage.getItem('arcads_leads')||'[]');a.push(o);localStorage.setItem('arcads_leads',JSON.stringify(a.slice(-50)));}catch(e){}}
+function announce(t){var s=document.getElementById('srStatus');if(s)s.textContent=t;}
 function revealBooking(name){var ls=document.getElementById('leadStep'),bs=document.getElementById('bookStep'),th=document.getElementById('bookThanks');
   if(ls)ls.style.display='none';if(bs)bs.style.display='block';
   var first=(name||'').trim().split(' ')[0];
   if(th)th.textContent=first?('Takk, '+first+'!'):'Velg et tidspunkt';
   if(window.arcadsInitCal)window.arcadsInitCal();}
-function submitLead(f,msgEl,extraSource,onDone){
+function submitLead(f,msgEl,errEl,extraSource,onDone){
+  if(f.dataset.busy)return; /* dobbel-submit-vern */
   if(f.company&&f.company.value){if(msgEl)msgEl.style.display='block';f.reset();return;} /* honeypot */
-  if(!f.name.value||!f.phone.value||!f.email.value||(f.budget&&!f.budget.value)){f.reportValidity();return;}
+  if(!f.checkValidity()){f.reportValidity();return;} /* ekte validering: type=email + pattern + required */
   var nameVal=f.name.value;
   var p={subject:'Nytt lead — Arcads LP',lead_source:LEAD_SOURCE+(extraSource||''),name:nameVal,phone:f.phone.value,email:f.email.value,budget:(f.budget?f.budget.value:''),page_url:location.href,user_agent:navigator.userAgent,_ts:Date.now()};
-  postTo(ARCADS_LEAD_WEBHOOK,p);storeLead(p);
-  try{if(window.fbq)fbq('track','Lead',{content_name:p.lead_source});}catch(e){}
-  try{if(window.gtag)gtag('event','generate_lead',{method:'form'});}catch(e){}
-  try{sessionStorage.setItem('arcads_lead_done','1');}catch(e){}
-  if(msgEl)msgEl.style.display='block';
-  f.reset();
-  if(typeof onDone==='function')onDone(nameVal);
+  var btn=f.querySelector('button[type=submit]');
+  f.dataset.busy='1';if(btn)btn.disabled=true;
+  if(errEl)errEl.style.display='none';
+  postTo(ARCADS_LEAD_WEBHOOK,p,function(){
+    storeLead(p);
+    try{if(window.fbq)fbq('track','Lead',{content_name:p.lead_source});}catch(e){}
+    try{if(window.gtag)gtag('event','generate_lead',{method:'form'});}catch(e){}
+    try{sessionStorage.setItem('arcads_lead_done','1');}catch(e){}
+    delete f.dataset.busy;if(btn)btn.disabled=false;
+    if(msgEl)msgEl.style.display='block';
+    announce('Skjemaet er sendt. Victor tar kontakt innen én virkedag.');
+    f.reset();
+    if(typeof onDone==='function')onDone(nameVal);
+  },function(){
+    /* nettverksfeil: behold utfylt skjema, vis ærlig feilmelding */
+    delete f.dataset.busy;if(btn)btn.disabled=false;
+    if(errEl)errEl.style.display='block';
+    announce('Innsendingen feilet. Prøv igjen, eller send e-post til victor@arcads.no.');
+  });
 }
-function bindForm(id,msgId,src,onDone){var f=document.getElementById(id);if(!f)return;f.addEventListener('submit',function(e){e.preventDefault();e.stopPropagation();if(e.stopImmediatePropagation)e.stopImmediatePropagation();submitLead(e.target,document.getElementById(msgId),src,onDone);});}
-bindForm('leadForm','formMsg','',function(name){revealBooking(name);});
-bindForm('leadFormHero','formMsgHero','-hero',function(name){revealBooking(name);
+function bindForm(id,msgId,errId,src,onDone){var f=document.getElementById(id);if(!f)return;f.addEventListener('submit',function(e){e.preventDefault();e.stopPropagation();if(e.stopImmediatePropagation)e.stopImmediatePropagation();submitLead(e.target,document.getElementById(msgId),document.getElementById(errId),src,onDone);});}
+bindForm('leadForm','formMsg','formErr','',function(name){revealBooking(name);var th=document.getElementById('bookThanks');if(th)try{th.focus();}catch(e){}});
+bindForm('leadFormHero','formMsgHero','formErrHero','-hero',function(name){revealBooking(name);
   var hl=document.getElementById('heroLead'),ht=document.getElementById('heroThanks'),hn=document.getElementById('heroThanksName');
   var first=(name||'').trim().split(' ')[0];
   if(hn&&first)hn.textContent='Takk, '+first+'!';
-  if(hl)hl.style.display='none';if(ht)ht.style.display='block';});
+  if(hl)hl.style.display='none';if(ht)ht.style.display='block';
+  if(hn)try{hn.focus();}catch(e){}});
 var skip=document.getElementById('skipToCal');if(skip)skip.addEventListener('click',function(e){e.preventDefault();revealBooking('');});
 </script>
 
@@ -876,11 +919,26 @@ Cal.config.forwardQueryParams = true;
 
   window.arcadsCalMounted = false;
   window.arcadsInitCal = function(){ if(window.arcadsCalMounted) return; window.arcadsCalMounted = true;
+    var el = document.getElementById('my-cal-inline-30min');
+    if(el) el.classList.add('cal-loading');
     Cal.ns["30min"]("inline", {
       elementOrSelector:"#my-cal-inline-30min",
       config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true"},
       calLink: "arcads/30min",
     });
+    /* fallback: blokkert/feilet embed skal ikke bli en tom hvit boks */
+    var tries = 0;
+    var t = setInterval(function(){
+      tries++;
+      var el2 = document.getElementById('my-cal-inline-30min');
+      if(!el2){ clearInterval(t); return; }
+      if(el2.querySelector('iframe')){ el2.classList.remove('cal-loading'); clearInterval(t); return; }
+      if(tries >= 10){
+        clearInterval(t);
+        el2.classList.remove('cal-loading');
+        el2.innerHTML = '<div class="cal-fb">Kalenderen lastet ikke her. <a href="https://cal.com/arcads/30min" target="_blank" rel="noopener">Book direkte p&aring; cal.com</a> &mdash; eller vent, Victor tar uansett kontakt.</div>';
+      }
+    }, 500);
   };
 
   Cal.ns["30min"]("ui", {"theme":"light","hideEventTypeDetails":true,"layout":"month_view","cssVarsPerTheme":{"light":{"cal-brand":"#00a25a"}}});
