@@ -343,16 +343,20 @@ h1,h2,h3,h4{font-family:var(--disp);font-weight:700;line-height:1.08;letter-spac
 .nav-inner{height:80px}
 /* hero */
 .hero3{padding:88px 0 0}
-.hgrid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:72px;align-items:center}
+.hgrid{display:grid;grid-template-columns:0.95fr 1.05fr;gap:64px;align-items:center}
 .hero3 .kicker{font-size:0.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-text)}
-.hero3 h1{font-size:clamp(2.4rem,3.7vw,3.3rem);letter-spacing:-0.04em;margin:20px 0 22px;text-wrap:balance}
+.hero3 h1{font-size:clamp(2.3rem,3.4vw,3rem);letter-spacing:-0.04em;margin:20px 0 22px;text-wrap:balance}
 .hero3 .sub{font-size:1.2rem;line-height:1.65;color:var(--ink2);max-width:46ch}
 .hero3 .sub b{color:var(--ink);font-weight:700}
 .hero3 .cta-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:34px}
 .hero3 .btn-soft{padding:17px 26px;font-size:0.98rem;background:transparent}
 .hero3 .faces{margin-top:30px}
-.hero-tile{aspect-ratio:4/5;max-width:440px;justify-self:end;width:100%}
-@media(max-width:900px){.hgrid{grid-template-columns:1fr;gap:44px}.hero-tile{justify-self:center;max-width:420px;aspect-ratio:1/1}.hero3 h1{font-size:clamp(2.2rem,7vw,3rem)}}
+.hero3 .wall{height:600px;gap:12px;border-radius:22px}
+.hero3 .wad{border-radius:12px}
+.hero3 .wad img{height:auto}
+.hero3 .wad figcaption{font-size:0.68rem;background:rgba(255,255,255,.92)}
+@media(max-width:900px){.hero3 .wall{height:420px;gap:10px;margin-top:8px}}
+@media(max-width:900px){.hgrid{grid-template-columns:1fr;gap:40px;text-align:center}.hero3 .cta-row,.hero3 .faces{justify-content:center}.hero3 .sub{margin:0 auto}.hero3 h1{font-size:clamp(2.2rem,7vw,3rem)}}
 @media(max-width:760px){.hero3{padding:56px 0 0}.hero3 .sub{font-size:1.1rem}}
 .logorow{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:28px 44px;margin-top:88px;padding:40px 0 44px;border-top:1px solid var(--line)}
 .logorow img{height:38px;width:auto;object-fit:contain;opacity:.85}
@@ -451,7 +455,7 @@ h1,h2,h3,h4{font-family:var(--disp);font-weight:700;line-height:1.08;letter-spac
 <section class="hero3" id="top">
   <div class="wrap hgrid">
     <div>
-      <p class="kicker">Google Ads &middot; Meta Ads &middot; Annonseproduksjon</p>
+      <p class="kicker">Google Ads &middot; Meta Ads &middot; 5000+ annonser laget</p>
       <h1>Flere kunder fra<br>Google og Meta Ads.</h1>
       <p class="sub"><b>Du betaler først når det virker.</b> Vi bygger kampanjene og lager annonsene selv &mdash; for bedrifter som lever av leads, og for nettbutikker. Ingen binding.</p>
       <div class="cta-row">
@@ -466,10 +470,62 @@ h1,h2,h3,h4{font-family:var(--disp);font-weight:700;line-height:1.08;letter-spac
         <div class="ftxt"><b>Victor &amp; Jona</b>du snakker med oss to &mdash; ikke en selger</div>
       </div>
     </div>
-    <a class="tile hero-tile" href="caser/#utvendigrenhold">
-      <img src="/img/caser/ur-1.jpg" alt="Utvendigrenhold-annonse" width="450" height="800" fetchpriority="high">
-      <div class="tx"><div class="big">142</div><div class="lab">leads på én uke &middot; 9 lokasjoner</div><div class="who">Utvendigrenhold</div></div>
-    </a>
+    <div class="wall" aria-label="Annonser vi har laget">
+        <div class="wcol">
+          <figure class="wad"><img src="/img/wall/bg-2.webp" alt="Annonse for Badstugutta" loading="lazy" width="480" height="600"><figcaption>Badstugutta</figcaption></figure>
+          <figure class="wad"><img src="/img/wall/mokki-3.webp" alt="Annonse for Mokki" loading="lazy" width="480" height="600"><figcaption>Mokki</figcaption></figure>
+          <figure class="wad"><img src="/img/wall/ur-1.webp" alt="Annonse for Utvendigrenhold" loading="lazy" width="480" height="600"><figcaption>Utvendigrenhold</figcaption></figure>
+          <figure class="wad"><img src="/img/wall/leid-1.webp" alt="Annonse for Leid.no" loading="lazy" width="480" height="600"><figcaption>Leid.no</figcaption></figure>
+          <figure class="wad"><img src="/img/wall/bg-5.webp" alt="Annonse for Badstugutta" loading="lazy" width="480" height="600"><figcaption>Badstugutta</figcaption></figure>
+          <figure class="wad"><img src="/img/wall/mokki-6.webp" alt="Annonse for Mokki" loading="lazy" width="480" height="600"><figcaption>Mokki</figcaption></figure>
+          <figure class="wad"><img src="/img/wall/ur-4.webp" alt="Annonse for Utvendigrenhold" loading="lazy" width="480" height="600"><figcaption>Utvendigrenhold</figcaption></figure>
+          <figure class="wad"><img src="/img/wall/marlow-1.webp" alt="Annonse for Marlow" loading="lazy" width="480" height="600"><figcaption>Marlow</figcaption></figure>
+          <figure class="wad"><img src="/img/wall/bg-2.webp" alt="" aria-hidden="true" loading="lazy" width="480" height="600"><figcaption>Badstugutta</figcaption></figure>
+          <figure class="wad"><img src="/img/wall/mokki-3.webp" alt="" aria-hidden="true" loading="lazy" width="480" height="600"><figcaption>Mokki</figcaption></figure>
+          <figure class="wad"><img src="/img/wall/ur-1.webp" alt="" aria-hidden="true" loading="lazy" width="480" height="600"><figcaption>Utvendigrenhold</figcaption></figure>
+          <figure class="wad"><img src="/img/wall/leid-1.webp" alt="" aria-hidden="true" loading="lazy" width="480" height="600"><figcaption>Leid.no</figcaption></figure>
+          <figure class="wad"><img src="/img/wall/bg-5.webp" alt="" aria-hidden="true" loading="lazy" width="480" height="600"><figcaption>Badstugutta</figcaption></figure>
+          <figure class="wad"><img src="/img/wall/mokki-6.webp" alt="" aria-hidden="true" loading="lazy" width="480" height="600"><figcaption>Mokki</figcaption></figure>
+          <figure class="wad"><img src="/img/wall/ur-4.webp" alt="" aria-hidden="true" loading="lazy" width="480" height="600"><figcaption>Utvendigrenhold</figcaption></figure>
+          <figure class="wad"><img src="/img/wall/marlow-1.webp" alt="" aria-hidden="true" loading="lazy" width="480" height="600"><figcaption>Marlow</figcaption></figure>
+        </div>
+        <div class="wcol">
+          <figure class="wad"><img src="/img/wall/mokki-1.webp" alt="Annonse for Mokki" loading="lazy" width="480" height="600"><figcaption>Mokki</figcaption></figure>
+          <figure class="wad"><img src="/img/wall/ur-2.webp" alt="Annonse for Utvendigrenhold" loading="lazy" width="480" height="600"><figcaption>Utvendigrenhold</figcaption></figure>
+          <figure class="wad"><img src="/img/wall/bg-1.webp" alt="Annonse for Badstugutta" loading="lazy" width="480" height="600"><figcaption>Badstugutta</figcaption></figure>
+          <figure class="wad"><img src="/img/wall/leid-2.webp" alt="Annonse for Leid.no" loading="lazy" width="480" height="600"><figcaption>Leid.no</figcaption></figure>
+          <figure class="wad"><img src="/img/wall/mokki-5.webp" alt="Annonse for Mokki" loading="lazy" width="480" height="600"><figcaption>Mokki</figcaption></figure>
+          <figure class="wad"><img src="/img/wall/ur-6.webp" alt="Annonse for Utvendigrenhold" loading="lazy" width="480" height="600"><figcaption>Utvendigrenhold</figcaption></figure>
+          <figure class="wad"><img src="/img/wall/bg-6.webp" alt="Annonse for Badstugutta" loading="lazy" width="480" height="600"><figcaption>Badstugutta</figcaption></figure>
+          <figure class="wad"><img src="/img/wall/mokki-7.webp" alt="Annonse for Mokki" loading="lazy" width="480" height="600"><figcaption>Mokki</figcaption></figure>
+          <figure class="wad"><img src="/img/wall/mokki-1.webp" alt="" aria-hidden="true" loading="lazy" width="480" height="600"><figcaption>Mokki</figcaption></figure>
+          <figure class="wad"><img src="/img/wall/ur-2.webp" alt="" aria-hidden="true" loading="lazy" width="480" height="600"><figcaption>Utvendigrenhold</figcaption></figure>
+          <figure class="wad"><img src="/img/wall/bg-1.webp" alt="" aria-hidden="true" loading="lazy" width="480" height="600"><figcaption>Badstugutta</figcaption></figure>
+          <figure class="wad"><img src="/img/wall/leid-2.webp" alt="" aria-hidden="true" loading="lazy" width="480" height="600"><figcaption>Leid.no</figcaption></figure>
+          <figure class="wad"><img src="/img/wall/mokki-5.webp" alt="" aria-hidden="true" loading="lazy" width="480" height="600"><figcaption>Mokki</figcaption></figure>
+          <figure class="wad"><img src="/img/wall/ur-6.webp" alt="" aria-hidden="true" loading="lazy" width="480" height="600"><figcaption>Utvendigrenhold</figcaption></figure>
+          <figure class="wad"><img src="/img/wall/bg-6.webp" alt="" aria-hidden="true" loading="lazy" width="480" height="600"><figcaption>Badstugutta</figcaption></figure>
+          <figure class="wad"><img src="/img/wall/mokki-7.webp" alt="" aria-hidden="true" loading="lazy" width="480" height="600"><figcaption>Mokki</figcaption></figure>
+        </div>
+        <div class="wcol">
+          <figure class="wad"><img src="/img/wall/ur-3.webp" alt="Annonse for Utvendigrenhold" loading="lazy" width="480" height="600"><figcaption>Utvendigrenhold</figcaption></figure>
+          <figure class="wad"><img src="/img/wall/bg-3.webp" alt="Annonse for Badstugutta" loading="lazy" width="480" height="600"><figcaption>Badstugutta</figcaption></figure>
+          <figure class="wad"><img src="/img/wall/mokki-2.webp" alt="Annonse for Mokki" loading="lazy" width="480" height="600"><figcaption>Mokki</figcaption></figure>
+          <figure class="wad"><img src="/img/wall/leid-3.webp" alt="Annonse for Leid.no" loading="lazy" width="480" height="600"><figcaption>Leid.no</figcaption></figure>
+          <figure class="wad"><img src="/img/wall/ur-5.webp" alt="Annonse for Utvendigrenhold" loading="lazy" width="480" height="600"><figcaption>Utvendigrenhold</figcaption></figure>
+          <figure class="wad"><img src="/img/wall/bg-4.webp" alt="Annonse for Badstugutta" loading="lazy" width="480" height="600"><figcaption>Badstugutta</figcaption></figure>
+          <figure class="wad"><img src="/img/wall/mokki-4.webp" alt="Annonse for Mokki" loading="lazy" width="480" height="600"><figcaption>Mokki</figcaption></figure>
+          <figure class="wad"><img src="/img/wall/leid-4.webp" alt="Annonse for Leid.no" loading="lazy" width="480" height="600"><figcaption>Leid.no</figcaption></figure>
+          <figure class="wad"><img src="/img/wall/ur-3.webp" alt="" aria-hidden="true" loading="lazy" width="480" height="600"><figcaption>Utvendigrenhold</figcaption></figure>
+          <figure class="wad"><img src="/img/wall/bg-3.webp" alt="" aria-hidden="true" loading="lazy" width="480" height="600"><figcaption>Badstugutta</figcaption></figure>
+          <figure class="wad"><img src="/img/wall/mokki-2.webp" alt="" aria-hidden="true" loading="lazy" width="480" height="600"><figcaption>Mokki</figcaption></figure>
+          <figure class="wad"><img src="/img/wall/leid-3.webp" alt="" aria-hidden="true" loading="lazy" width="480" height="600"><figcaption>Leid.no</figcaption></figure>
+          <figure class="wad"><img src="/img/wall/ur-5.webp" alt="" aria-hidden="true" loading="lazy" width="480" height="600"><figcaption>Utvendigrenhold</figcaption></figure>
+          <figure class="wad"><img src="/img/wall/bg-4.webp" alt="" aria-hidden="true" loading="lazy" width="480" height="600"><figcaption>Badstugutta</figcaption></figure>
+          <figure class="wad"><img src="/img/wall/mokki-4.webp" alt="" aria-hidden="true" loading="lazy" width="480" height="600"><figcaption>Mokki</figcaption></figure>
+          <figure class="wad"><img src="/img/wall/leid-4.webp" alt="" aria-hidden="true" loading="lazy" width="480" height="600"><figcaption>Leid.no</figcaption></figure>
+        </div>
+    </div>
   </div>
   <div class="wrap">
     <div class="logorow">
