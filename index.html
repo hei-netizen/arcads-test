@@ -326,91 +326,110 @@ h1,h2,h3,h4{font-family:var(--disp);font-weight:700;line-height:1.08;letter-spac
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
 
 
-/* ================= v16: luft og ro ================= */
+
+/* ================= v17: struktur etter Curve/Vekst-mønster ================= */
 :root{--maxw:1120px}
-.section{padding:128px 0}
-@media(max-width:760px){.section{padding:80px 0}}
+.section{padding:120px 0}
+@media(max-width:760px){.section{padding:76px 0}}
 .section.alt{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .h-lg{font-size:clamp(2rem,3.6vw,2.9rem);letter-spacing:-0.035em;max-width:22ch;text-wrap:balance}
-.shead{max-width:680px;margin:0 auto 64px;text-align:center}
+.shead{max-width:680px;margin:0 auto 56px;text-align:center}
+.shead.left{margin:0 0 56px;text-align:left;max-width:720px}
 .shead .h-lg{margin:14px auto 0}
-.lede{font-size:1.15rem;line-height:1.7}
-.eyebrow{font-size:0.76rem}
+.shead.left .h-lg{margin:14px 0 0}
+.lede{font-size:1.13rem;line-height:1.7;color:var(--ink2)}
 .reveal{transform:translateY(14px)}
-/* nav */
 .nav{background:rgba(249,248,244,.92)}
 .nav-inner{height:80px}
 /* hero */
-.hero2{padding:112px 0 0;text-align:center}
-.hero2 .kicker{font-size:0.8rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
-.hero2 h1{font-size:clamp(2.7rem,5.6vw,4.6rem);letter-spacing:-0.04em;margin:22px auto 26px;max-width:16ch}
-.hero2 .sub{font-size:1.25rem;line-height:1.65;color:var(--ink2);max-width:52ch;margin:0 auto}
-.hero2 .cta-row{display:flex;justify-content:center;align-items:center;gap:14px;flex-wrap:wrap;margin-top:40px}
-.hero2 .btn-soft{padding:17px 26px;font-size:0.98rem;background:transparent}
-.hero2 .faces{justify-content:center;margin-top:34px}
-.logorow{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:28px 44px;margin-top:96px;padding:40px 0 48px;border-top:1px solid var(--line)}
+.hero3{padding:88px 0 0}
+.hgrid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:72px;align-items:center}
+.hero3 .kicker{font-size:0.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-text)}
+.hero3 h1{font-size:clamp(2.4rem,3.7vw,3.3rem);letter-spacing:-0.04em;margin:20px 0 22px;text-wrap:balance}
+.hero3 .sub{font-size:1.2rem;line-height:1.65;color:var(--ink2);max-width:46ch}
+.hero3 .sub b{color:var(--ink);font-weight:700}
+.hero3 .cta-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:34px}
+.hero3 .btn-soft{padding:17px 26px;font-size:0.98rem;background:transparent}
+.hero3 .faces{margin-top:30px}
+.hero-tile{aspect-ratio:4/5;max-width:440px;justify-self:end;width:100%}
+@media(max-width:900px){.hgrid{grid-template-columns:1fr;gap:44px}.hero-tile{justify-self:center;max-width:420px;aspect-ratio:1/1}.hero3 h1{font-size:clamp(2.2rem,7vw,3rem)}}
+@media(max-width:760px){.hero3{padding:56px 0 0}.hero3 .sub{font-size:1.1rem}}
+.logorow{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:28px 44px;margin-top:88px;padding:40px 0 44px;border-top:1px solid var(--line)}
 .logorow img{height:38px;width:auto;object-fit:contain;opacity:.85}
 .logorow img[alt="Badstugutta"]{height:60px}
 .logorow img[alt="Mokki"]{height:32px}
-@media(max-width:760px){.hero2{padding:72px 0 0}.hero2 .sub{font-size:1.12rem}.logorow{gap:20px 30px;margin-top:64px;padding:32px 0}.logorow img{height:26px}.logorow img[alt="Badstugutta"]{height:42px}.logorow img[alt="Mokki"]{height:22px}}
-/* tall */
-.numbers{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:56px 0}
-.stats2{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
-.stats2 .n{font-weight:800;font-size:2.6rem;letter-spacing:-0.04em;line-height:1}
-.stats2 .t{font-size:0.95rem;color:var(--muted);margin-top:10px}
-@media(max-width:680px){.stats2{grid-template-columns:repeat(2,1fr);gap:36px 16px}.stats2 .n{font-size:2.2rem}}
+@media(max-width:760px){.logorow{gap:20px 30px;margin-top:56px;padding:32px 0}.logorow img{height:26px}.logorow img[alt="Badstugutta"]{height:42px}.logorow img[alt="Mokki"]{height:22px}}
+/* resultat-fliser */
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+@media(max-width:1000px){.tiles{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.tiles{grid-template-columns:1fr}}
+.tile{position:relative;display:block;border-radius:20px;overflow:hidden;background:var(--surface);aspect-ratio:4/5;color:#fff}
+.tile img{width:100%;height:100%;object-fit:cover;object-position:50% 0%;display:block;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.tile:hover img{transform:scale(1.03)}
+.tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 22%,rgba(0,0,0,.45) 55%,rgba(0,0,0,.86) 100%)}
+.tile .tx{position:absolute;left:22px;right:22px;bottom:22px;z-index:2}
+.tile .big{font-weight:800;font-size:clamp(2.4rem,3.2vw,3.2rem);letter-spacing:-0.045em;line-height:1}
+.hero-tile .big{font-size:clamp(3rem,4.6vw,4.4rem)}
+.tile .lab{font-size:0.95rem;font-weight:600;margin-top:8px;color:#fff}
+.tile .who{font-size:0.78rem;font-weight:600;color:rgba(255,255,255,.72);margin-top:6px;letter-spacing:.02em}
+/* tjenester */
+.svc{display:grid;border-top:1px solid var(--line)}
+.svc .row{display:grid;grid-template-columns:64px 1.1fr 2fr 40px;gap:24px;align-items:center;padding:30px 0;border-bottom:1px solid var(--line);color:var(--ink);transition:.2s}
+.svc .row:hover{padding-left:8px}
+.svc .n{font-weight:700;font-size:0.85rem;color:var(--accent-deep);letter-spacing:.08em}
+.svc h3{font-size:1.45rem;letter-spacing:-0.03em}
+.svc p{font-size:1.02rem;color:var(--ink2);line-height:1.55}
+.svc .arr{font-size:1.3rem;text-align:right;color:var(--faint)}
+.svc .row:hover .arr{color:var(--ink)}
+@media(max-width:760px){.svc .row{grid-template-columns:44px 1fr;gap:6px 14px;padding:24px 0}.svc p{grid-column:2}.svc .arr{display:none}}
+/* steg */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:56px}
+@media(max-width:860px){.steps{grid-template-columns:1fr;gap:40px}}
+.step .n{font-weight:800;font-size:0.9rem;letter-spacing:.08em;color:var(--accent-deep);padding-bottom:18px;border-bottom:2px solid var(--ink);margin-bottom:22px}
+.step h3{font-size:1.35rem}
+.step p{margin-top:12px;font-size:1.05rem;line-height:1.65;color:var(--ink2)}
+/* prinsipper + sitater */
+.beliefs{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:800px){.beliefs{grid-template-columns:1fr}}
+.belief{background:var(--bg);border:1px solid var(--line);border-radius:20px;padding:36px 34px}
+.belief h3{font-size:1.4rem;letter-spacing:-0.03em;max-width:22ch}
+.belief blockquote{margin-top:22px;font-size:1.06rem;line-height:1.65;color:var(--ink2);padding-left:18px;border-left:3px solid var(--accent)}
+.belief .who{margin-top:16px;font-size:0.88rem;color:var(--muted)}
+.belief .who b{display:block;color:var(--ink)}
+@media(max-width:560px){.belief{padding:28px 24px}}
+/* modell */
+.model{padding:120px 0}
+.model .mgrid{gap:80px}
+.chartcard{box-shadow:none}
+.mstats{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:88px;padding-top:44px;border-top:1px solid rgba(255,255,255,.14)}
+.mstats b{display:block;font-weight:800;font-size:2.6rem;letter-spacing:-0.04em;color:#fff;line-height:1}
+.mstats span{display:block;margin-top:10px;font-size:0.95rem;color:#D8F3E4;max-width:26ch}
+@media(max-width:760px){.mstats{grid-template-columns:1fr;gap:28px;margin-top:56px}}
 /* om oss */
 .meet2{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
 @media(max-width:900px){.meet2{grid-template-columns:1fr;gap:44px}}
 .meet2 .mphoto{box-shadow:none;border-radius:20px}
-.bios2{display:grid;gap:34px;margin-top:40px}
+.bios2{display:grid;gap:30px;margin-top:36px}
 .bios2 .bio h3{font-size:1.3rem}
-.bios2 .bio p{font-size:1.05rem;max-width:none}
+.bios2 .bio p{font-size:1.04rem;max-width:none}
 .bios2 .li-btn{margin-top:10px}
-/* steg */
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:56px;max-width:1040px;margin:0 auto}
-@media(max-width:860px){.steps{grid-template-columns:1fr;gap:40px}}
-.step .n{font-weight:800;font-size:0.95rem;letter-spacing:.08em;color:var(--accent-deep);padding-bottom:18px;border-bottom:2px solid var(--ink);margin-bottom:22px}
-.step h3{font-size:1.35rem}
-.step p{margin-top:12px;font-size:1.05rem;line-height:1.65;color:var(--ink2)}
-.weeklist{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;max-width:1040px;margin:0 auto}
-@media(max-width:960px){.weeklist{grid-template-columns:1fr 1fr}}
-@media(max-width:560px){.weeklist{grid-template-columns:1fr;gap:32px}}
-.wk .d{font-size:0.74rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--accent-text)}
-.wk h3{font-size:1.2rem;margin-top:10px}
-.wk p{margin-top:8px;font-size:1rem;line-height:1.6;color:var(--ink2)}
-/* modell */
-.model{padding:128px 0}
-.model .mgrid{gap:80px}
-.chartcard{box-shadow:none}
-/* caser */
-.cases2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-@media(max-width:760px){.cases2{grid-template-columns:1fr}}
-.case{display:block;background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:36px 36px 32px;transition:.2s}
-.case:hover{border-color:var(--ink)}
-.case .ch{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:34px}
-.case .ch img{height:22px;width:auto;object-fit:contain}
-.case .ch span{font-size:0.8rem;font-weight:600;color:var(--faint)}
-.case .ch .lb{width:26px;height:26px;border-radius:7px;background:var(--dark);color:#fff;font-weight:800;font-size:0.9rem;display:inline-flex;align-items:center;justify-content:center}
-.case .cm{font-weight:800;font-size:clamp(2.8rem,4vw,3.6rem);letter-spacing:-0.045em;line-height:1}
-.case .cm .u{color:var(--accent-deep)}
-.case .cl{font-size:.74rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--faint);margin-top:12px}
-.case p{margin-top:22px;font-size:1.05rem;line-height:1.6;color:var(--ink2);max-width:44ch}
-.case .more{display:inline-block;margin-top:22px;font-weight:700;color:var(--accent-deep);font-size:0.95rem}
-@media(max-width:560px){.case{padding:28px 24px}}
-/* sitater */
-.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-@media(max-width:900px){.quotes{grid-template-columns:1fr;max-width:640px;margin:0 auto}}
-.quote{background:var(--bg);border:1px solid var(--line);border-radius:20px;padding:36px 32px;display:flex;flex-direction:column;justify-content:space-between;gap:28px}
-.quote blockquote{font-size:1.08rem;line-height:1.65;color:var(--ink)}
-.quote blockquote::before{content:"\201C";display:block;font-size:2.6rem;line-height:.6;color:var(--accent);margin-bottom:14px;font-weight:800}
-.quote figcaption{font-size:0.9rem;color:var(--muted)}
-.quote figcaption b{display:block;color:var(--ink);font-weight:700}
-/* faq + skjema */
+/* faq */
 .faq{margin-top:0}
 .faq details{box-shadow:none}
-.final{padding:80px 40px 56px;box-shadow:none}
-@media(max-width:620px){.final{padding:52px 18px 36px}}
+/* kontakt 2-kol */
+.final2{background:var(--dark);color:#fff;border-radius:26px;padding:64px;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;scroll-margin-top:80px}
+.final2 .eyebrow{color:var(--accent)}
+.final2 h2{font-size:clamp(1.9rem,3.2vw,2.6rem);color:#fff;margin:14px 0 14px;letter-spacing:-0.035em;text-wrap:balance}
+.final2 p{color:var(--on-dark-dim);font-size:1.05rem;line-height:1.6;max-width:44ch}
+.next{display:grid;gap:18px;margin-top:34px}
+.nx{padding-left:18px;border-left:2px solid var(--accent)}
+.nx b{display:block;color:#fff;font-weight:700}
+.nx span{font-size:0.92rem;color:var(--on-dark-dim)}
+.final2 .calcard{max-width:none;margin:0;padding:26px 26px 22px}
+.final2 .fine{font-size:0.82rem;color:var(--muted);margin-top:14px;text-align:center;line-height:1.6}
+.final2 .fine a{color:var(--ink);font-weight:700}
+@media(max-width:900px){.final2{grid-template-columns:1fr;gap:40px;padding:48px 32px}}
+@media(max-width:560px){.final2{padding:40px 18px;border-radius:20px}.final2 .calcard{padding:16px 12px 12px}}
 </style>
 </head>
 <body>
@@ -419,33 +438,38 @@ h1,h2,h3,h4{font-family:var(--disp);font-weight:700;line-height:1.08;letter-spac
   <div class="nav-inner">
     <a href="#top" class="brand" aria-label="Arcads"><img src="/logos/arcads-logo.png" alt="Arcads" width="800" height="132"></a>
     <nav class="nav-links">
-      <a href="/google-ads/" class="lnk">Google Ads</a>
-      <a href="/meta-ads/" class="lnk">Meta Ads</a>
-      <a href="#omoss" class="lnk">Om oss</a>
+      <a href="#resultater" class="lnk">Resultater</a>
+      <a href="#tjenester" class="lnk">Tjenester</a>
       <a href="#slik" class="lnk">Sånn jobber vi</a>
-      <a href="#caser" class="lnk">Caser</a>
+      <a href="#omoss" class="lnk">Om oss</a>
       <a href="#book" class="nav-cta"><span class="full">Få gratis videoanalyse</span><span class="short">Gratis analyse</span></a>
     </nav>
   </div>
 </header>
 
 <!-- ===== HERO ===== -->
-<section class="hero2" id="top">
-  <div class="wrap">
-    <p class="kicker">Google Ads &middot; Meta Ads &middot; Annonseproduksjon &middot; 100% resultatbasert</p>
-    <h1>Flere kunder fra<br>Google og Meta Ads.</h1>
-    <p class="sub">Vi bygger kampanjene og lager annonsene selv &mdash; for bedrifter som lever av leads, og for nettbutikker. Leverer vi ikke, betaler du ikke.</p>
-    <div class="cta-row">
-      <a href="#book" class="cta"><span class="t">Få gratis videoanalyse<span class="arw"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span><span class="sub">Video på e-post innen 24 timer</span></a>
-      <a href="#slik" class="btn-soft">Sånn jobber vi</a>
-    </div>
-    <div class="faces">
-      <div class="pics">
-        <img src="/img/victor.webp" alt="Victor" width="46" height="46">
-        <img src="/img/jona.webp" alt="Jona" width="46" height="46">
+<section class="hero3" id="top">
+  <div class="wrap hgrid">
+    <div>
+      <p class="kicker">Google Ads &middot; Meta Ads &middot; Annonseproduksjon</p>
+      <h1>Flere kunder fra<br>Google og Meta Ads.</h1>
+      <p class="sub"><b>Du betaler først når det virker.</b> Vi bygger kampanjene og lager annonsene selv &mdash; for bedrifter som lever av leads, og for nettbutikker. Ingen binding.</p>
+      <div class="cta-row">
+        <a href="#book" class="cta"><span class="t">Få gratis videoanalyse<span class="arw"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span><span class="sub">Video på e-post innen 24 timer</span></a>
+        <a href="#resultater" class="btn-soft">Se resultatene &darr;</a>
       </div>
-      <div class="ftxt"><b>Victor &amp; Jona</b>du snakker med oss to &mdash; ikke en selger</div>
+      <div class="faces">
+        <div class="pics">
+          <img src="/img/victor.webp" alt="Victor" width="46" height="46">
+          <img src="/img/jona.webp" alt="Jona" width="46" height="46">
+        </div>
+        <div class="ftxt"><b>Victor &amp; Jona</b>du snakker med oss to &mdash; ikke en selger</div>
+      </div>
     </div>
+    <a class="tile hero-tile" href="caser/#utvendigrenhold">
+      <img src="/img/caser/ur-1.jpg" alt="Utvendigrenhold-annonse" width="450" height="800" fetchpriority="high">
+      <div class="tx"><div class="big">142</div><div class="lab">leads på én uke &middot; 9 lokasjoner</div><div class="who">Utvendigrenhold</div></div>
+    </a>
   </div>
   <div class="wrap">
     <div class="logorow">
@@ -459,68 +483,84 @@ h1,h2,h3,h4{font-family:var(--disp);font-weight:700;line-height:1.08;letter-spac
   </div>
 </section>
 
-<!-- ===== TALL ===== -->
-<section class="numbers">
+<!-- ===== RESULTATER ===== -->
+<section class="section" id="resultater">
   <div class="wrap">
-    <div class="stats2">
-      <div class="s"><div class="n">5000+</div><div class="t">annonser levert</div></div>
-      <div class="s"><div class="n">94%</div><div class="t">får større bunnlinje innen 3 mnd</div></div>
-      <div class="s"><div class="n">10+</div><div class="t">nye annonser i uka</div></div>
-      <div class="s"><div class="n">48t</div><div class="t">fra brief til ferdig</div></div>
+    <div class="shead left">
+      <span class="eyebrow">Resultater</span>
+      <h2 class="h-lg">Ekte tall fra kunder vi jobber med i dag.</h2>
     </div>
+    <div class="tiles">
+      <a class="tile reveal" href="caser/#utvendigrenhold"><img src="/img/caser/ur-3.jpg" alt="" loading="lazy" width="450" height="800"><div class="tx"><div class="big">142</div><div class="lab">leads på én uke</div><div class="who">Utvendigrenhold &middot; Meta + Google</div></div></a>
+      <a class="tile reveal" href="caser/#marlow"><img src="/img/caser/marlow-3.jpg" alt="" loading="lazy" width="453" height="800"><div class="tx"><div class="big">0 &rarr; 11</div><div class="lab">leads i uka &middot; CPL &pound;17</div><div class="who">Marlow &middot; Tannklinikk</div></div></a>
+      <a class="tile reveal" href="caser/#leid"><img src="/img/ad-review.webp" alt="" loading="lazy" width="460" height="460"><div class="tx"><div class="big">4,73x</div><div class="lab">ROAS &middot; 100&nbsp;000+ kr/mnd</div><div class="who">Leid.no &middot; Tilhengerutleie</div></div></a>
+      <a class="tile reveal" href="caser/#mokki"><img src="/img/caser/mokki-2.jpg" alt="" loading="lazy" width="640" height="640"><div class="tx"><div class="big">+127%</div><div class="lab">profitt år-over-år</div><div class="who">Mokki &middot; Nettbutikk, 3 land</div></div></a>
+    </div>
+    <div style="margin-top:36px"><a href="caser/" class="btn-soft">Se alle caser &rarr;</a></div>
   </div>
 </section>
 
-<!-- ===== HVEM VI ER ===== -->
-<section class="section" id="omoss">
+<!-- ===== TJENESTER ===== -->
+<section class="section alt" id="tjenester">
   <div class="wrap">
-    <div class="meet2">
-      <img class="mphoto reveal" src="/img/founders.webp" alt="Victor og Jona, gründerne i Arcads" width="1100" height="819">
-      <div class="reveal">
-        <span class="eyebrow">Hvem du jobber med</span>
-        <h2 class="h-lg" style="margin-top:14px">Dette er oss. Bokstavelig talt hele byrået.</h2>
-        <p class="lede" style="margin-top:18px">To karer fra Skien som ble lei av byråer som fakturerer uansett om det funker &mdash; så vi bygde vårt eget. Vi drifter Google Ads og Meta Ads, lager annonsene selv, og har kunder i hele Norge.</p>
-        <div class="bios2">
-          <div class="bio">
-            <h3>Victor</h3>
-            <div class="role">Daglig leder &amp; Google Performance</div>
-            <p>Det er Victor du møter i den første praten. Han bygger Google-kontoen din, graver i tallene og sender deg mandagsrapporten.</p>
-            <a class="li-btn" href="https://www.linkedin.com/in/victor-skretteberg-b7a562299/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.24 8.31h4.52V23H.24zM8.34 8.31h4.33v2h.06c.6-1.14 2.08-2.34 4.28-2.34 4.58 0 5.42 3.01 5.42 6.92V23h-4.51v-7.13c0-1.7-.03-3.89-2.37-3.89-2.37 0-2.73 1.85-2.73 3.76V23H8.34z"/></svg>LinkedIn</a>
-          </div>
-          <div class="bio">
-            <h3>Jona</h3>
-            <div class="role">Creative &amp; Sosiale Medier Performance</div>
-            <p>Jona lager annonsene &mdash; hooks, UGC, statics og konsepter &mdash; og styrer Meta-kontoen din.</p>
-            <a class="li-btn" href="https://www.linkedin.com/in/jona-helgen-9a1a37244/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.24 8.31h4.52V23H.24zM8.34 8.31h4.33v2h.06c.6-1.14 2.08-2.34 4.28-2.34 4.58 0 5.42 3.01 5.42 6.92V23h-4.51v-7.13c0-1.7-.03-3.89-2.37-3.89-2.37 0-2.73 1.85-2.73 3.76V23H8.34z"/></svg>LinkedIn</a>
-          </div>
-        </div>
-      </div>
+    <div class="shead left">
+      <span class="eyebrow">Hva vi gjør</span>
+      <h2 class="h-lg">Alt av betalt annonsering, under ett tak.</h2>
+      <p class="lede" style="margin-top:16px">Én partner som eier hele resultatet. Ingen freelancere, ingen byråpartnere, ingen som skylder på hverandre.</p>
+    </div>
+    <div class="svc">
+      <a class="row reveal" href="/google-ads/"><span class="n">01</span><h3>Google Ads</h3><p>Søk, Shopping og PMax styrt mot faktisk lønnsomhet &mdash; ikke klikk.</p><span class="arr">&rarr;</span></a>
+      <a class="row reveal" href="/meta-ads/"><span class="n">02</span><h3>Meta Ads</h3><p>Facebook, Instagram og Snapchat med nye annonser hver uke, så algoritmen alltid har noe å lære av.</p><span class="arr">&rarr;</span></a>
+      <a class="row reveal" href="/kreativ-produksjon/"><span class="n">03</span><h3>Annonseproduksjon</h3><p>Hooks, statics og video laget in-house. 10+ nye annonser i uka, 48 timer fra brief til ferdig.</p><span class="arr">&rarr;</span></a>
+      <a class="row reveal" href="/ugc-byra/"><span class="n">04</span><h3>UGC</h3><p>Ekte folk som snakker om produktet ditt &mdash; vi skriver manus, styrer creators og klipper.</p><span class="arr">&rarr;</span></a>
+      <a class="row reveal" href="/markedsforing-for-tjenestebedrifter/"><span class="n">05</span><h3>Leads og landingssider</h3><p>For håndverkere, klinikker, renhold og flytting: sporing, landingssider og kampanje per lokasjon.</p><span class="arr">&rarr;</span></a>
     </div>
   </div>
 </section>
 
 <!-- ===== SÅNN JOBBER VI ===== -->
-<section class="section alt" id="slik">
+<section class="section" id="slik">
   <div class="wrap">
-    <div class="shead">
+    <div class="shead left">
       <span class="eyebrow">Sånn jobber vi</span>
-      <h2 class="h-lg">Fra første prat til live annonser.</h2>
+      <h2 class="h-lg">Fra første prat til live annonser på 48 timer.</h2>
     </div>
     <div class="steps">
-      <div class="step reveal"><div class="n">01</div><div><h3>Gratis videoanalyse</h3><p>Vi går gjennom annonsekontoen og nettsiden din, og sender deg en video som viser hvor pengene lekker &mdash; og hva vi ville gjort først.</p></div></div>
-      <div class="step reveal"><div class="n">02</div><div><h3>Vi bygger og lanserer</h3><p>Vi rigger sporing som måler salg og leads &mdash; ikke klikk. De første annonsene er live innen 48 timer.</p></div></div>
-      <div class="step reveal"><div class="n">03</div><div><h3>Du betaler når det leverer</h3><p>Hver mandag ser du hva du brukte og hva du fikk igjen. Resultatene avgjør fakturaen &mdash; ikke timene våre.</p></div></div>
+      <div class="step reveal"><div class="n">01</div><div><h3>Gratis videoanalyse</h3><p>Victor går gjennom annonsekontoen og nettsiden din på video, og viser tre grep vi ville gjort først. Innen 24 timer.</p></div></div>
+      <div class="step reveal"><div class="n">02</div><div><h3>Vi bygger og lanserer</h3><p>Vi rigger sporing som måler salg og leads, bygger kampanjene og lager annonsene. Live innen 48 timer.</p></div></div>
+      <div class="step reveal"><div class="n">03</div><div><h3>Du betaler når det leverer</h3><p>Hver mandag får du rapporten: hva du brukte, hva du fikk igjen. Resultatene avgjør fakturaen.</p></div></div>
     </div>
+  </div>
+</section>
 
-    <div class="shead" style="margin-top:110px">
-      <span class="eyebrow">En vanlig uke</span>
-      <h2 class="h-lg">Det du faktisk betaler for.</h2>
+<!-- ===== PRINSIPPER + SITATER ===== -->
+<section class="section alt" id="prinsipper">
+  <div class="wrap">
+    <div class="shead left">
+      <span class="eyebrow">Derfor blir kundene</span>
+      <h2 class="h-lg">Fire ting vi gjør annerledes.</h2>
     </div>
-    <div class="weeklist">
-      <div class="wk reveal"><div class="d">Mandag</div><h3>Rapporten</h3><p>Hva du brukte, hva du tjente &mdash; og hva vi gjør med det denne uka.</p></div>
-      <div class="wk reveal"><div class="d">Tirsdag&ndash;torsdag</div><h3>Produksjon</h3><p>Hooks, UGC, statics og kampanjer. Minst 10 nye annonser ut hver uke.</p></div>
-      <div class="wk reveal"><div class="d">Fredag</div><h3>Vinnere og tapere</h3><p>Vi skalerer det som funker, pauser det som ikke gjør det, og luker ut søketermer som brenner penger.</p></div>
-      <div class="wk reveal"><div class="d">Hver dag</div><h3>Én melding unna</h3><p>Du har oss på chat. Ikke et ticketsystem, ikke en account manager &mdash; oss.</p></div>
+    <div class="beliefs">
+      <div class="belief reveal">
+        <h3>Du snakker med oss. Ikke en account manager.</h3>
+        <blockquote>&ldquo;Kreative, profesjonelle og raske med tilbakemeldinger, og resultatene har hatt stor verdi. En partner vi stoler på.&rdquo;</blockquote>
+        <div class="who"><b>Nathaniel Ayeh</b>Veldigrent.no &amp; Raskflytting.no</div>
+      </div>
+      <div class="belief reveal">
+        <h3>Vi lager annonsene selv. 10+ nye hver uke.</h3>
+        <blockquote>&ldquo;Selv statics fungerer så godt! Veldig bra jobba dere, fantastisk!&rdquo;</blockquote>
+        <div class="who"><b>Mattis Ohana Goksøyr</b>CMO, Mokki</div>
+      </div>
+      <div class="belief reveal">
+        <h3>Vi tjener bare når du tjener.</h3>
+        <blockquote>&ldquo;Jeg har jobbet med 6&ndash;7 andre byråer før vi ble anbefalt Arcads &mdash; det er en tidsepoke før og etter vi startet samarbeidet.&rdquo;</blockquote>
+        <div class="who"><b>Thommy Tellefsen</b>Leid.no</div>
+      </div>
+      <div class="belief reveal">
+        <h3>Sporing først. Så skalerer vi.</h3>
+        <blockquote>&ldquo;Vi får flere leads enn noensinne, vi får flere clicks enn noensinne!! Amazing&rdquo;</blockquote>
+        <div class="who"><b>Elliot</b>Co-Founder, Badstugutta</div>
+      </div>
     </div>
   </div>
 </section>
@@ -563,67 +603,44 @@ h1,h2,h3,h4{font-family:var(--disp);font-weight:700;line-height:1.08;letter-spac
         <div class="legend"><span><i></i>Arcads &mdash; resultatbasert</span><span><i class="d"></i>Vanlig byrå &mdash; fast honorar</span></div>
       </div>
     </div>
+    <div class="mstats">
+      <div><b>94%</b><span>av kundene får større bunnlinje innen 3 måneder</span></div>
+      <div><b>5000+</b><span>annonser laget for norske bedrifter</span></div>
+      <div><b>10+</b><span>nye annonser testet hver uke</span></div>
+    </div>
   </div>
 </section>
 
-<!-- ===== CASER ===== -->
-<section class="section" id="caser">
+<!-- ===== OM OSS ===== -->
+<section class="section" id="omoss">
   <div class="wrap">
-    <div class="shead">
-      <span class="eyebrow">Caser</span>
-      <h2 class="h-lg">Sånn ser det ut når det virker.</h2>
-    </div>
-    <div class="cases2">
-      <a class="case reveal" href="caser/#utvendigrenhold">
-        <div class="ch"><img src="/logos/utvendigrenhold.png" alt="Utvendigrenhold" width="589" height="169"><span>Tjenester &middot; Meta + Google</span></div>
-        <div class="cm">142</div>
-        <div class="cl">leads p&aring; &eacute;n uke &middot; 9 lokasjoner</div>
-        <p>Egen kampanje per lokasjon &mdash; tak- og fasadevask over hele Norge.</p>
-        <span class="more">Les caset &rarr;</span>
-      </a>
-      <a class="case reveal" href="caser/#marlow">
-        <div class="ch"><span class="lb">M</span><span>Tannklinikk (UK) &middot; Meta</span></div>
-        <div class="cm">0 <span class="u">&rarr;</span> 11</div>
-        <div class="cl">leads i uka &middot; CPL &pound;17</div>
-        <p>Aldri m&aring;lt ett eneste lead f&oslash;r oss. Vi bygde sporing, landingssider og annonser fra bunnen.</p>
-        <span class="more">Les caset &rarr;</span>
-      </a>
-      <a class="case reveal" href="caser/#leid">
-        <div class="ch"><img src="/logos/leid.svg" alt="Leid.no" width="68" height="17" style="height:17px"><span>Tilhengerutleie &middot; Meta + Google</span></div>
-        <div class="cm">4,73<span class="u">x</span></div>
-        <div class="cl">ROAS &middot; 100&nbsp;000+ kr/mnd</div>
-        <p>&Oslash;delagt sporing da vi tok over. Vi fikset den &mdash; og skalerte uten &aring; gamble.</p>
-        <span class="more">Les caset &rarr;</span>
-      </a>
-      <a class="case reveal" href="caser/#mokki">
-        <div class="ch"><img src="/logos/mokki.png" alt="Mokki" width="700" height="188"><span>Nettbutikk &middot; 3 kanaler</span></div>
-        <div class="cm"><span class="u">+</span>127<span class="u">%</span></div>
-        <div class="cl">profitt &aring;r-over-&aring;r</div>
-        <p>Prisvinnende barnesolbriller i Norge, Tyskland og Danmark. L&oslash;nnsomt i alle tre.</p>
-        <span class="more">Les caset &rarr;</span>
-      </a>
-    </div>
-    <div class="center" style="margin-top:44px"><a href="caser/" class="btn-soft">Se alle caser &rarr;</a></div>
-  </div>
-</section>
-
-<!-- ===== TILBAKEMELDINGER ===== -->
-<section class="section alt" id="resultater">
-  <div class="wrap">
-    <div class="shead">
-      <span class="eyebrow">Kundene våre</span>
-      <h2 class="h-lg">Ikke ta vårt ord for det.</h2>
-    </div>
-    <div class="quotes">
-      <figure class="quote reveal"><blockquote>Jeg har jobbet med 6&ndash;7 andre byråer før vi ble anbefalt Arcads &mdash; det er en tidsepoke før og etter vi startet samarbeidet. De lykkes når vi lykkes, og oppleves som en utvidet del av teamet vårt.</blockquote><figcaption><b>Thommy Tellefsen</b>Leid.no</figcaption></figure>
-      <figure class="quote reveal"><blockquote>Vi har samarbeidet med Arcads på flere konsepter over tid &mdash; og samarbeider fremdeles. Kreative, profesjonelle og raske med tilbakemeldinger, og resultatene har hatt stor verdi. En partner vi stoler på.</blockquote><figcaption><b>Nathaniel Ayeh</b>Veldigrent.no &amp; Raskflytting.no</figcaption></figure>
-      <figure class="quote reveal"><blockquote>Veldig nice, vi får flere leads enn noensinne, vi får flere clicks enn noensinne!! Amazing</blockquote><figcaption><b>Elliot</b>Co-Founder, Badstugutta</figcaption></figure>
+    <div class="meet2">
+      <img class="mphoto reveal" src="/img/founders.webp" alt="Victor og Jona, gründerne i Arcads" width="1100" height="819">
+      <div class="reveal">
+        <span class="eyebrow">Hvem du jobber med</span>
+        <h2 class="h-lg" style="margin-top:14px">Dette er oss. Bokstavelig talt hele byrået.</h2>
+        <p class="lede" style="margin-top:18px">To karer fra Skien som ble lei av byråer som fakturerer uansett om det funker &mdash; så vi bygde vårt eget. Ingen mellomledd, ingen selgere.</p>
+        <div class="bios2">
+          <div class="bio">
+            <h3>Victor</h3>
+            <div class="role">Daglig leder &amp; Google Performance</div>
+            <p>Han du møter i den første praten. Bygger Google-kontoen din og sender mandagsrapporten.</p>
+            <a class="li-btn" href="https://www.linkedin.com/in/victor-skretteberg-b7a562299/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.24 8.31h4.52V23H.24zM8.34 8.31h4.33v2h.06c.6-1.14 2.08-2.34 4.28-2.34 4.58 0 5.42 3.01 5.42 6.92V23h-4.51v-7.13c0-1.7-.03-3.89-2.37-3.89-2.37 0-2.73 1.85-2.73 3.76V23H8.34z"/></svg>LinkedIn</a>
+          </div>
+          <div class="bio">
+            <h3>Jona</h3>
+            <div class="role">Creative &amp; Sosiale Medier Performance</div>
+            <p>Lager annonsene &mdash; hooks, UGC, statics og konsepter &mdash; og styrer Meta-kontoen din.</p>
+            <a class="li-btn" href="https://www.linkedin.com/in/jona-helgen-9a1a37244/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.24 8.31h4.52V23H.24zM8.34 8.31h4.33v2h.06c.6-1.14 2.08-2.34 4.28-2.34 4.58 0 5.42 3.01 5.42 6.92V23h-4.51v-7.13c0-1.7-.03-3.89-2.37-3.89-2.37 0-2.73 1.85-2.73 3.76V23H8.34z"/></svg>LinkedIn</a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ===== FAQ ===== -->
-<section class="section">
+<section class="section alt">
   <div class="wrap">
     <div class="shead">
       <h2 class="h-lg">Det folk lurer på før de tar kontakt.</h2>
@@ -637,31 +654,36 @@ h1,h2,h3,h4{font-family:var(--disp);font-weight:700;line-height:1.08;letter-spac
   </div>
 </section>
 
-<!-- ===== BOOKING ===== -->
-<section class="section" id="book" style="padding-top:0">
+<!-- ===== KONTAKT ===== -->
+<section class="section" id="book" style="padding-top:0;margin-top:128px">
   <div class="wrap">
-    <div class="final reveal">
+    <div class="final2 reveal">
       <span id="prat"></span>
-      <span class="eyebrow">Gratis videoanalyse</span>
-      <h2>Se hva vi ville gjort &mdash; før du bestemmer deg.</h2>
-      <p>Victor går gjennom annonsene dine på video og viser tre konkrete grep vi ville gjort først. I innboksen din innen 24 timer.</p>
+      <div class="fl">
+        <span class="eyebrow">Gratis videoanalyse</span>
+        <h2>Se hva vi ville gjort &mdash; før du bestemmer deg.</h2>
+        <p>Fortell oss kort hvem du er, så får du en video der Victor går gjennom annonsene dine og viser tre konkrete grep. Din å beholde uansett.</p>
+        <div class="next">
+          <div class="nx"><b>Video innen 24 timer</b><span>Fra Victor, ikke fra et autosvar</span></div>
+          <div class="nx"><b>Konkret anbefaling</b><span>Hva vi ville gjort annerledes, og hvorfor</span></div>
+          <div class="nx"><b>Kort prat hvis du vil</b><span>30 minutter om hvor du står og om vi passer sammen</span></div>
+          <div class="nx"><b>Ingen forpliktelser</b><span>Er det ikke en match, sier vi det ærlig</span></div>
+        </div>
+      </div>
       <div class="calcard">
         <form id="leadForm" novalidate>
           <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
           <div class="field"><label for="l_name">Navn <span class="req">*</span></label><input type="text" id="l_name" name="name" placeholder="Fornavn og etternavn" autocomplete="name" required></div>
-          <div class="frow">
-            <div class="field"><label for="l_email">E-post <span class="req">*</span></label><input type="email" id="l_email" name="email" placeholder="din@epost.no" autocomplete="email" required></div>
-            <div class="field"><label for="l_phone">Telefon <span class="req">*</span></label><input type="tel" id="l_phone" name="phone" placeholder="Så vi får tak i deg" autocomplete="tel" required></div>
-          </div>
+          <div class="field"><label for="l_email">E-post <span class="req">*</span></label><input type="email" id="l_email" name="email" placeholder="din@epost.no" autocomplete="email" required></div>
+          <div class="field"><label for="l_phone">Telefon <span class="req">*</span></label><input type="tel" id="l_phone" name="phone" placeholder="Så vi får tak i deg" autocomplete="tel" required></div>
           <div class="frow">
             <div class="field"><label for="l_site">Nettside</label><input type="text" id="l_site" name="website" placeholder="bedriften.no (valgfritt)" autocomplete="url"></div>
             <div class="field"><label for="l_budget">Omsetning i året</label><select id="l_budget" name="budget"><option value="">Velg (valgfritt)</option><option>Under 2 mill</option><option>2&ndash;10 mill</option><option>10&ndash;50 mill</option><option>Over 50 mill</option></select></div>
           </div>
           <button type="submit" class="cta" id="leadBtn"><span class="t">Få min gratis videoanalyse<span class="arw"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span><span class="sub">Video på e-post innen 24 timer</span></button>
+          <p class="fine">Gratis &middot; ingen binding &middot; vi deler aldri infoen din. Vil du heller ta praten direkte? <a href="https://cal.com/arcads/30min">Book 30 min &rarr;</a></p>
         </form>
       </div>
-      <p class="fine">Gratis &middot; ingen binding &middot; vi deler aldri infoen din</p>
-      <p class="fine" style="margin-top:8px">Vil du heller ta praten direkte? <a href="https://cal.com/arcads/30min">Book 30 minutter i kalenderen &rarr;</a></p>
     </div>
   </div>
 </section>
