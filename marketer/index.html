@@ -44,7 +44,12 @@ p{color:var(--muted)}
 section{padding:96px 0}
 .center{text-align:center}
 .lede{font-size:18px;max-width:560px;margin:16px auto 0}
-.eyebrow{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--paper);border-radius:var(--r-pill);padding:6px 14px;font-size:13px;color:var(--muted);font-weight:500}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--line);background:var(--paper);border-radius:var(--r-pill);padding:6px 14px;font-size:13px;color:var(--muted);font-weight:500}
+
+.eyebrow.faces{padding:5px 16px 5px 6px;font-size:14px;color:var(--ink)}
+.av{display:flex}
+.av img{width:32px;height:32px;border-radius:50%;object-fit:cover;border:2px solid var(--paper);box-shadow:0 0 0 1px var(--line)}
+.av img+img{margin-left:-9px}
 
 /* buttons */
 .btn{display:inline-flex;align-items:center;gap:12px;background:var(--deep);color:#fff;border-radius:var(--r-pill);padding:8px 24px 8px 8px;font-weight:500;font-size:16px;border:0;cursor:pointer;transition:transform .2s cubic-bezier(.16,1,.3,1),background .2s;white-space:nowrap}
@@ -140,6 +145,20 @@ header{position:sticky;top:0;z-index:20;background:rgba(252,251,249,.85);backdro
 .collage .big{grid-column:1/-1;aspect-ratio:16/10}
 .collage .sm{aspect-ratio:1/1}
 
+/* bento */
+.bento{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:48px}
+.b{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-card);padding:24px;overflow:hidden}
+.b h3{margin-bottom:6px}
+.b p{font-size:15px}
+.b-lp{grid-column:span 3}
+.b-ads{grid-column:span 1}
+.b-head{max-width:560px;margin-bottom:20px}
+.lps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:-60px}
+.lps img{border-radius:10px 10px 0 0;border:1px solid var(--line);border-bottom:0;aspect-ratio:4/5;object-fit:cover;object-position:top;width:100%;box-shadow:0 20px 40px -24px rgba(17,39,31,.3)}
+.adgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.adgrid img{border-radius:8px;aspect-ratio:4/5;object-fit:cover;width:100%}
+.b-t{background:var(--tint);border-color:#E4EBE3}
+
 /* marquee */
 .marquee{padding:0 0 96px;overflow:hidden}
 .mq{display:flex;gap:12px;width:max-content;animation:mq 60s linear infinite}
@@ -222,6 +241,10 @@ footer{padding:48px 0;border-top:1px solid var(--line-soft);font-size:14px;color
   .logo-grid{grid-template-columns:1fr}
   .logo-tile{min-height:220px}
   .how-grid,.split,.contact-grid{grid-template-columns:1fr;gap:40px}
+  .bento{grid-template-columns:1fr 1fr}
+  .b-lp,.b-ads{grid-column:span 2}
+  .lps{grid-template-columns:repeat(2,1fr);margin-bottom:-40px}
+  .adgrid{grid-template-columns:repeat(4,1fr)}
   .cases{grid-template-columns:repeat(2,1fr)}
 }
 @media (max-width:640px){
@@ -236,6 +259,8 @@ footer{padding:48px 0;border-top:1px solid var(--line-soft);font-size:14px;color
   .mq img{width:130px}
   .cases{grid-template-columns:1fr 1fr;gap:8px}
   .case .cap b{font-size:26px}
+  .bento{grid-template-columns:1fr}
+  .b-lp,.b-ads{grid-column:span 1}
   .two{grid-template-columns:1fr}
   .formcard{padding:20px}
   .strip{gap:14px 20px}
@@ -249,6 +274,7 @@ footer{padding:48px 0;border-top:1px solid var(--line-soft);font-size:14px;color
     <a class="logo" href="/marketer/" aria-label="Arcads"><img src="/logos/arcads-logo.png" alt="Arcads" width="800" height="132"></a>
     <ul>
       <li><a href="#slik">Slik jobber vi</a></li>
+      <li><a href="#alt">Alt vi gjør</a></li>
       <li><a href="#resultater">Resultater</a></li>
       <li><a href="#sammenlign">Hvorfor Arcads</a></li>
     </ul>
@@ -258,9 +284,9 @@ footer{padding:48px 0;border-top:1px solid var(--line-soft);font-size:14px;color
 
 <section class="hero center">
   <div class="wrap">
-    <span class="eyebrow rv">Google og Meta Ads for etablerte merkevarer</span>
+    <span class="eyebrow faces rv"><span class="av"><img src="/img/victor-hero.webp" alt="Victor" width="240" height="240"><img src="/img/jona-hero.webp" alt="Jona" width="240" height="240"></span>Hei, vi er Victor og Jona</span>
     <h1 class="rv">Annonser som betaler for seg selv.</h1>
-    <p class="lede rv">Vi bygger kampanjene og lager annonsene selv. Tjener du ikke mer, tjener ikke vi noe.</p>
+    <p class="lede rv">To karer fra Skien som bygger kampanjene, annonsene og landingssidene selv. Tjener du ikke mer, tjener ikke vi noe.</p>
     <a class="btn rv" href="#kontakt"><span class="ic"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>Ta en prat med Victor</a>
     <div class="strip rv">
       <span><svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg><b>10+</b> nye annonser hver uke</span>
@@ -355,17 +381,50 @@ footer{padding:48px 0;border-top:1px solid var(--line-soft);font-size:14px;color
   </div>
 </section>
 
+<section id="alt">
+  <div class="wrap">
+    <div class="center">
+      <h2 class="rv">Vi lager alt selv. Ikke bare annonsene.</h2>
+      <p class="lede rv">Kampanjer, annonser, landingssider og sporing. Én partner, ingen mellomledd.</p>
+    </div>
+    <div class="bento rv">
+      <div class="b b-lp">
+        <div class="b-head"><h3>Landingssider</h3><p>Egne sider som er bygget for annonsetrafikk, ikke for menyen på nettsiden. Vi tegner, skriver og publiserer dem.</p></div>
+        <div class="lps">
+          <img src="/img/lp/froyd.webp" alt="Landingsside for Frøyd" width="500" height="625" loading="lazy">
+          <img src="/img/lp/generalfinans.webp" alt="Landingsside for Generalfinans" width="500" height="625" loading="lazy">
+          <img src="/img/lp/qualipet.webp" alt="Landingsside for QualiPet" width="500" height="625" loading="lazy">
+          <img src="/img/lp/veldigrent.webp" alt="Landingsside for Veldigrent" width="500" height="625" loading="lazy">
+        </div>
+      </div>
+      <div class="b b-ads">
+        <div class="b-head"><h3>Annonser</h3><p>UGC-video, statics og motion. 10+ nye i uka, alt laget hos oss.</p></div>
+        <div class="adgrid">
+          <img src="/img/wall/ur-4.webp" alt="Utvendigrenhold-annonse" width="480" height="600" loading="lazy">
+          <img src="/img/wall/mokki-5.webp" alt="Mokki-annonse" width="480" height="600" loading="lazy">
+          <img src="/img/wall/bg-2.webp" alt="Badstugutta-annonse" width="480" height="600" loading="lazy">
+          <img src="/img/wall/leid-4.webp" alt="Leid-annonse" width="480" height="600" loading="lazy">
+        </div>
+      </div>
+      <div class="b b-t"><h3>Google Ads</h3><p>Search, Shopping og Performance Max. Struktur, negatives og skalering etter lønnsomhet.</p></div>
+      <div class="b b-t"><h3>Meta Ads</h3><p>Facebook, Instagram og Snapchat med løpende testing av nye annonser hver uke.</p></div>
+      <div class="b b-t"><h3>Sporing</h3><p>Google Ads, Meta Pixel og GA4 rigget riktig først. Da ser du hvert salg og hvert lead selv.</p></div>
+      <div class="b b-t"><h3>Mandagsrapporten</h3><p>Tall du forstår, hver mandag. Hva som ble gjort, hva det ga, hva vi gjør neste uke.</p></div>
+    </div>
+  </div>
+</section>
+
 <section>
   <div class="wrap split">
     <div class="rv">
-      <h2>AI gjør grovjobben. Vi tar beslutningene.</h2>
-      <p>Data, drift og produksjon bor i ett system som blir litt smartere hver uke. Strategien, og telefonen din, har Victor og Jona.</p>
-      <p>Victor er daglig leder og har Google. Jona har kreativ produksjon og sosiale medier. Du snakker med oss, ikke en selger.</p>
+      <h2>To karer fra Skien. Ingen mellomledd.</h2>
+      <p>Victor er daglig leder og har Google. Jona har kreativ produksjon og sosiale medier. Det er vi som lager annonsene dine, og det er vi som svarer når du ringer.</p>
+      <p>Vi er selektive: vi jobber kun med etablerte merkevarer, og kun når vi vet vi faktisk kan tjene deg penger. Ellers sier vi nei.</p>
     </div>
     <div class="collage rv">
       <img class="big" src="/img/founders.webp" alt="Victor og Jona, gründerne i Arcads" width="1100" height="819" loading="lazy">
-      <img class="sm" src="/img/wall/ur-4.webp" alt="Utvendigrenhold-annonse" width="480" height="600" loading="lazy">
-      <img class="sm" src="/img/wall/leid-4.webp" alt="Leid-annonse" width="480" height="600" loading="lazy">
+      <img class="sm" src="/img/wall/ur-2.webp" alt="Utvendigrenhold-annonse" width="480" height="600" loading="lazy">
+      <img class="sm" src="/img/wall/leid-3.webp" alt="Leid-annonse" width="480" height="600" loading="lazy">
     </div>
   </div>
 </section>
