@@ -828,6 +828,20 @@ footer{padding:56px 0 32px;border-top:1px solid var(--line-soft);font-size:14px;
 </style>
     <noscript><style>.rv,.stg{opacity:1!important;transform:none!important}.tile svg polyline{animation:none!important;stroke-dashoffset:0!important}</style></noscript>
 <style>
+.hx-ads{margin-top:6px;padding:14px 0 4px;border-top:1px solid var(--line-soft);animation:hxIn .5s var(--out,cubic-bezier(.16,1,.3,1))}
+.hx-ads-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:14px}
+.hx-ads-top b{font-weight:600}
+.hx-ads-top a{display:inline-flex;align-items:center;gap:4px;font-size:13px;font-weight:500;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
+.hx-ads-top a svg{width:13px;height:13px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.hx-ads-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.hx-ads-grid figure{margin:0;height:118px;background:#fff;border:1px solid var(--line-soft);border-radius:12px;padding:10px;display:flex;align-items:center;justify-content:center;overflow:hidden;opacity:0;transform:translateY(6px);animation:hxAdIn .45s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes hxAdIn{to{opacity:1;transform:none}}
+.hx-ads-grid figure:nth-child(2){animation-delay:.08s}.hx-ads-grid figure:nth-child(3){animation-delay:.16s}.hx-ads-grid figure:nth-child(4){animation-delay:.24s}
+.hx-ads-grid figure{align-items:flex-start;padding:12px 12px 0}
+.hx-ads-grid img{width:100%;height:auto;display:block}
+.hx-ads-cta{margin-top:12px;font-size:14px;line-height:1.5;color:var(--ink);font-weight:500}
+@media (max-width:640px){.hx-ads-grid{grid-template-columns:1fr}.hx-ads-grid figure{height:104px}}
+@media (prefers-reduced-motion:reduce){.hx-ads,.hx-ads-grid figure{animation:none;opacity:1;transform:none}}
 /* Caser som tallkort */
 .csx{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:40px}
 .csx-c{display:flex;flex-direction:column;background:var(--paper);border:1px solid var(--line-soft);border-radius:var(--r-card);padding:22px 22px 20px;color:var(--ink);text-decoration:none;transition:border-color .25s,transform .35s cubic-bezier(.16,1,.3,1)}
@@ -982,6 +996,11 @@ footer{padding:56px 0 32px;border-top:1px solid var(--line-soft);font-size:14px;
           <li data-k="trk"><i></i><span>Sporing bekreftet<small></small></span><em></em></li>
           <li data-k="goo"><i></i><span>Annonser på Google som fornyes<small></small></span><em></em></li>
         </ul>
+        <div class="hx-ads" id="hxAds" hidden>
+          <div class="hx-ads-top"><b>Dette kjører dere på Google nå</b><a id="hxAdsAll" href="https://adstransparency.google.com/" target="_blank" rel="noopener">Se alle<svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg></a></div>
+          <div class="hx-ads-grid" id="hxAdsGrid"></div>
+          <p class="hx-ads-cta">Vil du se hvordan vi ville laget dem? Svar på spørsmålet under, så lager vi tre nye annonser for dere, gratis.</p>
+        </div>
         <p class="hx-note" id="hxNote" hidden></p>
         <div class="hx-step" id="hxBudget" hidden>
           <p class="hx-q">Hvor mye bruker dere på annonser i måneden?</p>
@@ -1526,8 +1545,14 @@ function gAnalyse(d){
   var fm={1:0,2:0,3:0};act.forEach(function(c){fm[c['4']]=(fm[c['4']]||0)+1;});
   var old=act.reduce(function(a,c){var t=ts(c,'6');return t&&(!a||t<a)?t:a;},0);
   var lo=+d['4']||it.length,hi=+d['5']||lo;
-  return {n:it.length,lo:lo,hi:hi,capped:it.length>=100,act:act.length,nw:nw,fm:fm,old:old,adv:it[0]['12']||''};
+  // Forhåndsbilder: kun tekstannonser (bildeannonsenes simgad blir halvferdige), nyeste først. Google har lagret noen som bilde av en feilside, så de siles på størrelse i adsShow.
+  var seen={},pv=act.filter(function(c){return c['4']===1;}).sort(function(a,b){return ts(b,'7')-ts(a,'7');}).map(function(c){var h=c['3']&&c['3']['3']&&c['3']['3']['2']||'',m=/src="([^"]+)"/.exec(h);return m&&/width="348"/.test(h)&&/^https:\/\/tpc\.googlesyndication\.com\//.test(m[1])?m[1]:null;}).filter(function(x){if(!x||seen[x])return false;seen[x]=1;return true;}).slice(0,8);
+  return {n:it.length,lo:lo,hi:hi,capped:it.length>=100,act:act.length,nw:nw,fm:fm,old:old,adv:it[0]['12']||'',pv:pv};
 }
+function adsShow(g,h){var box=$('hxAds'),gr=$('hxAdsGrid'),run=h;gr.innerHTML='';box.hidden=true;if(!g||!g.pv||!g.pv.length)return;
+  $('hxAdsAll').href='https://adstransparency.google.com/?region=NO&domain='+encodeURIComponent(h.replace(/^www\./,''));
+  var ok=[],left=g.pv.length;function done(){if(--left>0||run!==host)return;g.pv.forEach(function(s){if(ok.indexOf(s)<0||gr.children.length>=4)return;var f=document.createElement('figure'),i=new Image();i.alt='Google-annonse fra '+h;i.src=s;f.appendChild(i);gr.appendChild(f);});box.hidden=!gr.children.length;}
+  g.pv.forEach(function(s){var i=new Image();i.referrerPolicy='no-referrer';i.onload=function(){if(i.naturalWidth===696)ok.push(s);done();};i.onerror=done;i.src=s;});}
 function row(k,cls,txt,det){var li=res.querySelector('li[data-k="'+k+'"]');if(!li)return;li.className=cls;if(txt!==null)li.querySelector('em').textContent=txt;if(det!==undefined)li.querySelector('small').textContent=det;}
 function show(k,cls,txt,det,delay){setTimeout(function(){row(k,cls,txt,det);},rm?0:delay);}
 function lst(a){return a.length<2?a.join(''):a.slice(0,-1).join(', ')+' og '+a[a.length-1];}
@@ -1557,13 +1582,13 @@ f.addEventListener('submit',function(e){
   $('hxDomain').textContent=h;$('hxType').textContent='';state.textContent='Sjekker';note.hidden=true;bud.hidden=true;ver.hidden=true;
   [].forEach.call(res.querySelectorAll('li[data-k]'),function(li){li.className='';li.querySelector('em').textContent='';li.querySelector('small').textContent='';});
   [].forEach.call(document.querySelectorAll('input[name=hxb]'),function(r){r.checked=false;});
-  $('hxStamp').hidden=true;
+  $('hxStamp').hidden=true;$('hxAds').hidden=true;
   res.hidden=false;
   var www=h.indexOf('www.')===0?h.slice(4):'www.'+h,t1=0,t2=0;
   var pS=fetchSite(h).catch(function(){return fetchSite(www);}).then(function(html){R=analyse(html);R.ok=true;},function(){R={ok:false};}).then(function(){
     $('hxType').textContent=R.ok?((R.shop?'Nettbutikk':R.form?'Tjenestebedrift':'Nettside')+(R.plat?', '+R.plat:'')):'';
     var x=trk(R);show('trk',x[0],x[1],x[2],150);t1=400;});
-  var pG=fetchGoogle(h).then(function(d){G=gAnalyse(d);},function(){G=null;}).then(function(){var x=goo(G);show('goo',x[0],x[1],x[2],400);t2=650;});
+  var pG=fetchGoogle(h).then(function(d){G=gAnalyse(d);},function(){G=null;}).then(function(){var x=goo(G);show('goo',x[0],x[1],x[2],400);t2=650;setTimeout(function(){adsShow(G,h);},rm?0:700);});
   Promise.all([pS,pG]).then(function(){
     busy=false;btn.disabled=false;btn.querySelector('.lbl').textContent='Sjekk nå';
     setTimeout(function(){
