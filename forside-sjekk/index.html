@@ -936,13 +936,13 @@ footer{padding:56px 0 32px;border-top:1px solid var(--line-soft);font-size:14px;
       <h1 class="rv" style="--d:1">Bedre resultater på <span style="white-space:nowrap">Meta og Google.</span><br><span class="dim">Ellers betaler du ingenting.</span></h1>
       <p class="lede rv" style="--d:2">Vi tar over kontoene og lager annonsene selv. Du betaler en andel av det vi tjener deg.</p>
       <form class="hx-check rv" style="--d:3" id="hxForm" novalidate>
-        <label for="hxUrl" class="hx-lbl">Er nettsiden din klar for annonsering? Sjekk den gratis.</label>
+        <label for="hxUrl" class="hx-lbl">Sjekk sporingen og annonsene dine gratis.</label>
         <div class="hx-row">
           <input id="hxUrl" type="text" inputmode="url" autocomplete="url" autocapitalize="off" spellcheck="false" placeholder="dinbedrift.no" aria-label="Nettsiden din">
-          <button class="btn" type="submit" id="hxBtn"><span class="ic"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><span class="lbl">Sjekk nettsiden</span></button>
+          <button class="btn" type="submit" id="hxBtn"><span class="ic"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><span class="lbl">Sjekk nå</span></button>
         </div>
         <p class="hx-err" id="hxErr" role="alert"></p>
-        <p class="micro">Gratis og uforpliktende. Ingen binding.</p>
+        <p class="micro">Tar ett sekund. Ingen registrering.</p>
       </form>
       <div class="hx-res" id="hxRes" hidden aria-live="polite">
         <div class="hx-res-top"><div><b id="hxDomain"></b><small id="hxType"></small></div><span id="hxState">Sjekker</span></div>
@@ -1567,7 +1567,7 @@ f.addEventListener('submit',function(e){
   var pG=fetchGoogle(h).then(function(d){G=gAnalyse(d);},function(){G=null;}).then(function(){var x=goo(G);show('goo',x[0],x[1],x[2],400);t2=650;});
   show('fb','nt',null,undefined,650);
   Promise.all([pS,pG]).then(function(){
-    busy=false;btn.disabled=false;btn.querySelector('.lbl').textContent='Sjekk nettsiden';
+    busy=false;btn.disabled=false;btn.querySelector('.lbl').textContent='Sjekk nå';
     setTimeout(function(){
       state.textContent='Ferdig';
       var nt=[];
