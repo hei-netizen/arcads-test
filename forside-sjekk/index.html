@@ -1639,7 +1639,7 @@ lf.addEventListener('submit',function(e){
   sj+=G?(G.n?' | google: '+G.act+' aktive, '+G.nw+' nye 30d, totalt '+G.lo+(G.hi!==G.lo?'-'+G.hi:'')+', annonsør '+G.adv:' | google: ingen annonser'):' | google: kunne ikke sjekke';
   sj=(window.__hxOk?'ARCADS-GODKJENT':'ikke godkjent')+' | '+sj;
   var p=new URLSearchParams({subject:'Nytt lead - Arcads nettside-sjekk',lead_source:SRC,name:nm,email:em,phone:lf.phone.value.trim(),website:host,budget:b,sjekk:sj,page_url:location.href,user_agent:navigator.userAgent,_ts:Date.now()});
-  function ok(){lf.hidden=true;$('hxThanks').hidden=false;}
+  function ok(){lf.hidden=true;$('hxThanks').hidden=false;try{if(window.fbq)fbq('track','Lead',{content_name:SRC});}catch(x){}try{if(window.gtag)gtag('event','generate_lead',{method:'forside-sjekk'});}catch(x){}}
   try{if(navigator.sendBeacon&&navigator.sendBeacon(LEAD,p)){ok();return;}}catch(x){}
   fetch(LEAD,{method:'POST',mode:'no-cors',keepalive:true,headers:{'Content-Type':'application/x-www-form-urlencoded'},body:p.toString()}).then(ok,function(){sent=false;sb.disabled=false;sb.querySelector('.lbl').textContent='Send meg forslaget';e2.textContent='Noe gikk galt. Prøv igjen, eller send en mail til victor@arcads.no';});
 });
