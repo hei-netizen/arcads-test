@@ -1545,8 +1545,8 @@ function goo(g){
   if(!g.n||!g.act)return ['no','Ingen aktive',g.n?'Ingen annonser vist i Norge siste uke':'Ingen annonser vist i Norge'];
   var f=[];if(g.fm[1])f.push('tekst');if(g.fm[2])f.push('bilde');if(g.fm[3])f.push('video');
   var od=g.old?new Date(g.old*1000):null;
-  var d=(g.capped&&g.nw>=100?'100+':g.nw)+(g.nw===1?' ny':' nye')+' siste 30 dager, '+lst(f)+(g.fm[3]?'':', ingen video')+(od?', eldste fra '+MND[od.getMonth()]+' '+od.getFullYear():'');
-  return [g.nw>=4?'ok':'mb',(g.capped&&g.act>=100?'100+':g.act)+' aktive',d.charAt(0).toUpperCase()+d.slice(1)];
+  var d=(g.capped?'Minst ':'')+(g.capped&&g.nw>=100?'100+':g.nw)+(g.nw===1?' ny':' nye')+' siste 30 dager, '+lst(f)+(g.fm[3]?'':', ingen video')+(od?', eldste fra '+MND[od.getMonth()]+' '+od.getFullYear():'');
+  return [g.nw>=4||g.capped?'ok':'mb',(g.capped&&g.act>=100?'100+':g.act)+' aktive',(g.capped?d:d.charAt(0).toUpperCase()+d.slice(1))+(g.capped?'. Vi ser de 100 siste av '+g.lo+(g.hi!==g.lo?' til '+g.hi:'')+' annonser':'')];
 }
 function metaLink(h){var root=h.replace(/^www\./,'').split('.')[0].replace(/-/g,' ');return 'https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=NO&media_type=all&search_type=keyword_unordered&q='+encodeURIComponent(root);}
 var busy=false;
@@ -1571,9 +1571,9 @@ f.addEventListener('submit',function(e){
     busy=false;btn.disabled=false;btn.querySelector('.lbl').textContent='Sjekk nå';
     setTimeout(function(){
       state.textContent='Ferdig';
-      var c1=R.ok?(R.meta&&R.ads&&R.ga&&(R.cmode||!!R.cmp)):null,c2=G?(G.act>0&&G.nw>=4):null;
+      var c1=R.ok?(R.meta&&R.ads&&R.ga&&(R.cmode||!!R.cmp)):null,c2=G?(G.act>0&&(G.nw>=4||G.capped)):null;
       var st=$('hxStamp'),pass=[c1,c2].filter(function(x){return x===true;}).length;
-      if(c1===null&&c2===null){st.className='hx-stamp na';$('hxStampH').textContent='Kunne ikke sjekke';$('hxStampP').textContent='Vi fikk ikke hentet nok til å vurdere. Vi ser på det selv.';}
+      if(c1===null||c2===null){st.className='hx-stamp na';$('hxStampH').textContent='Delvis sjekket';$('hxStampP').textContent='Vi fikk ikke lest '+(c1===null&&c2===null?'nettsiden eller Google-annonsene':c1===null?'nettsiden':'Google-annonsene')+' automatisk, så vi ser på det selv før vi gir en vurdering.';}
       else if(c1&&c2){st.className='hx-stamp ok';$('hxStampH').textContent='✓ Arcads-godkjent';$('hxStampP').textContent='Sporingen er bekreftet, og annonsene på Google fornyes jevnlig. Sterkt utgangspunkt.';}
       else{st.className='hx-stamp no';$('hxStampH').textContent='Ikke godkjent ennå';$('hxStampP').textContent=pass+' av 2 krav oppfylt. Kravene er bekreftet sporing og annonser på Google med minst 4 nye siste 30 dager.';}
       st.hidden=false;window.__hxOk=!!(c1&&c2);
