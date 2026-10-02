@@ -1603,7 +1603,6 @@ f.addEventListener('submit',function(e){
       if(!R.ok)nt.push('Vi fikk ikke lest nettsiden automatisk. Sjekk at adressen er riktig. Stemmer den, ser vi på siden selv, noen sider stenger ute slike sjekker.');
       else{
         if(R.extra.length)nt.push('Fant også: '+R.extra.join(', ')+'.');}
-      if(G&&G.n&&G.adv)nt.push('Google-annonsene kjøres av '+G.adv+'. Tallene er fra Googles åpenhetssenter for annonser.');
       if(nt.length){note.textContent=nt.join(' ');note.hidden=false;}
       bud.hidden=false;
     },Math.max(t1,t2)+120);
