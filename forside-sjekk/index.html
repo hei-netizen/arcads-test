@@ -848,7 +848,14 @@ footer{padding:56px 0 32px;border-top:1px solid var(--line-soft);font-size:14px;
 .hx-res-top{display:flex;justify-content:space-between;align-items:center;font-size:14px;padding-bottom:12px;border-bottom:1px solid var(--line-soft)}
 .hx-res-top b{font-weight:600;color:var(--ink)}
 .hx-res-top span{font-size:12px;color:var(--faint)}
-.hx-list{list-style:none;margin:6px 0 0;padding:0}
+.hx-res-top small{display:block;font-size:12px;color:var(--faint);margin-top:2px}
+.hx-sec{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);margin:16px 0 0}
+.hx-res-top + .hx-sec{margin-top:14px}
+.hx-src{font-size:11px;color:var(--faint);margin-top:4px}
+.hx-meta{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:8px;border:1px solid var(--line);border-radius:12px;padding:11px 14px;font-size:14px;font-weight:500;color:var(--ink);text-decoration:none;transition:border-color .2s,background .2s}
+.hx-meta svg{width:16px;height:16px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto}
+@media (hover:hover){.hx-meta:hover{border-color:var(--deep);background:var(--tint)}}
+.hx-list{list-style:none;margin:2px 0 0;padding:0}
 .hx-list li{display:grid;grid-template-columns:22px 1fr auto;gap:10px;align-items:center;padding:9px 0;font-size:15px;color:var(--ink)}
 .hx-list li+li{border-top:1px solid var(--line-soft)}
 .hx-list em{font-style:normal;font-size:13px;color:var(--muted);text-align:right}
@@ -928,13 +935,24 @@ footer{padding:56px 0 32px;border-top:1px solid var(--line-soft);font-size:14px;
         <p class="micro">Gratis og uforpliktende. Ingen binding.</p>
       </form>
       <div class="hx-res" id="hxRes" hidden aria-live="polite">
-        <div class="hx-res-top"><b id="hxDomain"></b><span id="hxState">Sjekker</span></div>
-        <ul class="hx-list" id="hxList">
+        <div class="hx-res-top"><div><b id="hxDomain"></b><small id="hxType"></small></div><span id="hxState">Sjekker</span></div>
+        <p class="hx-sec">Sporing</p>
+        <ul class="hx-list">
           <li data-k="meta"><i></i><span>Meta-piksel</span><em></em></li>
           <li data-k="ads"><i></i><span>Google Ads-sporing</span><em></em></li>
           <li data-k="ga4"><i></i><span>Google Analytics 4</span><em></em></li>
-          <li data-k="type"><i></i><span>Type side</span><em></em></li>
+          <li data-k="cons"><i></i><span>Samtykke til informasjonskapsler</span><em></em></li>
         </ul>
+        <p class="hx-sec">Annonser på Google</p>
+        <ul class="hx-list">
+          <li data-k="gact"><i></i><span>Aktive annonser</span><em></em></li>
+          <li data-k="gnew"><i></i><span>Nye annonser</span><em></em></li>
+          <li data-k="gfmt"><i></i><span>Formater</span><em></em></li>
+          <li data-k="gold"><i></i><span>Eldste aktive annonse</span><em></em></li>
+        </ul>
+        <p class="hx-src">Kilde: Googles åpenhetssenter for annonser, annonser vist i Norge.</p>
+        <p class="hx-sec">Annonser på Facebook og Instagram</p>
+        <a class="hx-meta" id="hxMeta" href="https://www.facebook.com/ads/library/" target="_blank" rel="noopener">Se annonsene deres i Meta sitt annonsebibliotek<svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
         <p class="hx-note" id="hxNote" hidden></p>
         <div class="hx-step" id="hxBudget" hidden>
           <p class="hx-q">Hvor mye bruker dere på annonser i måneden?</p>
@@ -1476,13 +1494,15 @@ var io=new IntersectionObserver(function(en){if(!en[0].isIntersecting)return;io.
 </script>
 <script>
 (function(){
-var HOOK='https://hook.eu1.make.com/sp2xsnm8y4l90d3gf7bfhkgmq0fwl9mt',LEAD='https://hook.eu1.make.com/ftpj27p6hovtjk94x4hzt16yc6i9oroi',SRC='arcads-test-forside-sjekk';
+var HOOK='https://hook.eu1.make.com/sp2xsnm8y4l90d3gf7bfhkgmq0fwl9mt',GHOOK='https://hook.eu1.make.com/ib1118evgdhpwvqzuxk3tqh3gvxisdox',LEAD='https://hook.eu1.make.com/ftpj27p6hovtjk94x4hzt16yc6i9oroi',SRC='arcads-test-forside-sjekk';
 var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
-var f=document.getElementById('hxForm'),inp=document.getElementById('hxUrl'),btn=document.getElementById('hxBtn'),err=document.getElementById('hxErr');
-var res=document.getElementById('hxRes'),state=document.getElementById('hxState'),note=document.getElementById('hxNote');
-var bud=document.getElementById('hxBudget'),ver=document.getElementById('hxVerdict'),R=null,host='';
+var $=function(id){return document.getElementById(id);};
+var f=$('hxForm'),inp=$('hxUrl'),btn=$('hxBtn'),err=$('hxErr'),res=$('hxRes'),state=$('hxState'),note=$('hxNote'),bud=$('hxBudget'),ver=$('hxVerdict');
+var R=null,G=null,host='';
+var MND=['jan.','feb.','mars','apr.','mai','juni','juli','aug.','sep.','okt.','nov.','des.'];
 function clean(v){v=v.trim().toLowerCase().replace(/^https?:\/\//,'').replace(/\/.*$/,'').replace(/\s/g,'');return /^[a-z0-9æøå.-]+\.[a-z]{2,}$/.test(v)?v:'';}
 function fetchSite(h){return fetch(HOOK+'?url='+encodeURIComponent('https://'+h)).then(function(r){return r.text();}).then(function(t){var i=t.indexOf('\n'),code=parseInt(t.slice(0,i),10);if(!code||code>=400)throw 0;return t.slice(i+1);});}
+function fetchGoogle(h){return fetch(GHOOK+'?domain='+encodeURIComponent(h.replace(/^www\./,''))).then(function(r){return r.json();}).then(function(d){if(d.feil)throw 0;return d;});}
 function analyse(html){
   var m=/fbevents\.js|connect\.facebook\.net|facebook_pixel|fbq\(\s*['"]init/i.test(html);
   var ads=/AW-\d{6,}/.test(html);
@@ -1492,45 +1512,76 @@ function analyse(html){
   var prod=(html.match(/href="[^"]*\/(produkt|product|products|produkter)\/[^"]+/gi)||[]).length,cart=(html.match(/handlekurv|legg i (handle)?kurv|add to cart|cart-count|data-cart|\/cart["'?]/gi)||[]).length;
   var shop=plat==='Shopify'||prod>=3||(plat==='WooCommerce'&&cart>=2);
   var form=/<form/i.test(html)||/href=["']tel:/i.test(html);
-  var extra=[];if(/analytics\.tiktok\.com|ttq\.load|pixelCode/.test(html))extra.push('TikTok');if(/pintrk|ct\.pinterest\.com/.test(html))extra.push('Pinterest');if(/klaviyo/i.test(html))extra.push('Klaviyo');if(/snap\.licdn|linkedin\.com\/px|_linkedin_partner/i.test(html))extra.push('LinkedIn');if(/clarity\.ms/i.test(html))extra.push('Clarity');if(/hotjar/i.test(html))extra.push('Hotjar');
+  var CMPS=[['Shopify',/shopifycloud\/privacy-banner/],['Cookiebot',/cookiebot/i],['CookieYes',/cookieyes/i],['OneTrust',/cookielaw\.org|onetrust/i],['Complianz',/complianz/i],['CookieHub',/cookiehub/i],['Usercentrics',/usercentrics/i],['Didomi',/didomi/i],['iubenda',/iubenda/i],['Cookie Notice',/cookie-notice/i],['Borlabs',/borlabs/i],['CookieFirst',/cookiefirst/i],['Consentmanager',/consentmanager/i],['Cookie Script',/cookie-script/i],['Axeptio',/axeptio/i],['Termly',/termly/i]];
+  var cmp='';for(var i=0;i<CMPS.length;i++){if(CMPS[i][1].test(html)){cmp=CMPS[i][0];break;}}
+  var cmode=/['"]consent['"]\s*,\s*['"](default|update)|ad_user_data|ad_personalization|consentv2|ad_storage/i.test(html);
+  var extra=[];if(/analytics\.tiktok\.com|ttq\.load|pixelCode/.test(html))extra.push('TikTok');if(/pintrk|ct\.pinterest\.com/.test(html))extra.push('Pinterest');if(/klaviyo/i.test(html))extra.push('Klaviyo');if(/snap\.licdn|_linkedin_partner/i.test(html))extra.push('LinkedIn');if(/clarity\.ms/i.test(html))extra.push('Clarity');if(/hotjar/i.test(html))extra.push('Hotjar');
   if(!shop&&plat==='WooCommerce')plat='WordPress';
-  return {meta:m,ads:ads,ga:ga,gtm:gtm,plat:plat,shop:shop,form:form,extra:extra};
+  return {meta:m,ads:ads,ga:ga,gtm:gtm,plat:plat,shop:shop,form:form,cmp:cmp,cmode:cmode,extra:extra};
 }
-function row(k,cls,txt){var li=document.querySelector('#hxList li[data-k="'+k+'"]');li.className=cls;li.querySelector('em').textContent=txt;}
-function show(r){
-  var steps=[],tm=r.gtm?'mb':'no',tmt=r.gtm?'Kan ligge i Tag Manager':'Fant ingen';
-  if(!r.ok){['meta','ads','ga4','type'].forEach(function(k){steps.push([k,'mb','Fikk ikke lest']);});}
-  else{
-    steps.push(['meta',r.meta?'ok':tm,r.meta?'Funnet':tmt]);
-    steps.push(['ads',r.ads?'ok':tm,r.ads?'Funnet':tmt]);
-    steps.push(['ga4',r.ga?'ok':tm,r.ga?'Funnet':tmt]);
-    steps.push(['type','nt',(r.shop?'Nettbutikk':r.form?'Tjenestebedrift':'Nettside')+(r.plat?' ('+r.plat+')':'')]);
-  }
-  steps.forEach(function(s,i){setTimeout(function(){row(s[0],s[1],s[2]);},rm?0:180+i*260);});
-  setTimeout(function(){
-    state.textContent=r.ok?'Ferdig':'Kunne ikke sjekke automatisk';
-    var n=[];
-    if(!r.ok)n.push('Vi fikk ikke lest siden automatisk. Sjekk at adressen er riktig. Stemmer den, ser vi på siden selv, noen sider stenger ute slike sjekker.');
-    else{if(r.gtm&&!(r.meta&&r.ads&&r.ga))n.push('Siden bruker Google Tag Manager, og der kan sporing ligge skjult for en rask sjekk. Vi ser på det før vi tar kontakt.');
-      if(r.extra.length)n.push('Fant også: '+r.extra.join(', ')+'.');}
-    if(n.length){note.textContent=n.join(' ');note.hidden=false;}
-    bud.hidden=false;
-  },rm?0:180+steps.length*260+150);
+function gAnalyse(d){
+  var it=d['1']||[],now=Date.now()/1000;
+  if(!it.length)return {n:0};
+  var ts=function(c,k){return c[k]&&c[k]['1']?+c[k]['1']:0;};
+  var act=it.filter(function(c){return now-ts(c,'7')<7*86400;});
+  var nw=it.filter(function(c){return now-ts(c,'6')<30*86400;}).length;
+  var fm={1:0,2:0,3:0};act.forEach(function(c){fm[c['4']]=(fm[c['4']]||0)+1;});
+  var old=act.reduce(function(a,c){var t=ts(c,'6');return t&&(!a||t<a)?t:a;},0);
+  var lo=+d['4']||it.length,hi=+d['5']||lo;
+  return {n:it.length,lo:lo,hi:hi,capped:it.length>=100,act:act.length,nw:nw,fm:fm,old:old,adv:it[0]['12']||''};
 }
+function row(k,cls,txt){var li=res.querySelector('li[data-k="'+k+'"]');if(!li)return;li.className=cls;li.querySelector('em').textContent=txt;}
+function stagger(steps,base){steps.forEach(function(s,i){setTimeout(function(){row(s[0],s[1],s[2]);},rm?0:base+i*220);});return rm?0:base+steps.length*220;}
+function trackSteps(r){
+  if(!r.ok)return [['meta','mb','Fikk ikke lest'],['ads','mb','Fikk ikke lest'],['ga4','mb','Fikk ikke lest'],['cons','mb','Fikk ikke lest']];
+  var tm=r.gtm?'mb':'no',tmt=r.gtm?'Kan ligge i Tag Manager':'Fant ingen';
+  var c=r.cmode?['cons','ok','Consent Mode funnet']:r.cmp?['cons','ok','Samtykkebanner ('+r.cmp+')']:['cons',tm,r.gtm?'Kan ligge i Tag Manager':'Fant ingen'];
+  return [['meta',r.meta?'ok':tm,r.meta?'Funnet':tmt],['ads',r.ads?'ok':tm,r.ads?'Funnet':tmt],['ga4',r.ga?'ok':tm,r.ga?'Funnet':tmt],c];
+}
+function gSteps(g){
+  if(!g)return [['gact','mb','Fikk ikke hentet'],['gnew','mb','Fikk ikke hentet'],['gfmt','mb','Fikk ikke hentet'],['gold','mb','Fikk ikke hentet']];
+  if(!g.n)return [['gact','no','Ingen annonser i Norge'],['gnew','nt','Ingen'],['gfmt','nt','Ingen'],['gold','nt','Ingen']];
+  var f=[];if(g.fm[1])f.push('tekst');if(g.fm[2])f.push('bilde');if(g.fm[3])f.push('video');
+  var fs=f.length?f.join(', '):'ingen aktive';fs=fs.charAt(0).toUpperCase()+fs.slice(1);
+  var od=g.old?new Date(g.old*1000):null,age=od?(Date.now()-od)/864e5:0;
+  return [
+    ['gact',g.act?'ok':'no',g.act?((g.capped&&g.act>=100?'100+':g.act)+' aktive nå'):'Ingen aktive nå'],
+    ['gnew',g.nw>=4?'ok':g.act?'mb':'nt',(g.capped&&g.nw>=100?'100+':g.nw)+(g.nw===1?' ny':' nye')+' siste 30 dager'],
+    ['gfmt',g.fm[3]?'ok':'mb',fs+(g.fm[3]?'':', ingen video')],
+    ['gold',age>365?'mb':'nt',od?'Siden '+MND[od.getMonth()]+' '+od.getFullYear():'Ingen aktive']
+  ];
+}
+function metaLink(h){var root=h.replace(/^www\./,'').split('.')[0].replace(/-/g,' ');return 'https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=NO&media_type=all&search_type=keyword_unordered&q='+encodeURIComponent(root);}
 var busy=false;
 f.addEventListener('submit',function(e){
   e.preventDefault();if(busy)return;
   var h=clean(inp.value);if(!h){err.textContent='Skriv inn nettsiden, for eksempel dinbedrift.no';inp.focus();return;}
   var n=0;try{var log=JSON.parse(localStorage.getItem('hxlog')||'[]').filter(function(t){return Date.now()-t<6e5;});n=log.length;log.push(Date.now());localStorage.setItem('hxlog',JSON.stringify(log));}catch(x){}
   if(n>=8){err.textContent='Du har sjekket mange sider på kort tid. Prøv igjen om litt.';return;}
-  err.textContent='';busy=true;host=h;btn.disabled=true;btn.querySelector('.lbl').textContent='Sjekker...';
-  document.getElementById('hxDomain').textContent=h;state.textContent='Sjekker';note.hidden=true;bud.hidden=true;ver.hidden=true;
-  [].forEach.call(document.querySelectorAll('#hxList li'),function(li){li.className='';li.querySelector('em').textContent='';});
+  err.textContent='';busy=true;host=h;R=null;G=null;btn.disabled=true;btn.querySelector('.lbl').textContent='Sjekker...';
+  $('hxDomain').textContent=h;$('hxType').textContent='';state.textContent='Sjekker';note.hidden=true;bud.hidden=true;ver.hidden=true;
+  [].forEach.call(res.querySelectorAll('li[data-k]'),function(li){li.className='';li.querySelector('em').textContent='';});
   [].forEach.call(document.querySelectorAll('input[name=hxb]'),function(r){r.checked=false;});
+  $('hxMeta').href=metaLink(h);
   res.hidden=false;
-  var www=h.indexOf('www.')===0?h.slice(4):'www.'+h;
-  fetchSite(h).catch(function(){return fetchSite(www);}).then(function(html){R=analyse(html);R.ok=true;},function(){R={ok:false};})
-   .then(function(){busy=false;btn.disabled=false;btn.querySelector('.lbl').textContent='Sjekk nettsiden';show(R);});
+  var www=h.indexOf('www.')===0?h.slice(4):'www.'+h,t1=0,t2=0;
+  var pS=fetchSite(h).catch(function(){return fetchSite(www);}).then(function(html){R=analyse(html);R.ok=true;},function(){R={ok:false};}).then(function(){
+    $('hxType').textContent=R.ok?((R.shop?'Nettbutikk':R.form?'Tjenestebedrift':'Nettside')+(R.plat?', '+R.plat:'')):'';
+    t1=stagger(trackSteps(R),150);});
+  var pG=fetchGoogle(h).then(function(d){G=gAnalyse(d);},function(){G=null;}).then(function(){t2=stagger(gSteps(G),350);});
+  Promise.all([pS,pG]).then(function(){
+    busy=false;btn.disabled=false;btn.querySelector('.lbl').textContent='Sjekk nettsiden';
+    setTimeout(function(){
+      state.textContent='Ferdig';
+      var nt=[];
+      if(!R.ok)nt.push('Vi fikk ikke lest nettsiden automatisk. Sjekk at adressen er riktig. Stemmer den, ser vi på siden selv, noen sider stenger ute slike sjekker.');
+      else{if(R.gtm&&!(R.meta&&R.ads&&R.ga))nt.push('Siden bruker Google Tag Manager, og der kan sporing ligge skjult for en rask sjekk. Vi ser på det før vi tar kontakt.');
+        if(R.extra.length)nt.push('Fant også: '+R.extra.join(', ')+'.');}
+      if(G&&G.n&&G.adv)nt.push('Google-annonsene kjøres av '+G.adv+'.');
+      if(nt.length){note.textContent=nt.join(' ');note.hidden=false;}
+      bud.hidden=false;
+    },Math.max(t1,t2)+120);
+  });
 });
 function verdict(b){
   var big=/30 000 til|Over/.test(b),miss=[];
@@ -1540,11 +1591,16 @@ function verdict(b){
   else if(!R.ok){h='Budsjettet holder.';p='Vi fikk ikke lest siden automatisk, så vi sjekker sporingen selv før vi tar kontakt.';}
   else if(!miss.length){h='Dere er klare.';p='Sporingen er på plass, så vi kan begynne å teste nye annonser fra første uke.';}
   else{h='Dere er nesten klare.';p='Budsjettet holder, men vi fant ikke '+miss.join(' eller ')+(R.gtm?' (kan ligge i Tag Manager)':'')+'. Da rigger vi sporingen først, før det brukes en krone på annonser.';}
-  document.getElementById('hxVh').textContent=h;document.getElementById('hxVp').innerHTML=p;document.getElementById('hxLq').textContent=q;
+  if(big&&G){
+    if(!G.n||!G.act)p+=' Dere har ingen aktive annonser på Google i Norge i dag, så det er en hel kanal å teste.';
+    else if(G.nw<4)p+=' På Google har dere '+G.act+(G.capped&&G.act>=100?'+':'')+' aktive annonser, men bare '+G.nw+' nye de siste 30 dagene. Vi lager 10+ nye annonser hver uke.';
+    else p+=' Dere fornyer annonsene på Google jevnlig, og det er et godt utgangspunkt.';
+  }
+  $('hxVh').textContent=h;$('hxVp').innerHTML=p;$('hxLq').textContent=q;
   ver.hidden=false;
 }
 [].forEach.call(document.querySelectorAll('input[name=hxb]'),function(r){r.addEventListener('change',function(){verdict(r.value);setTimeout(function(){var n=document.querySelector('#hxLead input[name=name]');if(innerWidth>640)n.focus({preventScroll:true});ver.scrollIntoView({behavior:rm?'auto':'smooth',block:'nearest'});},60);});});
-var lf=document.getElementById('hxLead'),sent=false,e2=document.getElementById('hxErr2');
+var lf=$('hxLead'),sent=false,e2=$('hxErr2');
 lf.addEventListener('submit',function(e){
   e.preventDefault();if(sent)return;
   if(lf.company.value){sent=true;return;}
@@ -1552,11 +1608,12 @@ lf.addEventListener('submit',function(e){
   var bn=!nm,be=!/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(em),bp=ph.length<8;
   lf.name.classList.toggle('bad',bn);lf.email.classList.toggle('bad',be);lf.phone.classList.toggle('bad',bp);
   if(bn||be||bp){e2.textContent='Sjekk feltene som er markert.';return;}
-  e2.textContent='';sent=true;var sb=document.getElementById('hxSend');sb.disabled=true;sb.querySelector('.lbl').textContent='Sender...';
+  e2.textContent='';sent=true;var sb=$('hxSend');sb.disabled=true;sb.querySelector('.lbl').textContent='Sender...';
   var b=(document.querySelector('input[name=hxb]:checked')||{}).value||'';
-  var sj=R&&R.ok?['meta:'+(R.meta?'ja':'nei'),'ads:'+(R.ads?'ja':'nei'),'ga4:'+(R.ga?'ja':'nei'),'gtm:'+(R.gtm?'ja':'nei'),'type:'+(R.shop?'nettbutikk':R.form?'tjeneste':'nettside'),'plattform:'+(R.plat||'?'),'ekstra:'+R.extra.join('/')].join(', '):'kunne ikke sjekke';
+  var sj=R&&R.ok?['meta:'+(R.meta?'ja':'nei'),'ads:'+(R.ads?'ja':'nei'),'ga4:'+(R.ga?'ja':'nei'),'gtm:'+(R.gtm?'ja':'nei'),'samtykke:'+(R.cmode?'consent mode':R.cmp||'nei'),'type:'+(R.shop?'nettbutikk':R.form?'tjeneste':'nettside'),'plattform:'+(R.plat||'?'),'ekstra:'+R.extra.join('/')].join(', '):'side: kunne ikke sjekke';
+  sj+=G?(G.n?' | google: '+G.act+' aktive, '+G.nw+' nye 30d, totalt '+G.lo+(G.hi!==G.lo?'-'+G.hi:'')+', annonsør '+G.adv:' | google: ingen annonser'):' | google: kunne ikke sjekke';
   var p=new URLSearchParams({subject:'Nytt lead - Arcads nettside-sjekk',lead_source:SRC,name:nm,email:em,phone:lf.phone.value.trim(),website:host,budget:b,sjekk:sj,page_url:location.href,user_agent:navigator.userAgent,_ts:Date.now()});
-  function ok(){lf.hidden=true;document.getElementById('hxThanks').hidden=false;}
+  function ok(){lf.hidden=true;$('hxThanks').hidden=false;}
   try{if(navigator.sendBeacon&&navigator.sendBeacon(LEAD,p)){ok();return;}}catch(x){}
   fetch(LEAD,{method:'POST',mode:'no-cors',keepalive:true,headers:{'Content-Type':'application/x-www-form-urlencoded'},body:p.toString()}).then(ok,function(){sent=false;sb.disabled=false;sb.querySelector('.lbl').textContent='Send meg forslaget';e2.textContent='Noe gikk galt. Prøv igjen, eller send en mail til victor@arcads.no';});
 });
