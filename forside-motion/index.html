@@ -613,46 +613,46 @@ footer{padding:56px 0 32px;border-top:1px solid var(--line-soft);font-size:14px;
   .wk-cap.fade{opacity:0}
 }
 
-/* === motion-test (Motion AI Kit-prinsipper) === */
-:root{--spring:linear(0,0.0281,0.1006,0.2019,0.3188,0.441,0.5604,0.6715,0.7706,0.8555,0.9254,0.9808,1.0224,1.0517,1.0704,1.0804,1.0834,1.0812,1.0752,1.0668,1.0571,1.0469,1.0369,1.0276,1.0193,1.0122,1.0063,1.0017,0.9982,0.9957,0.9942,0.9933,0.993,0.9932,0.9937,0.9944,0.9952,0.9961,0.9969,0.9977,0.9984);--spring-t:0.62s;--out:cubic-bezier(.16,1,.3,1)}
-/* 1. hero: CSS-animasjon ved last, venter ikke på JS/scroll */
-.hero .rv{opacity:1;transform:none;transition:none;animation:heroIn .8s var(--out) both;animation-delay:calc(var(--d,0) * 70ms)}
-@keyframes heroIn{from{opacity:0;transform:translateY(14px)}}
-.hero h1.rv{animation-name:heroInH1}
-@keyframes heroInH1{from{opacity:.001;transform:translateY(10px)}}
-.panel.hi{opacity:1;transform:none;animation:panelIn 1s var(--out) .35s both}
-@keyframes panelIn{from{opacity:0;transform:translateY(28px) scale(.985)}}
-.tile svg polyline{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.2s var(--out) forwards;animation-delay:calc(.2s + var(--d,0) * 120ms);animation-play-state:paused}
-.tiles.go svg polyline{animation-play-state:running}
-@keyframes draw{to{stroke-dashoffset:0}}
-.tile .v,.case .cap b,.kpi b{font-variant-numeric:tabular-nums}
-/* 3. stagger */
-.stg{opacity:0;transform:translateY(18px);transition:opacity .7s var(--out),transform .7s var(--out);transition-delay:calc(var(--i,0) * 80ms)}
-.stg.in{opacity:1;transform:none}
-/* 5. fjær på knapper og kort */
-.btn{transition:transform var(--spring-t) var(--spring),background .2s}
-.btn .ic svg{transition:transform var(--spring-t) var(--spring)}
-.btn:hover .ic svg{transform:translateX(3px)}
-.btn:active{transform:scale(.97);transition-duration:.12s}
-.case img{transition:transform .9s var(--out)}
-.case .cap{transition:transform var(--spring-t) var(--spring)}
-.case:hover .cap{transform:translateY(-4px)}
-/* 4. FAQ myk åpning (Chrome/Edge; andre nettlesere: som før) */
-@supports (interpolate-size:allow-keywords){
-  .faq{interpolate-size:allow-keywords}
-  .faq details::details-content{block-size:0;overflow:hidden;transition:block-size .4s var(--out),content-visibility .4s allow-discrete}
-  .faq details[open]::details-content{block-size:auto}
-  .faq .ans{opacity:0;transition:opacity .3s}
-  .faq details[open] .ans{opacity:1;transition-delay:.08s}
-}
-.faq summary .pm{transition:transform var(--spring-t) var(--spring)}
-@media (prefers-reduced-motion:reduce){
-  .hero .rv,.panel.hi,.tile svg polyline{animation:none;stroke-dashoffset:0}
-  .stg{opacity:1;transform:none;transition:none}
-  .btn,.btn .ic svg,.case .cap{transition:none}
-}
-</style>
-<noscript><style>.rv,.stg{opacity:1!important;transform:none!important}.tile svg polyline{animation:none!important;stroke-dashoffset:0!important}</style></noscript>
+    /* === motion-test (Motion AI Kit-prinsipper) === */
+    :root{--spring:linear(0,0.0281,0.1006,0.2019,0.3188,0.441,0.5604,0.6715,0.7706,0.8555,0.9254,0.9808,1.0224,1.0517,1.0704,1.0804,1.0834,1.0812,1.0752,1.0668,1.0571,1.0469,1.0369,1.0276,1.0193,1.0122,1.0063,1.0017,0.9982,0.9957,0.9942,0.9933,0.993,0.9932,0.9937,0.9944,0.9952,0.9961,0.9969,0.9977,0.9984);--spring-t:0.62s;--out:cubic-bezier(.16,1,.3,1)}
+    /* 1. hero: CSS-animasjon ved last, venter ikke på JS/scroll */
+    .hero .rv{opacity:1;transform:none;transition:none;animation:heroIn .8s var(--out) both;animation-delay:calc(var(--d,0) * 70ms)}
+    @keyframes heroIn{from{opacity:0;transform:translateY(14px)}}
+    .hero h1.rv{animation-name:heroInH1}
+    @keyframes heroInH1{from{opacity:.001;transform:translateY(10px)}}
+    .panel.hi{opacity:1;transform:none;animation:panelIn 1s var(--out) .35s both}
+    @keyframes panelIn{from{opacity:0;transform:translateY(28px) scale(.985)}}
+    .tile svg polyline{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.2s var(--out) forwards;animation-delay:calc(.2s + var(--d,0) * 120ms);animation-play-state:paused}
+    .tiles.go svg polyline{animation-play-state:running}
+    @keyframes draw{to{stroke-dashoffset:0}}
+    .tile .v,.case .cap b,.kpi b{font-variant-numeric:tabular-nums}
+    /* 3. stagger */
+    .stg{opacity:0;transform:translateY(18px);transition:opacity .7s var(--out),transform .7s var(--out);transition-delay:calc(var(--i,0) * 80ms)}
+    .stg.in{opacity:1;transform:none}
+    /* 5. fjær på knapper og kort */
+    .btn{transition:transform var(--spring-t) var(--spring),background .2s}
+    .btn .ic svg{transition:transform var(--spring-t) var(--spring)}
+    .btn:hover .ic svg{transform:translateX(3px)}
+    .btn:active{transform:scale(.97);transition-duration:.12s}
+    .case img{transition:transform .9s var(--out)}
+    .case .cap{transition:transform var(--spring-t) var(--spring)}
+    .case:hover .cap{transform:translateY(-4px)}
+    /* 4. FAQ myk åpning (Chrome/Edge; andre nettlesere: som før) */
+    @supports (interpolate-size:allow-keywords){
+      .faq{interpolate-size:allow-keywords}
+      .faq details::details-content{block-size:0;overflow:hidden;transition:block-size .4s var(--out),content-visibility .4s allow-discrete}
+      .faq details[open]::details-content{block-size:auto}
+      .faq .ans{opacity:0;transition:opacity .3s}
+      .faq details[open] .ans{opacity:1;transition-delay:.08s}
+    }
+    .faq summary .pm{transition:transform var(--spring-t) var(--spring)}
+    @media (prefers-reduced-motion:reduce){
+      .hero .rv,.panel.hi,.tile svg polyline{animation:none;stroke-dashoffset:0}
+      .stg{opacity:1;transform:none;transition:none}
+      .btn,.btn .ic svg,.case .cap{transition:none}
+    }
+    </style>
+    <noscript><style>.rv,.stg{opacity:1!important;transform:none!important}.tile svg polyline{animation:none!important;stroke-dashoffset:0!important}</style></noscript>
 </head>
 <body>
 
@@ -1216,27 +1216,27 @@ footer{padding:56px 0 32px;border-top:1px solid var(--line-soft);font-size:14px;
 })();
 </script>
 <script>
-(function(){
-var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
-/* 2. tall teller opp */
-function parse(t){var m=t.match(/^([^\d]*)(\d+(?:[  ]\d{3})*(?:,\d+)?)(.*)$/);if(!m)return null;var raw=m[2].replace(/\s/g,''),dec=(raw.split(',')[1]||'').length;return{pre:m[1],val:parseFloat(raw.replace(',','.')),dec:dec,suf:m[3],grp:/\d\s\d/.test(m[2])};}
-function fmt(p,v){var t=v.toFixed(p.dec).replace('.',',');if(p.grp)t=t.replace(/\B(?=(\d{3})+(?!\d))/g,' ');return p.pre+t+p.suf;}
-function prep(el){var n=el.firstChild;if(!n||n.nodeType!==3)return;var p=parse(n.nodeValue.trim());if(!p)return;el._c={n:n,p:p,fin:n.nodeValue};n.nodeValue=fmt(p,0);}
-function run(el,delay){var c=el._c;if(!c)return;var D=1400,t0=null;
- setTimeout(function(){requestAnimationFrame(function f(ts){if(!t0)t0=ts;var x=Math.min((ts-t0)/D,1),e=1-Math.pow(1-x,4);c.n.nodeValue=x<1?fmt(c.p,c.p.val*e):c.fin;if(x<1)requestAnimationFrame(f);});},delay||0);}
-var SEL='.tile .v,.cap b,.kpi b';
-if(!rm&&'IntersectionObserver' in window){
- var io=new IntersectionObserver(function(en){en.forEach(function(e){if(!e.isIntersecting)return;io.unobserve(e.target);e.target.classList.add('go');e.target.querySelectorAll(SEL).forEach(function(b,i){run(b,150+i*110);});});},{threshold:.4});
- document.querySelectorAll('.tiles,.cases,.fbs').forEach(function(c){
-  if(c.getBoundingClientRect().top<innerHeight*.6){c.classList.add('go');return;} /* allerede synlig (reload midt på siden): ikke tell */
-  c.querySelectorAll(SEL).forEach(prep);io.observe(c);});
-}
-/* 6. «5000+»-rotasjon kun når synlig */
-var st=document.getElementById('adStack');
-if(st&&!rm&&'IntersectionObserver' in window){var im=st.querySelectorAll('img'),i=0,t=null;
- new IntersectionObserver(function(en){if(en[0].isIntersecting){if(!t)t=setInterval(function(){if(document.hidden)return;im[i].classList.remove('on');i=(i+1)%im.length;im[i].classList.add('on');},3200);}else{clearInterval(t);t=null;}}).observe(st);}
-})();
-</script>
+    (function(){
+    var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+    /* 2. tall teller opp */
+    function parse(t){var m=t.match(/^([^\d]*)(\d+(?:[  ]\d{3})*(?:[.,]\d{1,2}(?!\d))?)(.*)$/);if(!m)return null;var raw=m[2].replace(/\s/g,''),ds=(raw.match(/[.,]/)||[','])[0],dec=(raw.split(ds)[1]||'').length;return{pre:m[1],val:parseFloat(raw.replace(',','.')),dec:dec,ds:ds,suf:m[3],grp:/\d\s\d/.test(m[2])};}
+    function fmt(p,v){var t=v.toFixed(p.dec).replace('.',p.ds);if(p.grp)t=t.replace(/\B(?=(\d{3})+(?!\d))/g,' ');return p.pre+t+p.suf;}
+    function prep(el){var n=el.firstChild;if(!n||n.nodeType!==3)return;var p=parse(n.nodeValue.trim());if(!p)return;el._c={n:n,p:p,fin:n.nodeValue};n.nodeValue=fmt(p,0);}
+    function run(el,delay){var c=el._c;if(!c)return;var D=1400,t0=null;
+     setTimeout(function(){requestAnimationFrame(function f(ts){if(!t0)t0=ts;var x=Math.min((ts-t0)/D,1),e=1-Math.pow(1-x,4);c.n.nodeValue=x<1?fmt(c.p,c.p.val*e):c.fin;if(x<1)requestAnimationFrame(f);});},delay||0);}
+    var SEL='.tile .v,.cap b,.kpi b';
+    if(!rm&&'IntersectionObserver' in window){
+     var io=new IntersectionObserver(function(en){en.forEach(function(e){if(!e.isIntersecting)return;io.unobserve(e.target);e.target.classList.add('go');e.target.querySelectorAll(SEL).forEach(function(b,i){run(b,150+i*110);});});},{threshold:.4});
+     document.querySelectorAll('.tiles,.cases,.fbs').forEach(function(c){
+      if(c.getBoundingClientRect().top<innerHeight*.6){c.classList.add('go');return;} /* allerede synlig (reload midt på siden): ikke tell */
+      c.querySelectorAll(SEL).forEach(prep);io.observe(c);});
+    }
+    /* 6. «5000+»-rotasjon kun når synlig */
+    var st=document.getElementById('adStack');
+    if(st&&!rm&&'IntersectionObserver' in window){var im=st.querySelectorAll('img'),i=0,t=null;
+     new IntersectionObserver(function(en){if(en[0].isIntersecting){if(!t)t=setInterval(function(){if(document.hidden)return;im[i].classList.remove('on');i=(i+1)%im.length;im[i].classList.add('on');},3200);}else{clearInterval(t);t=null;}}).observe(st);}
+    })();
+    </script>
 <script>
 (function(){var w=document.getElementById('kundechat');if(!w||!('IntersectionObserver' in window))return;
 var rm=window.matchMedia('(prefers-reduced-motion: reduce)').matches,ms=[].slice.call(w.querySelectorAll('.cm'));
