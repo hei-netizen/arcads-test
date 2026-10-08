@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="no"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Uke 40 · Demokunde — Demokunde x Arcads</title>
+<link rel="icon" type="image/png" href="/portal/oppstart/favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FCFBF9;--paper:#FFFFFF;--ink:#071812;--deep:#11271F;--muted:#5C5F5A;--faint:#8A8D87;--line:#E9E7E0;--line-soft:#F1EFE9;--tint:#F3F6F2;--green:#00C96F;--green-text:#0E7A48;--amber:#B26B00;--amber-bg:#FFF4E0;--r:16px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Geist,system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+a{color:var(--green-text)}
+header{border-bottom:1px solid var(--line);background:var(--paper)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
+.logos{display:flex;align-items:center;gap:12px}
+.logos img{height:20px;width:auto}
+.logos .x{color:var(--faint);font-size:14px}
+.logos .tb{height:24px}
+.contact{font-size:14px;color:var(--muted);text-decoration:none}
+.hero{padding:56px 0 32px}
+.eyebrow{display:inline-block;font-size:13px;font-weight:600;color:var(--green-text);background:var(--tint);padding:5px 12px;border-radius:999px}
+h1{font-size:clamp(32px,5vw,46px);line-height:1.1;letter-spacing:-.02em;margin:16px 0 14px;font-weight:700;text-wrap:balance}
+.lead{font-size:18px;color:var(--muted);max-width:620px;margin:0}
+.progress{margin-top:32px;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:20px 22px}
+.progress-top{display:flex;justify-content:space-between;align-items:baseline;font-weight:600;margin-bottom:12px;gap:12px;flex-wrap:wrap}
+.progress-top span{color:var(--muted);font-weight:500;font-size:14px}
+.bar{height:8px;background:var(--line-soft);border-radius:999px;overflow:hidden}
+.bar i{display:block;height:100%;width:100%;background:var(--green);border-radius:999px}
+.checklist{list-style:none;padding:0;margin:18px 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:8px 20px}
+.checklist li{display:flex;gap:10px;align-items:center;font-size:15px}
+.dot{flex:none;width:20px;height:20px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center}
+.done .dot{background:var(--green);border-color:var(--green)}
+.done .dot::after{content:"";width:9px;height:5px;border-left:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(-45deg) translate(1px,-1px)}
+.done{color:var(--muted)}
+.now .dot{border-color:var(--green);box-shadow:0 0 0 4px var(--tint)}
+.now{font-weight:600}
+section{padding:40px 0}
+.step-head{display:flex;gap:16px;align-items:flex-start;margin-bottom:22px}
+.num{flex:none;width:40px;height:40px;border-radius:12px;background:var(--deep);color:#fff;display:grid;place-items:center;font-weight:700}
+h2{font-size:26px;letter-spacing:-.01em;margin:4px 0 6px;line-height:1.2}
+.step-head p{margin:0;color:var(--muted)}
+.time{font-size:13px;font-weight:600;color:var(--green-text);white-space:nowrap}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:22px}
+.video{position:relative;aspect-ratio:16/9;border-radius:var(--r);overflow:hidden;background:var(--deep);border:1px solid var(--line)}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-top:16px}
+.plat{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;gap:8px}
+.plat h3{margin:0;font-size:18px}
+.chip{font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--amber-bg);color:var(--amber);white-space:nowrap}
+.chip.ok{background:var(--tint);color:var(--green-text)}
+.idbox{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--tint);border-radius:12px;padding:10px 12px;margin:10px 0 14px}
+.idbox small{display:block;font-size:12px;color:var(--muted)}
+.idbox code{font:600 17px/1.2 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.02em}
+.copy{font:600 13px Geist,sans-serif;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:7px 14px;cursor:pointer;color:var(--ink)}
+.copy:hover{border-color:var(--ink)}
+ol.steps{margin:0;padding-left:20px;color:var(--ink);font-size:15px}
+ol.steps li{margin:6px 0}
+ol.steps b{font-weight:600}
+.note{font-size:14px;color:var(--muted);margin:14px 0 0}
+form{display:grid;gap:16px}
+.row2{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+fieldset{border:0;padding:0;margin:0;display:grid;gap:8px}
+legend{font-weight:600;font-size:15px;padding:0;margin-bottom:6px}
+.hint{color:var(--muted);font-size:14px;margin-top:-4px}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pills label{display:flex;align-items:center;gap:6px;font-weight:500;font-size:14px;border:1px solid var(--line);border-radius:999px;padding:8px 14px;cursor:pointer;background:var(--bg)}
+.pills label:has(input:checked){border-color:var(--green);background:var(--tint);color:var(--green-text)}
+.pills input{position:absolute;opacity:0;pointer-events:none}
+.checks{display:grid;gap:8px}
+.check{display:flex;flex-direction:row;align-items:center;gap:10px;font-weight:600;font-size:15px;cursor:pointer}
+.check input{width:18px;height:18px;accent-color:var(--green);padding:0}
+.check span{font-weight:400;color:var(--muted);font-size:14px}
+.book{display:table;margin-top:10px;text-decoration:none}
+[hidden]{display:none!important}
+.wiz{padding:22px 22px 18px}
+.wiz-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+.wiz-steps{list-style:none;margin:0;padding:0;display:flex;gap:6px;flex-wrap:wrap;counter-reset:s}
+.wiz-steps li{counter-increment:s;font-size:13px;font-weight:600;color:var(--faint);background:var(--line-soft);border-radius:999px;padding:5px 11px}
+.wiz-steps li::before{content:counter(s) ". "}
+.wiz-steps li.on{background:var(--deep);color:#fff}
+.wiz-steps li.ok{background:var(--tint);color:var(--green-text)}
+.wiz-save{font-size:12px;color:var(--faint)}
+.wiz-note{font-size:14px;color:var(--muted);margin:10px 0 18px}
+.req{color:var(--green-text);font-weight:600}
+.wiz .pane > label,.wiz .row2 > label{display:block}
+.wiz .pane > label > span:not(.req),.wiz .row2 > label > span:not(.req){display:block;margin-top:2px}
+.wiz .pane > label > input,.wiz .pane > label > textarea,.wiz .row2 > label > input{display:block;width:100%;margin-top:8px}
+.pane{border:0;padding:0;margin:0;display:grid;gap:18px}
+.pane-lead{margin:0;font-size:15px;color:var(--muted);background:var(--tint);border-radius:12px;padding:12px 14px}
+.q{display:grid;gap:8px}
+.ql{font-weight:600;font-size:15px}
+.scale{display:flex;align-items:center;gap:12px;font-size:13px;color:var(--muted);flex-wrap:wrap}
+.scale input{flex:1;min-width:140px;accent-color:var(--green);padding:0}
+.scale output{font-weight:700;color:var(--ink);min-width:20px;text-align:center}
+.wiz-nav{display:flex;align-items:center;gap:12px;margin-top:24px;padding-top:18px;border-top:1px solid var(--line-soft)}
+.wiz-nav #wizNext{margin-left:auto}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn.ghost:hover{background:var(--line-soft)}
+.wiz-err{font-size:14px;color:#B3261E}
+.invalid{border-color:#B3261E!important;background:#FFF6F5!important}
+.q.invalid-q .ql{color:#B3261E}
+.wiz-done{display:grid;gap:4px;background:var(--tint);border-radius:12px;padding:18px;margin-top:4px}
+.wiz-done b{font-size:18px}
+.wiz-done span{color:var(--muted)}
+.honor{margin-top:16px;background:var(--tint);border-color:transparent}
+.honor h3{margin:0 0 8px;font-size:18px}
+.honor p{margin:0 0 8px;font-size:15px}
+.honor p:last-child{margin:0}
+.faq{display:grid;gap:8px}
+.faq details{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:0 18px}
+.faq summary{cursor:pointer;font-weight:600;padding:15px 0;list-style:none;display:flex;justify-content:space-between;gap:12px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--faint);font-weight:400;font-size:20px;line-height:1}
+.faq details[open] summary::after{content:"–"}
+.faq details p{margin:0 0 16px;color:var(--muted);font-size:15px}
+form.gid{display:flex;gap:8px;margin-top:14px}
+form.gid input{flex:1;min-width:0;padding:9px 12px}
+label{display:grid;gap:6px;font-weight:600;font-size:15px}
+label span{font-weight:400;color:var(--muted);font-size:14px}
+input,textarea{font:inherit;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink)}
+input:focus,textarea:focus{outline:2px solid var(--green);outline-offset:1px;border-color:transparent}
+textarea{min-height:92px;resize:vertical}
+.btn{justify-self:start;font:600 16px Geist,sans-serif;background:var(--ink);color:#fff;border:0;border-radius:999px;padding:14px 26px;cursor:pointer}
+.btn:hover{background:var(--deep)}
+.upload{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;border:1.5px dashed var(--line);border-radius:12px;padding:14px 16px;font-size:15px}
+.timeline{list-style:none;margin:0;padding:0;border-left:2px solid var(--line);margin-left:8px}
+.timeline li{position:relative;padding:0 0 22px 24px}
+.timeline li::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--paper);border:2px solid var(--green)}
+.timeline b{display:block}
+.timeline span{color:var(--muted);font-size:15px}
+.timeline .when{font-size:13px;font-weight:600;color:var(--green-text)}
+.person{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.avatar{width:56px;height:56px;border-radius:50%;background:var(--deep);color:#fff;display:grid;place-items:center;font-weight:700;font-size:20px}
+footer{padding:32px 0 48px;color:var(--faint);font-size:13px;text-align:center}
+.preview-flag{position:fixed;bottom:16px;right:16px;background:var(--amber-bg);color:var(--amber);font-size:12px;font-weight:600;padding:6px 12px;border-radius:999px;border:1px solid #F2D7A6}
+@media (max-width:560px){.check{flex-wrap:wrap;row-gap:0}.check span{flex-basis:100%;padding-left:28px}.step-head{flex-direction:column;gap:10px}.contact{display:none}}
+
+.pnav{background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.pnav .wrap{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding-top:6px;padding-bottom:6px}
+.pnav .wrap::-webkit-scrollbar{display:none}
+.pnav a{flex:none;font-size:14px;font-weight:600;color:var(--muted);text-decoration:none;padding:8px 14px;border-radius:999px}
+.pnav a:hover{color:var(--ink);background:var(--line-soft)}
+.pnav a.on{color:#fff;background:var(--deep)}
+.page-h{padding:44px 0 8px}
+.page-h h1{font-size:clamp(28px,4.4vw,40px)}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:16px}
+.tile{display:block;text-decoration:none;color:inherit;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:18px 18px 16px;transition:border-color .15s}
+.tile:hover{border-color:var(--ink)}
+.tile b{display:block;font-size:17px;margin-bottom:4px}
+.tile span{display:block;color:var(--muted);font-size:14px}
+.tile em{display:inline-block;margin-top:10px;font-style:normal;font-size:12px;font-weight:600;color:var(--green-text);background:var(--tint);padding:3px 9px;border-radius:999px}
+.tile em.wait{color:var(--amber);background:var(--amber-bg)}
+.statusline{display:flex;gap:12px;align-items:flex-start;background:var(--tint);border-radius:var(--r);padding:16px 18px;margin-top:22px}
+.statusline .pulse{flex:none;width:10px;height:10px;border-radius:50%;background:var(--green);margin-top:7px;box-shadow:0 0 0 0 rgba(0,201,111,.5);animation:pl 2s infinite}
+@keyframes pl{70%{box-shadow:0 0 0 10px rgba(0,201,111,0)}100%{box-shadow:0 0 0 0 rgba(0,201,111,0)}}
+@media (prefers-reduced-motion:reduce){.statusline .pulse{animation:none}}
+.empty{text-align:center;padding:48px 22px}
+.empty b{display:block;font-size:18px;margin-bottom:6px}
+.empty span{color:var(--muted)}
+.adgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px;margin-top:14px}
+.ad{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.ad img,.ad video{display:block;width:100%;height:auto;background:var(--line-soft)}
+.ad .ad-meta{padding:12px 14px 4px;display:flex;justify-content:space-between;gap:8px;align-items:center}
+.ad .ad-meta b{font-size:14px}
+.ad-act{display:flex;gap:8px;padding:8px 14px 14px}
+.ad-act button,.ad-endre button{font:600 13px Geist,sans-serif;border-radius:999px;padding:8px 14px;cursor:pointer;border:1px solid var(--line);background:var(--paper);color:var(--ink)}
+.ad-act button.ok{background:var(--deep);border-color:var(--deep);color:#fff}
+.ad-act button:hover{border-color:var(--ink)}
+.ad-endre{display:grid;gap:8px;padding:0 14px 14px}
+.ad-endre textarea{min-height:70px;font-size:14px}
+.ad-endre button{justify-self:start;background:var(--deep);border-color:var(--deep);color:#fff}
+.chip.ok{background:var(--tint);color:var(--green-text)}
+.ad-kommentar{margin:0 14px 4px;padding:10px 12px;border-radius:10px;background:var(--amber-bg);color:var(--ink);font-size:14px;line-height:1.45}
+.ad-endre label{display:grid;gap:6px;font-size:14px;font-weight:600}
+.adgrid .vidrow.bred{grid-column:1/-1;background:var(--paper)!important;border:1px solid var(--line)!important;border-radius:var(--r);padding:14px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-top:14px}
+.kpi{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:18px}
+.kpi small{display:block;color:var(--muted);font-size:13px;font-weight:600}
+.kpi b{display:block;font-size:30px;letter-spacing:-.02em;margin-top:4px;font-variant-numeric:tabular-nums}
+.tall-h{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;margin-top:34px}
+.tall-h h2{margin:0;font-size:20px}
+.tall-h span{color:var(--faint);font-size:13px}
+.vidrow{display:grid;grid-template-columns:minmax(0,320px) 1fr;gap:22px;align-items:start;margin-top:14px}
+.vidrow video{width:100%;border-radius:var(--r);border:1px solid var(--line);background:#000}
+@media (max-width:640px){.vidrow{grid-template-columns:1fr}}
+.terms{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.terms li{display:grid;grid-template-columns:170px 1fr;gap:14px;padding:14px 0;border-bottom:1px solid var(--line-soft);font-size:15px}
+.terms li:last-child{border-bottom:0}
+.terms li b{font-weight:600}
+@media (max-width:560px){.terms li{grid-template-columns:1fr;gap:2px}}
+.pnav svg{display:none}
+@media (max-width:640px){
+  header .wrap{height:54px}
+  .logos img{height:16px}.logos .tb{height:19px}
+  .pnav{position:fixed;top:auto;bottom:0;left:0;right:0;border-top:1px solid var(--line);border-bottom:0;
+        padding-bottom:env(safe-area-inset-bottom,0px);background:rgba(255,255,255,.96);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+  .pnav .wrap{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:0;padding:0;overflow:visible}
+  .pnav a{display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 2px 7px;border-radius:0;font-size:11px;font-weight:600;color:var(--faint);background:none!important}
+  .pnav a:hover{background:none}
+  .pnav a.on{color:var(--ink);background:none}
+  .pnav svg{display:block;width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .pnav a.on svg{stroke-width:2.2}
+  body{padding-bottom:calc(64px + env(safe-area-inset-bottom,0px))}
+  .page-h{padding-top:28px}
+  .adgrid{grid-template-columns:1fr 1fr;gap:10px}
+  .ad .ad-meta{padding:10px 10px 2px;flex-direction:column;align-items:flex-start;gap:6px}
+  .ad .ad-meta b{font-size:13px}
+  .ad-act{flex-direction:column;padding:6px 10px 10px}
+  .ad-act button{width:100%}
+  .ad-kommentar{margin:0 10px 4px;font-size:13px}
+  .ad-endre{padding:0 10px 10px}
+  .adgrid .vidrow.bred{padding:10px}
+}
+
+:root{--brand:#11271F;--brand-tint:color-mix(in srgb,#11271F 8%,#fff);--brand-soft:color-mix(in srgb,#11271F 18%,#fff)}
+a{color:var(--brand)}
+.eyebrow{color:var(--brand);background:var(--brand-tint)}
+header .logos{flex-direction:row-reverse;gap:14px}
+header .logos .tb{height:30px}
+header .logos img:not(.tb){height:15px;opacity:.7}
+.pnav a.on{background:var(--brand)}
+.tile:hover,.ritem:hover{border-color:var(--brand)}
+.avatar{background:var(--brand)}
+.band{position:relative;overflow:hidden;background:var(--brand);color:#fff;border-radius:22px;padding:34px 30px 30px;margin-top:28px;
+  background-image:radial-gradient(120% 140% at 100% 0%,rgba(255,255,255,.16),rgba(255,255,255,0) 55%)}
+.band::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E")}
+.band .eyebrow{background:rgba(255,255,255,.14);color:#fff}
+.band h1{color:#fff;margin:14px 0 10px}
+.band .lead,.band p{color:rgba(255,255,255,.84)}
+.band .meta{display:flex;gap:8px 18px;flex-wrap:wrap;margin-top:18px;font-size:14px;color:rgba(255,255,255,.78)}
+.band .meta b{color:#fff;font-weight:600}
+.band .pulse{background:#7CF0B5}
+@media (max-width:640px){.pnav a.on{color:var(--brand)}.band{padding:26px 20px 22px;border-radius:18px}header .logos .tb{height:24px}}
+
+@view-transition{navigation:auto}
+::view-transition-old(root),::view-transition-new(root){animation-duration:.18s}
+html{-webkit-tap-highlight-color:transparent}
+a,button,label,input,textarea{touch-action:manipulation}
+button,.copy,.btn,.tile{transition:transform .12s ease}
+button:active,.copy:active,.btn:active,.tile:active{transform:scale(.97)}
+.pnav a{position:relative}
+.pnav .badge{position:absolute;top:2px;left:calc(50% + 6px);min-width:18px;height:18px;padding:0 5px;border-radius:999px;background:#E5484D;color:#fff;font:700 11px/18px Geist,sans-serif;text-align:center}
+.pnav .badge[hidden]{display:none}
+@media (min-width:641px){.pnav .badge{position:static;display:inline-block;margin-left:6px;vertical-align:1px}}
+.installer{display:none}
+.ark-bak{position:fixed;inset:0;background:rgba(7,24,18,.38);z-index:60;opacity:0;transition:opacity .2s}
+.ark-bak.vis{opacity:1}
+.ark{position:fixed;left:0;right:0;bottom:0;z-index:61;background:var(--paper);border-radius:20px 20px 0 0;padding:10px 18px calc(18px + env(safe-area-inset-bottom,0px));transform:translateY(100%);transition:transform .26s cubic-bezier(.2,.8,.2,1);max-height:85vh;overflow:auto}
+.ark.vis{transform:none}
+.ark .grip{width:38px;height:5px;border-radius:999px;background:var(--line);margin:0 auto 14px}
+.ark h3{margin:0 0 4px;font-size:18px}
+.ark .ad-endre{padding:10px 0 0!important}
+.ark textarea{min-height:120px;font-size:16px}
+.ark .ad-endre button{width:100%;padding:14px;font-size:16px}
+.ark ol{margin:8px 0 0;padding-left:20px;font-size:16px;line-height:1.6}
+@media (prefers-reduced-motion:reduce){.ark,.ark-bak{transition:none}::view-transition-old(root),::view-transition-new(root){animation:none}}
+@media (max-width:640px){
+  .installer{display:flex;align-items:center;gap:12px;margin-top:16px;width:100%;text-align:left;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;font:600 15px Geist,sans-serif;color:var(--ink);cursor:pointer}
+  .installer img{width:40px;height:40px;border-radius:10px}
+  .wiz-nav{position:sticky;bottom:calc(64px + env(safe-area-inset-bottom,0px));z-index:5;background:var(--paper);margin:24px -22px -18px;padding:12px 22px;border-radius:0 0 var(--r) var(--r)}
+  .wiz-nav .btn{flex:1}
+  input,textarea,select{font-size:16px!important}
+}
+@media (display-mode:standalone){
+  header{padding-top:env(safe-area-inset-top,0px)}
+  footer,.installer{display:none!important}
+}
+</style>
+<link rel="manifest" href="/portal/manifest.webmanifest">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Demokunde">
+<link rel="apple-touch-icon" href="/portal/app/ikon-180.png">
+</head><body>
+<header>
+  <div class="wrap">
+    <div class="logos">
+      <img src="/portal/oppstart/arcads-logo.png" alt="Arcads">
+      <span class="x">×</span>
+      <span class="tb" style="font-weight:600;letter-spacing:.22em;font-size:15px;color:var(--ink)">DEMOKUNDE</span>
+    </div>
+    <a class="contact" href="mailto:hei@arcads.no">hei@arcads.no</a>
+  </div>
+</header>
+<nav class="pnav" aria-label="Kundeportal"><div class="wrap"><a href="/portal/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg><span>Hjem</span></a><a href="/portal/oppstart/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg><span>Oppstart</span></a><a href="/portal/rapporter/" class="on" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><span>Rapporter</span></a><a href="/portal/annonser/"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg><span>Annonser</span></a><a href="/portal/avtale/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg><span>Avtale</span></a></div></nav>
+<main class="wrap">
+<style>
+.rlist{display:grid;gap:12px;margin-top:16px}
+.ritem{display:flex;justify-content:space-between;align-items:center;gap:14px;text-decoration:none;color:inherit;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;transition:border-color .15s}
+.ritem:hover{border-color:var(--ink)}
+.ritem b{display:block;font-size:17px}
+.ritem span{display:block;color:var(--muted);font-size:14px;margin-top:2px}
+.ritem i{font-style:normal;color:var(--faint);font-size:20px}
+.ritem .chip{flex:none;font-style:normal;margin-left:auto}
+.ritem>div{min-width:0}
+.rap h2{font-size:20px;margin:34px 0 12px}
+.rap>.lead{margin-top:22px;font-size:17px;color:var(--ink)}
+.rap .back{display:inline-block;margin-top:28px;color:var(--muted);text-decoration:none;font-size:14px;font-weight:600}
+.rap .back:hover{color:var(--ink)}
+.rap .kpi .d{display:block;font-size:13px;font-weight:600;margin-top:4px;color:var(--muted)}
+.rap .kpi .d.good{color:var(--green-text)}.rap .kpi .d.bad{color:#b4412b}
+.rap .tw{overflow-x:auto;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);margin:10px 0}
+.rap table{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}
+.rap th,.rap td{padding:10px 14px;border-bottom:1px solid var(--line-soft);text-align:left;white-space:nowrap}
+.rap th{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
+.rap td.n,.rap th.n{text-align:right}
+.rap tr:last-child td{border-bottom:0}
+.rap img.graf{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:var(--r);background:#fff;margin:10px 0}
+.rap pre{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;overflow-x:auto;font-size:12.5px;line-height:1.55}
+.rap .note{background:var(--amber-bg);border-radius:var(--r);padding:12px 16px;font-size:14px;margin:12px 0}
+.rap ul{padding-left:20px;line-height:1.6}
+.rap .gen{color:var(--faint);font-size:13px;margin-top:28px}
+@media (max-width:640px){.rap th,.rap td{padding:9px 10px;font-size:13px}.rap pre{font-size:11px}
+.rap .kpis{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.rap .kpi{padding:12px 10px}.rap .kpi b{font-size:19px}.rap .kpi small,.rap .kpi .d{font-size:11.5px}}
+
+.g{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:18px 18px 12px;margin:12px 0;position:relative}
+.g-h{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap}
+.g-h h3{margin:0;font-size:16px;font-weight:600}
+.g-h .big{display:block;font-size:30px;font-weight:700;letter-spacing:-.02em;line-height:1.15;margin-top:4px}
+.g-h .sub{display:block;color:var(--muted);font-size:14px;margin-top:2px}
+.g-chip{font-size:13px;font-weight:600;padding:5px 11px;border-radius:999px;white-space:nowrap;align-self:flex-start}
+.g-chip.ok{background:#E8F5EE;color:#0E7A48}.g-chip.bad{background:#FDF0E6;color:#A24A0B}
+.g-leg{display:flex;gap:16px;font-size:13px;color:var(--muted);margin-top:10px}
+.g-leg i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.g svg{display:block;width:100%;height:auto;margin-top:8px;overflow:visible;touch-action:pan-y}
+.g svg text{font:12px Geist,system-ui,sans-serif;fill:#6b6e68}
+.g svg text.v{font-weight:700;fill:var(--ink);font-size:13px}
+.g svg .hit{fill:transparent;cursor:pointer}
+.g svg .col.on .hl{fill:var(--brand,#11271F);fill-opacity:.07}
+.g-tip{position:absolute;pointer-events:none;background:var(--ink);color:#fff;border-radius:10px;padding:9px 12px;font-size:13px;line-height:1.45;
+  min-width:150px;box-shadow:0 8px 24px rgba(7,24,18,.18);opacity:0;transform:translateY(4px);transition:opacity .12s,transform .12s;z-index:5}
+.g-tip.vis{opacity:1;transform:none}
+.g-tip b{display:block;font-size:12px;font-weight:600;opacity:.7;margin-bottom:3px}
+.g-tip div{display:flex;justify-content:space-between;gap:16px}
+.g-tip div span:last-child{font-weight:700;font-variant-numeric:tabular-nums}
+.g-tip i{display:inline-block;width:10px;height:2px;margin-right:6px;vertical-align:3px}
+@media (max-width:640px){.g svg text{font-size:21px}.g svg text.v{font-size:23px}.g{padding:16px 14px 10px}.g-h .big{font-size:26px}}
+.split{display:flex;height:14px;border-radius:999px;overflow:hidden;gap:2px;margin-top:14px}
+.split b{display:block;height:100%}
+.camp{display:grid;gap:14px;margin-top:14px}
+.camp-r{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;align-items:center}
+.camp-r .n{font-size:14px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.camp-r .n i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:8px;vertical-align:1px}
+.camp-r .kr{font-size:14px;font-weight:700;font-variant-numeric:tabular-nums;text-align:right}
+.camp-r .track{grid-column:1/-1;height:10px;background:var(--line-soft);border-radius:999px;overflow:hidden}
+.camp-r .track b{display:block;height:100%;border-radius:999px}
+.camp-r .res{grid-column:1/-1;font-size:13px;color:var(--muted);margin-top:-1px}
+</style><div class="rap"><div class="band"><span class="eyebrow">Ukesrapport · Demokunde</span><h1>Uke 40</h1><p style="margin:0">28. september–4. oktober 2026</p></div><p class="lead"><b>35 henvendelser totalt (Google 19 + Meta 16) · 354 kr per henvendelse på 12 400 kr annonsekostnad.</b></p>
+<h2>Topplinje (Google + Meta)</h2>
+<div class="kpis"><div class="kpi"><small>Annonsekostnad</small><b>12 400 kr</b><span class="d ">▲ 2% vs uke 39</span></div><div class="kpi"><small>Henvendelser</small><b>35</b><span class="d good">▲ 17% vs uke 39</span></div><div class="kpi"><small>Per henvendelse</small><b>354 kr</b><span class="d good">▼ 12% vs uke 39</span></div></div>
+<h2>Trend</h2>
+<div class="g" data-g><script type="application/json">{"rows": [{"t": "Uke 33", "l": [["Google", "9", "#2a78d6"], ["Meta", "6", "#eb6834"], ["Henvendelser", "15", null], ["Kostnad per lead", "653 kr", null]], "aria": "Uke 33: Google 9, Meta 6, Henvendelser 15, Kostnad per lead 653 kr"}, {"t": "Uke 34", "l": [["Google", "12", "#2a78d6"], ["Meta", "8", "#eb6834"], ["Henvendelser", "20", null], ["Kostnad per lead", "520 kr", null]], "aria": "Uke 34: Google 12, Meta 8, Henvendelser 20, Kostnad per lead 520 kr"}, {"t": "Uke 35", "l": [["Google", "11", "#2a78d6"], ["Meta", "10", "#eb6834"], ["Henvendelser", "21", null], ["Kostnad per lead", "519 kr", null]], "aria": "Uke 35: Google 11, Meta 10, Henvendelser 21, Kostnad per lead 519 kr"}, {"t": "Uke 36", "l": [["Google", "14", "#2a78d6"], ["Meta", "9", "#eb6834"], ["Henvendelser", "23", null], ["Kostnad per lead", "487 kr", null]], "aria": "Uke 36: Google 14, Meta 9, Henvendelser 23, Kostnad per lead 487 kr"}, {"t": "Uke 37", "l": [["Google", "13", "#2a78d6"], ["Meta", "12", "#eb6834"], ["Henvendelser", "25", null], ["Kostnad per lead", "464 kr", null]], "aria": "Uke 37: Google 13, Meta 12, Henvendelser 25, Kostnad per lead 464 kr"}, {"t": "Uke 38", "l": [["Google", "15", "#2a78d6"], ["Meta", "11", "#eb6834"], ["Henvendelser", "26", null], ["Kostnad per lead", "454 kr", null]], "aria": "Uke 38: Google 15, Meta 11, Henvendelser 26, Kostnad per lead 454 kr"}, {"t": "Uke 39", "l": [["Google", "17", "#2a78d6"], ["Meta", "13", "#eb6834"], ["Henvendelser", "30", null], ["Kostnad per lead", "403 kr", null]], "aria": "Uke 39: Google 17, Meta 13, Henvendelser 30, Kostnad per lead 403 kr"}, {"t": "Uke 40", "l": [["Google", "19", "#2a78d6"], ["Meta", "16", "#eb6834"], ["Henvendelser", "35", null], ["Kostnad per lead", "354 kr", null]], "aria": "Uke 40: Google 19, Meta 16, Henvendelser 35, Kostnad per lead 354 kr"}]}</script><div class="g-tip" aria-hidden="true"></div><div class="g-h"><div><h3>Henvendelser per uke</h3><span class="big">35</span><span class="sub">Uke 39: 30</span></div></div><div class=g-leg><span><i style="background:#2a78d6"></i>Google</span><span><i style="background:#eb6834"></i>Meta</span></div><svg viewBox="0 0 640 210" role="img" aria-label="Henvendelser per uke"><line x1="46" x2="622" y1="180.0" y2="180.0" stroke="#ECEAE4" stroke-width="1"/><text x="38" y="184.0" text-anchor="end">0</text><line x1="46" x2="622" y1="140.5" y2="140.5" stroke="#ECEAE4" stroke-width="1"/><text x="38" y="144.5" text-anchor="end">10</text><line x1="46" x2="622" y1="101.0" y2="101.0" stroke="#ECEAE4" stroke-width="1"/><text x="38" y="105.0" text-anchor="end">20</text><line x1="46" x2="622" y1="61.5" y2="61.5" stroke="#ECEAE4" stroke-width="1"/><text x="38" y="65.5" text-anchor="end">30</text><line x1="46" x2="622" y1="22.0" y2="22.0" stroke="#ECEAE4" stroke-width="1"/><text x="38" y="26.0" text-anchor="end">40</text><g class="col" data-i="0"><rect class="hl" x="48.0" y="16" width="68.0" height="164" rx="8" fill="transparent"/><path d="M67.0,180.0V144.4Q67.0,144.4 67.0,144.4H97.0Q97.0,144.4 97.0,144.4V180.0Z" fill="#2a78d6" opacity="0.55"/><path d="M67.0,142.4V124.8Q67.0,120.8 71.0,120.8H93.0Q97.0,120.8 97.0,124.8V142.4Z" fill="#eb6834" opacity="0.55"/><text x="82.0" y="202" text-anchor="middle">33</text><rect class="hit" tabindex="0" x="46.0" y="0" width="72.0" height="210" aria-label="Uke 33: Google 9, Meta 6, Henvendelser 15, Kostnad per lead 653 kr"/></g><g class="col" data-i="1"><rect class="hl" x="120.0" y="16" width="68.0" height="164" rx="8" fill="transparent"/><path d="M139.0,180.0V132.6Q139.0,132.6 139.0,132.6H169.0Q169.0,132.6 169.0,132.6V180.0Z" fill="#2a78d6" opacity="0.55"/><path d="M139.0,130.6V105.0Q139.0,101.0 143.0,101.0H165.0Q169.0,101.0 169.0,105.0V130.6Z" fill="#eb6834" opacity="0.55"/><text x="154.0" y="202" text-anchor="middle">34</text><rect class="hit" tabindex="0" x="118.0" y="0" width="72.0" height="210" aria-label="Uke 34: Google 12, Meta 8, Henvendelser 20, Kostnad per lead 520 kr"/></g><g class="col" data-i="2"><rect class="hl" x="192.0" y="16" width="68.0" height="164" rx="8" fill="transparent"/><path d="M211.0,180.0V136.6Q211.0,136.6 211.0,136.6H241.0Q241.0,136.6 241.0,136.6V180.0Z" fill="#2a78d6" opacity="0.55"/><path d="M211.0,134.6V101.0Q211.0,97.0 215.0,97.0H237.0Q241.0,97.0 241.0,101.0V134.6Z" fill="#eb6834" opacity="0.55"/><text x="226.0" y="202" text-anchor="middle">35</text><rect class="hit" tabindex="0" x="190.0" y="0" width="72.0" height="210" aria-label="Uke 35: Google 11, Meta 10, Henvendelser 21, Kostnad per lead 519 kr"/></g><g class="col" data-i="3"><rect class="hl" x="264.0" y="16" width="68.0" height="164" rx="8" fill="transparent"/><path d="M283.0,180.0V124.7Q283.0,124.7 283.0,124.7H313.0Q313.0,124.7 313.0,124.7V180.0Z" fill="#2a78d6" opacity="0.55"/><path d="M283.0,122.7V93.2Q283.0,89.2 287.0,89.2H309.0Q313.0,89.2 313.0,93.2V122.7Z" fill="#eb6834" opacity="0.55"/><text x="298.0" y="202" text-anchor="middle">36</text><rect class="hit" tabindex="0" x="262.0" y="0" width="72.0" height="210" aria-label="Uke 36: Google 14, Meta 9, Henvendelser 23, Kostnad per lead 487 kr"/></g><g class="col" data-i="4"><rect class="hl" x="336.0" y="16" width="68.0" height="164" rx="8" fill="transparent"/><path d="M355.0,180.0V128.7Q355.0,128.7 355.0,128.7H385.0Q385.0,128.7 385.0,128.7V180.0Z" fill="#2a78d6" opacity="0.55"/><path d="M355.0,126.7V85.2Q355.0,81.2 359.0,81.2H381.0Q385.0,81.2 385.0,85.2V126.7Z" fill="#eb6834" opacity="0.55"/><text x="370.0" y="202" text-anchor="middle">37</text><rect class="hit" tabindex="0" x="334.0" y="0" width="72.0" height="210" aria-label="Uke 37: Google 13, Meta 12, Henvendelser 25, Kostnad per lead 464 kr"/></g><g class="col" data-i="5"><rect class="hl" x="408.0" y="16" width="68.0" height="164" rx="8" fill="transparent"/><path d="M427.0,180.0V120.8Q427.0,120.8 427.0,120.8H457.0Q457.0,120.8 457.0,120.8V180.0Z" fill="#2a78d6" opacity="0.55"/><path d="M427.0,118.8V81.3Q427.0,77.3 431.0,77.3H453.0Q457.0,77.3 457.0,81.3V118.8Z" fill="#eb6834" opacity="0.55"/><text x="442.0" y="202" text-anchor="middle">38</text><rect class="hit" tabindex="0" x="406.0" y="0" width="72.0" height="210" aria-label="Uke 38: Google 15, Meta 11, Henvendelser 26, Kostnad per lead 454 kr"/></g><g class="col" data-i="6"><rect class="hl" x="480.0" y="16" width="68.0" height="164" rx="8" fill="transparent"/><path d="M499.0,180.0V112.8Q499.0,112.8 499.0,112.8H529.0Q529.0,112.8 529.0,112.8V180.0Z" fill="#2a78d6" opacity="0.55"/><path d="M499.0,110.8V65.5Q499.0,61.5 503.0,61.5H525.0Q529.0,61.5 529.0,65.5V110.8Z" fill="#eb6834" opacity="0.55"/><text x="514.0" y="202" text-anchor="middle">39</text><rect class="hit" tabindex="0" x="478.0" y="0" width="72.0" height="210" aria-label="Uke 39: Google 17, Meta 13, Henvendelser 30, Kostnad per lead 403 kr"/></g><g class="col" data-i="7"><rect class="hl" x="552.0" y="16" width="68.0" height="164" rx="8" fill="transparent"/><path d="M571.0,180.0V105.0Q571.0,105.0 571.0,105.0H601.0Q601.0,105.0 601.0,105.0V180.0Z" fill="#2a78d6" opacity="1"/><path d="M571.0,103.0V45.8Q571.0,41.8 575.0,41.8H597.0Q601.0,41.8 601.0,45.8V103.0Z" fill="#eb6834" opacity="1"/><text x="586.0" y="202" text-anchor="middle" class=v>Uke 40</text><text class="v" x="586.0" y="33.8" text-anchor="middle">35</text><rect class="hit" tabindex="0" x="550.0" y="0" width="72.0" height="210" aria-label="Uke 40: Google 19, Meta 16, Henvendelser 35, Kostnad per lead 354 kr"/></g></svg></div><div class="g" data-g><script type="application/json">{"rows": [{"t": "Uke 33", "l": [["Google", "9", "#2a78d6"], ["Meta", "6", "#eb6834"], ["Henvendelser", "15", null], ["Kostnad per lead", "653 kr", null]], "aria": "Uke 33: Google 9, Meta 6, Henvendelser 15, Kostnad per lead 653 kr"}, {"t": "Uke 34", "l": [["Google", "12", "#2a78d6"], ["Meta", "8", "#eb6834"], ["Henvendelser", "20", null], ["Kostnad per lead", "520 kr", null]], "aria": "Uke 34: Google 12, Meta 8, Henvendelser 20, Kostnad per lead 520 kr"}, {"t": "Uke 35", "l": [["Google", "11", "#2a78d6"], ["Meta", "10", "#eb6834"], ["Henvendelser", "21", null], ["Kostnad per lead", "519 kr", null]], "aria": "Uke 35: Google 11, Meta 10, Henvendelser 21, Kostnad per lead 519 kr"}, {"t": "Uke 36", "l": [["Google", "14", "#2a78d6"], ["Meta", "9", "#eb6834"], ["Henvendelser", "23", null], ["Kostnad per lead", "487 kr", null]], "aria": "Uke 36: Google 14, Meta 9, Henvendelser 23, Kostnad per lead 487 kr"}, {"t": "Uke 37", "l": [["Google", "13", "#2a78d6"], ["Meta", "12", "#eb6834"], ["Henvendelser", "25", null], ["Kostnad per lead", "464 kr", null]], "aria": "Uke 37: Google 13, Meta 12, Henvendelser 25, Kostnad per lead 464 kr"}, {"t": "Uke 38", "l": [["Google", "15", "#2a78d6"], ["Meta", "11", "#eb6834"], ["Henvendelser", "26", null], ["Kostnad per lead", "454 kr", null]], "aria": "Uke 38: Google 15, Meta 11, Henvendelser 26, Kostnad per lead 454 kr"}, {"t": "Uke 39", "l": [["Google", "17", "#2a78d6"], ["Meta", "13", "#eb6834"], ["Henvendelser", "30", null], ["Kostnad per lead", "403 kr", null]], "aria": "Uke 39: Google 17, Meta 13, Henvendelser 30, Kostnad per lead 403 kr"}, {"t": "Uke 40", "l": [["Google", "19", "#2a78d6"], ["Meta", "16", "#eb6834"], ["Henvendelser", "35", null], ["Kostnad per lead", "354 kr", null]], "aria": "Uke 40: Google 19, Meta 16, Henvendelser 35, Kostnad per lead 354 kr"}]}</script><div class="g-tip" aria-hidden="true"></div><div class="g-h"><div><h3>Kostnad per lead</h3><span class="big">354 kr</span><span class="sub">Uke 39: 403 kr</span></div><span class="g-chip ok">✓ 96 kr under målet</span></div><svg viewBox="0 0 640 190" role="img" aria-label="Kostnad per henvendelse"><rect x="46" y="82.4" width="576" height="77.6" fill="#E8F5EE"/><line x1="46" x2="622" y1="160.0" y2="160.0" stroke="#ECEAE4" stroke-width="1"/><text x="38" y="164.0" text-anchor="end">0</text><line x1="46" x2="622" y1="125.5" y2="125.5" stroke="#ECEAE4" stroke-width="1"/><text x="38" y="129.5" text-anchor="end">200</text><line x1="46" x2="622" y1="91.0" y2="91.0" stroke="#ECEAE4" stroke-width="1"/><text x="38" y="95.0" text-anchor="end">400</text><line x1="46" x2="622" y1="56.5" y2="56.5" stroke="#ECEAE4" stroke-width="1"/><text x="38" y="60.5" text-anchor="end">600</text><line x1="46" x2="622" y1="22.0" y2="22.0" stroke="#ECEAE4" stroke-width="1"/><text x="38" y="26.0" text-anchor="end">800</text><line x1="46" x2="622" y1="82.4" y2="82.4" stroke="#0E7A48" stroke-width="1.5" stroke-dasharray="5 4"/><text x="52" y="76.4" style="fill:#0E7A48;font-weight:600">Mål 450 kr</text><polyline fill="none" stroke="#1d2a24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" points="82.0,47.3 154.0,70.3 226.0,70.5 298.0,76.0 370.0,80.0 442.0,81.7 514.0,90.4 586.0,98.9"/><g class="col" data-i="0"><rect class="hl" x="48.0" y="16" width="68.0" height="144" rx="8" fill="transparent"/><circle cx="82.0" cy="47.3" r="4" fill="#1d2a24" stroke="#fff" stroke-width="2"/><text x="82.0" y="182" text-anchor="middle">33</text><rect class="hit" tabindex="0" x="46.0" y="0" width="72.0" height="190" aria-label="Uke 33: Google 9, Meta 6, Henvendelser 15, Kostnad per lead 653 kr"/></g><g class="col" data-i="1"><rect class="hl" x="120.0" y="16" width="68.0" height="144" rx="8" fill="transparent"/><circle cx="154.0" cy="70.3" r="4" fill="#1d2a24" stroke="#fff" stroke-width="2"/><text x="154.0" y="182" text-anchor="middle">34</text><rect class="hit" tabindex="0" x="118.0" y="0" width="72.0" height="190" aria-label="Uke 34: Google 12, Meta 8, Henvendelser 20, Kostnad per lead 520 kr"/></g><g class="col" data-i="2"><rect class="hl" x="192.0" y="16" width="68.0" height="144" rx="8" fill="transparent"/><circle cx="226.0" cy="70.5" r="4" fill="#1d2a24" stroke="#fff" stroke-width="2"/><text x="226.0" y="182" text-anchor="middle">35</text><rect class="hit" tabindex="0" x="190.0" y="0" width="72.0" height="190" aria-label="Uke 35: Google 11, Meta 10, Henvendelser 21, Kostnad per lead 519 kr"/></g><g class="col" data-i="3"><rect class="hl" x="264.0" y="16" width="68.0" height="144" rx="8" fill="transparent"/><circle cx="298.0" cy="76.0" r="4" fill="#1d2a24" stroke="#fff" stroke-width="2"/><text x="298.0" y="182" text-anchor="middle">36</text><rect class="hit" tabindex="0" x="262.0" y="0" width="72.0" height="190" aria-label="Uke 36: Google 14, Meta 9, Henvendelser 23, Kostnad per lead 487 kr"/></g><g class="col" data-i="4"><rect class="hl" x="336.0" y="16" width="68.0" height="144" rx="8" fill="transparent"/><circle cx="370.0" cy="80.0" r="4" fill="#1d2a24" stroke="#fff" stroke-width="2"/><text x="370.0" y="182" text-anchor="middle">37</text><rect class="hit" tabindex="0" x="334.0" y="0" width="72.0" height="190" aria-label="Uke 37: Google 13, Meta 12, Henvendelser 25, Kostnad per lead 464 kr"/></g><g class="col" data-i="5"><rect class="hl" x="408.0" y="16" width="68.0" height="144" rx="8" fill="transparent"/><circle cx="442.0" cy="81.7" r="4" fill="#1d2a24" stroke="#fff" stroke-width="2"/><text x="442.0" y="182" text-anchor="middle">38</text><rect class="hit" tabindex="0" x="406.0" y="0" width="72.0" height="190" aria-label="Uke 38: Google 15, Meta 11, Henvendelser 26, Kostnad per lead 454 kr"/></g><g class="col" data-i="6"><rect class="hl" x="480.0" y="16" width="68.0" height="144" rx="8" fill="transparent"/><circle cx="514.0" cy="90.4" r="4" fill="#1d2a24" stroke="#fff" stroke-width="2"/><text x="514.0" y="182" text-anchor="middle">39</text><rect class="hit" tabindex="0" x="478.0" y="0" width="72.0" height="190" aria-label="Uke 39: Google 17, Meta 13, Henvendelser 30, Kostnad per lead 403 kr"/></g><g class="col" data-i="7"><rect class="hl" x="552.0" y="16" width="68.0" height="144" rx="8" fill="transparent"/><circle cx="586.0" cy="98.9" r="5.5" fill="#1d2a24" stroke="#fff" stroke-width="2"/><text class="v" x="586.0" y="86.9" text-anchor="middle">354 kr</text><text x="586.0" y="182" text-anchor="middle" class=v>Uke 40</text><rect class="hit" tabindex="0" x="550.0" y="0" width="72.0" height="190" aria-label="Uke 40: Google 19, Meta 16, Henvendelser 35, Kostnad per lead 354 kr"/></g></svg></div>
+<h2>Google Ads</h2>
+<div class="tw"><table><thead><tr><th>Metric</th><th class="n">Uke 39</th><th class="n">Uke 40</th><th class="n">Δ</th></tr></thead><tbody><tr><td>Kostnad</td><td class="n">6 900</td><td class="n">7 200</td><td class="n">+4%</td></tr><tr><td>Klikk</td><td class="n">812</td><td class="n">874</td><td class="n">+8%</td></tr><tr><td>Visninger</td><td class="n">21 340</td><td class="n">22 910</td><td class="n">+7%</td></tr><tr><td><b>Henvendelser</b></td><td class="n"><b>17</b></td><td class="n"><b>19</b></td><td class="n">+12%</td></tr><tr><td><b>Per henvendelse</b></td><td class="n"><b>406 kr</b></td><td class="n"><b>379 kr</b></td><td class="n">−7%</td></tr></tbody></table></div>
+<div class="g"><div class="g-h"><div><h3>Hvor pengene gikk i uke 40</h3><span class="sub">12 400 kr fordelt på 5 kampanjer</span></div></div><div class=g-leg><span><i style="background:#2a78d6"></i>Google</span><span><i style="background:#eb6834"></i>Meta</span></div><div class="camp"><div class="camp-r"><span class="n" title="Søk - Tjenester"><i style="background:#2a78d6"></i>Søk - Tjenester</span><span class="kr">4 210 kr</span><span class="track"><b style="width:100.0%;background:#2a78d6"></b></span><span class="res">10 henvendelser · 421 kr per</span></div><div class="camp-r"><span class="n" title="Video - Problem/løsning"><i style="background:#eb6834"></i>Video - Problem/løsning</span><span class="kr">3 100 kr</span><span class="track"><b style="width:73.6%;background:#eb6834"></b></span><span class="res">11 henvendelser (skjema)</span></div><div class="camp-r"><span class="n" title="Bilde - Tilbud"><i style="background:#eb6834"></i>Bilde - Tilbud</span><span class="kr">2 100 kr</span><span class="track"><b style="width:49.9%;background:#eb6834"></b></span><span class="res">5 henvendelser (skjema)</span></div><div class="camp-r"><span class="n" title="PMax"><i style="background:#2a78d6"></i>PMax</span><span class="kr">2 010 kr</span><span class="track"><b style="width:47.7%;background:#2a78d6"></b></span><span class="res">4 henvendelser · 503 kr per</span></div><div class="camp-r"><span class="n" title="Søk - Merkevare"><i style="background:#2a78d6"></i>Søk - Merkevare</span><span class="kr">980 kr</span><span class="track"><b style="width:23.3%;background:#2a78d6"></b></span><span class="res">5 henvendelser · 196 kr per</span></div></div></div>
+<h2>Søketermer (Google, denne uka)</h2>
+<div class="tw"><table><thead><tr><th>Søketerm</th><th class="n">Henv.</th><th class="n">Kostnad</th></tr></thead><tbody><tr><td>demokunde</td><td class="n">4</td><td class="n">310 kr</td></tr><tr><td>tjeneste i nærheten</td><td class="n">3</td><td class="n">690 kr</td></tr><tr><td>pris tjeneste oslo</td><td class="n">2</td><td class="n">540 kr</td></tr></tbody></table></div>
+<h2>Meta Ads</h2>
+<div class="tw"><table><thead><tr><th>Metric</th><th class="n">Uke 39</th><th class="n">Uke 40</th></tr></thead><tbody><tr><td>Kostnad</td><td class="n">5 200</td><td class="n">5 200</td></tr><tr><td>Visninger</td><td class="n">41 800</td><td class="n">44 120</td></tr><tr><td>Klikk</td><td class="n">1 210</td><td class="n">1 388</td></tr><tr><td><b>Henvendelser (skjema)</b></td><td class="n"><b>13</b></td><td class="n"><b>16</b></td></tr><tr><td><b>Per henvendelse</b></td><td class="n"><b>400 kr</b></td><td class="n"><b>325 kr</b></td></tr></tbody></table></div>
+<p class="gen">Laget 5.10.2026</p><a class="back" href="/portal/rapporter/">← Alle rapporter</a></div><script>
+(()=>{document.querySelectorAll('.g[data-g]').forEach(g=>{
+ const d=JSON.parse(g.querySelector('script[type="application/json"]').textContent),tip=g.querySelector('.g-tip');
+ const cols=g.querySelectorAll('.col');
+ function vis(i,el){cols.forEach(c=>c.classList.toggle('on',+c.dataset.i===i));
+  tip.replaceChildren();const h=document.createElement('b');h.textContent=d.rows[i].t;tip.append(h);
+  d.rows[i].l.forEach(([k,v,c])=>{const r=document.createElement('div'),a=document.createElement('span'),b=document.createElement('span');
+   if(c){const x=document.createElement('i');x.style.background=c;a.append(x)}a.append(k);b.textContent=v;r.append(a,b);tip.append(r)});
+  const gr=g.getBoundingClientRect(),er=el.getBoundingClientRect();let x=er.left-gr.left+er.width/2-tip.offsetWidth/2;
+  x=Math.max(8,Math.min(x,gr.width-tip.offsetWidth-8));tip.style.left=x+'px';tip.style.top=(er.top-gr.top-tip.offsetHeight-6)+'px';tip.classList.add('vis')}
+ function skjul(){tip.classList.remove('vis');cols.forEach(c=>c.classList.remove('on'))}
+ cols.forEach(c=>{const h=c.querySelector('.hit');h.addEventListener('pointerenter',()=>vis(+c.dataset.i,h));
+  h.addEventListener('click',()=>vis(+c.dataset.i,h));h.addEventListener('focus',()=>vis(+c.dataset.i,h));h.addEventListener('blur',skjul)});
+ g.addEventListener('pointerleave',skjul);
+});})();
+</script>
+<section id="kontakt">
+    <div class="card person">
+      <div class="avatar">V</div>
+      <div style="flex:1;min-width:200px">
+        <b>Victor Skretteberg</b><br>
+        <span style="color:var(--muted)">Deres kontaktperson hos Arcads</span>
+      </div>
+      <div style="color:var(--muted);font-size:15px">Spørsmål? Skriv på e-post til oss<br>eller til <a href="mailto:hei@arcads.no">hei@arcads.no</a></div>
+    </div>
+  </section>
+</main>
+<footer>Arcads ANS · arcads.no</footer>
+<script>
+(()=>{
+const mobil=()=>matchMedia('(max-width:640px)').matches;
+const app=matchMedia('(display-mode:standalone)').matches||navigator.standalone;
+if('serviceWorker' in navigator) addEventListener('load',()=>Promise.resolve().catch(()=>{}));
+/* ark nedenfra */
+function ark(innhold,lukket){
+  const bak=document.createElement('div');bak.className='ark-bak';const a=document.createElement('div');a.className='ark';a.setAttribute('role','dialog');a.setAttribute('aria-modal','true');
+  a.innerHTML='<div class="grip"></div>';a.appendChild(innhold);document.body.append(bak,a);
+  requestAnimationFrame(()=>{bak.classList.add('vis');a.classList.add('vis')});
+  const lukk=()=>{bak.classList.remove('vis');a.classList.remove('vis');setTimeout(()=>{bak.remove();a.remove();lukket&&lukket()},260)};
+  bak.onclick=lukk;let y0=null;a.addEventListener('touchstart',e=>{y0=e.touches[0].clientY},{passive:true});
+  a.addEventListener('touchend',e=>{if(y0!==null&&e.changedTouches[0].clientY-y0>70)lukk();y0=null});
+  return lukk;
+}
+window.arcadsArk=ark;
+/* «Ikke godkjenn» som ark på mobil */
+document.addEventListener('click',e=>{
+  const b=e.target.closest('.ad .nei');if(!b||!mobil())return;
+  setTimeout(()=>{const ad=b.closest('.ad'),f=ad.querySelector('.ad-endre');if(f.hidden)return;
+    const plass=document.createComment('skjema'),boks=document.createElement('div');f.replaceWith(plass);
+    boks.innerHTML='<h3>'+(ad.dataset.navn||'Annonse')+'</h3>';boks.appendChild(f);
+    const lukk=ark(boks,()=>{f.hidden=true;plass.replaceWith(f)});
+    f.addEventListener('submit',()=>setTimeout(()=>{if(f.hidden)lukk()},0),{once:true});
+    setTimeout(()=>f.querySelector('textarea').focus(),280);
+  },0);
+});
+/* teller på Annonser-fanen */
+const fane=document.querySelector('.pnav a[href="/portal/annonser/"]');
+if(fane){const t=document.createElement('span');t.className='badge';t.hidden=true;fane.appendChild(t);
+  Promise.all([fetch('/portal/annonser/ider.json').then(r=>r.json()),fetch('data:,?handling=hent&kunde='+location.hostname.split('.')[0]).then(r=>r.json()).catch(()=>({}))])
+  .then(([ider,st])=>{const n=ider.filter(i=>!st[i]).length;if(n){t.textContent=n>99?'99+':n;t.hidden=false;t.setAttribute('aria-label',n+' venter på svar')}}).catch(()=>{});}
+/* legg til på hjem-skjermen */
+const inst=document.querySelector('.installer');
+if(inst&&!app){let ventende=null;addEventListener('beforeinstallprompt',e=>{e.preventDefault();ventende=e});
+  inst.onclick=()=>{if(ventende){ventende.prompt();ventende=null;return}
+    const d=document.createElement('div');d.innerHTML='<h3>Legg til på hjem-skjermen</h3><ol><li>Trykk på <b>Del</b>-knappen nederst i Safari</li><li>Velg <b>Legg til på Hjem-skjerm</b></li><li>Trykk <b>Legg til</b></li></ol>';ark(d)};
+} else if(inst) inst.remove();
+})();
+</script>
+</body></html>
