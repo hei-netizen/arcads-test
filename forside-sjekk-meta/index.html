@@ -1560,7 +1560,7 @@ var HOOK='https://hook.eu1.make.com/sp2xsnm8y4l90d3gf7bfhkgmq0fwl9mt',GHOOK='htt
 var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
 var $=function(id){return document.getElementById(id);};
 var f=$('hxForm'),inp=$('hxUrl'),btn=$('hxBtn'),err=$('hxErr'),res=$('hxRes'),state=$('hxState'),note=$('hxNote'),bud=$('hxBudget'),ver=$('hxVerdict');
-var R=null,G=null,M=null,host='';
+var R=null,G=null,M=null,host='',baseDone=false,Mdone=false;
 var SB='https://wzgjpwzyazmchipikotp.supabase.co/rest/v1/rpc/',SBK='sb_publishable_Q6iWDRC3wtLHEx5gOmQ22w_lIZ45GDX';
 var MND=['jan.','feb.','mars','apr.','mai','juni','juli','aug.','sep.','okt.','nov.','des.'];
 function clean(v){v=v.trim().toLowerCase().replace(/^https?:\/\//,'').replace(/\/.*$/,'').replace(/\s/g,'');return /^[a-z0-9æøå.-]+\.[a-z]{2,}$/.test(v)?v:'';}
@@ -1603,19 +1603,31 @@ function rpc(fn,body){return fetch(SB+fn,{method:'POST',headers:{apikey:SBK,Auth
 // Meta: kø i Supabase -> serveren leser annonsebiblioteket (15–30 s). Spør hvert 2. sekund i maks 90 s.
 function fetchMeta(h){return rpc('meta_sjekk_start',{p_domene:h.replace(/^www\./,''),p_kilde:SRC}).then(function(id){var t0=Date.now();return new Promise(function(ok,no){(function poll(){rpc('meta_sjekk_resultat',{p_id:id}).then(function(d){if(d&&d.status==='ferdig')ok(d.resultat);else if(d&&d.status==='feil'||Date.now()-t0>9e4)no(0);else setTimeout(poll,2000);},function(){Date.now()-t0>9e4?no(0):setTimeout(poll,3000);});})();});});}
 function met(m){
-  if(!m)return ['mb','Fikk ikke hentet','Metas annonsebibliotek svarte ikke'];
+  if(!m||m.status!=='ok'&&m.status!=='fant_ikke_facebook')return ['mb','Fikk ikke hentet','Metas annonsebibliotek svarte ikke'];
   if(m.status==='fant_ikke_facebook')return ['mb','Fant ikke siden','Vi fant ingen Facebook-lenke på nettsiden'];
-  if(m.status!=='ok')return ['mb','Fikk ikke hentet','Metas annonsebibliotek svarte ikke'];
   if(!m.aktive)return ['no','Ingen aktive','Ingen annonser vist i Norge nå'];
   var f=[];if(m.bilde)f.push('bilde');if(m.video)f.push('video');
-  var lest=m.bilde+m.video,od=m.eldste?new Date(m.eldste):null;
-  var d=(m.aktive>lest?'Minst ':'')+m.nye_30d+(m.nye_30d===1?' ny':' nye')+' siste 30 dager, '+lst(f)+(m.video?'':', ingen video')+(od?', eldste fra '+MND[od.getMonth()]+' '+od.getFullYear():'');
-  return [m.nye_30d>=4?'ok':'mb',m.aktive+' aktive',(m.aktive>lest?d:d.charAt(0).toUpperCase()+d.slice(1))+(m.aktive>lest?'. Vi så på de '+lest+' første':'')];
+  var lest=m.bilde+m.video,min=m.aktive>lest,od=m.eldste?new Date(m.eldste):null;
+  var d=(min?'Minst ':'')+m.nye_30d+(m.nye_30d===1?' ny':' nye')+' siste 30 dager, '+lst(f)+(m.video?'':', ingen video')+(od?', eldste fra '+MND[od.getMonth()]+' '+od.getFullYear():'');
+  return [m.nye_30d>=4?'ok':'mb',m.aktive+' aktive',(min?d:d.charAt(0).toUpperCase()+d.slice(1))+(min?'. Vi så på de '+lest+' første':'')];
 }
 function madsShow(m,h){var box=$('hxMads'),gr=$('hxMadsGrid');gr.innerHTML='';box.hidden=true;if(!m||!m.eksempler||!m.eksempler.length||h!==host)return;
   $('hxMadsAll').href='https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=NO&view_all_page_id='+m.side_id+'&search_type=page&media_type=all';
-  m.eksempler.slice(0,4).forEach(function(e){var f=document.createElement('figure'),i=new Image();i.referrerPolicy='no-referrer';i.alt='Annonse fra '+h+' på Facebook og Instagram';i.onerror=function(){f.remove();if(!gr.children.length)box.hidden=true;};i.src=e.bilde;f.appendChild(i);if(e.video){var c=document.createElement('figcaption');c.textContent='Video';f.appendChild(c);}gr.appendChild(f);});
+  m.eksempler.slice(0,4).forEach(function(e){var f=document.createElement('figure'),i=new Image();i.referrerPolicy='no-referrer';i.alt='Annonse på Facebook og Instagram fra '+h;i.onerror=function(){f.remove();if(!gr.children.length)box.hidden=true;};i.src=e.bilde;f.appendChild(i);if(e.video){var c=document.createElement('figcaption');c.textContent='Video';f.appendChild(c);}gr.appendChild(f);});
   box.hidden=false;}
+function stampSet(){
+  if(!baseDone)return;
+  var c1=R.ok?(R.meta&&R.ads&&R.ga&&(R.cmode||!!R.cmp)):null;
+  var g2=G?(G.act>0&&(G.nw>=4||G.capped)):null;
+  var m2=!Mdone?undefined:M&&M.status==='ok'?(M.nye_30d>=4&&M.ulike_tekster>=3):null;
+  var c2=g2===true||m2===true?true:m2===undefined?'venter':g2===null&&m2===null?null:false;
+  var st=$('hxStamp'),pass=[c1,c2].filter(function(x){return x===true;}).length;
+  if(c2==='venter'&&c1!==null){st.className='hx-stamp na';$('hxStampH').textContent='Sjekker Facebook …';$('hxStampP').textContent='Vi venter på svar fra Facebook og Instagram før vi gir en vurdering.';}
+  else if(c1===null||c2===null||c2==='venter'){st.className='hx-stamp na';$('hxStampH').textContent='Delvis sjekket';$('hxStampP').textContent='Vi fikk ikke lest '+(c1===null&&c2!==true?'nettsiden eller annonsene':c1===null?'nettsiden':'annonsene')+' automatisk, så vi ser på det selv før vi gir en vurdering.';}
+  else if(c1&&c2){st.className='hx-stamp ok';$('hxStampH').textContent='✓ Arcads-godkjent';$('hxStampP').textContent='Sporingen er bekreftet, og dere fornyer annonsene jevnlig med variasjon'+(g2===true&&m2===true?' på både Google og Meta':g2===true?' på Google':' på Facebook og Instagram')+'. Sterkt utgangspunkt.';}
+  else{st.className='hx-stamp no';$('hxStampH').textContent='Ikke godkjent ennå';$('hxStampP').textContent=pass+' av 2 krav oppfylt. Kravene er bekreftet sporing og annonser som fornyes med variasjon: minst 4 nye siste 30 dager på Google, eller på Facebook og Instagram med minst 3 ulike annonser.';}
+  st.hidden=false;window.__hxOk=!!(c1&&c2===true);
+}
 function row(k,cls,txt,det){var li=res.querySelector('li[data-k="'+k+'"]');if(!li)return;li.className=cls;if(txt!==null)li.querySelector('em').textContent=txt;if(det!==undefined)li.querySelector('small').textContent=det;}
 function show(k,cls,txt,det,delay){setTimeout(function(){row(k,cls,txt,det);},rm?0:delay);}
 function lst(a){return a.length<2?a.join(''):a.slice(0,-1).join(', ')+' og '+a[a.length-1];}
@@ -1654,7 +1666,7 @@ f.addEventListener('submit',function(e){
   var h=clean(inp.value);if(!h){err.textContent='Skriv inn nettsiden, for eksempel dinbedrift.no';inp.focus();return;}
   var n=0;try{var log=JSON.parse(localStorage.getItem('hxlog')||'[]').filter(function(t){return Date.now()-t<6e5;});n=log.length;log.push(Date.now());localStorage.setItem('hxlog',JSON.stringify(log));}catch(x){}
   if(n>=8){err.textContent='Du har sjekket mange sider på kort tid. Prøv igjen om litt.';return;}
-  err.textContent='';busy=true;host=h;R=null;G=null;M=null;btn.disabled=true;btn.querySelector('.lbl').textContent='Sjekker...';
+  err.textContent='';busy=true;host=h;R=null;G=null;M=null;baseDone=false;Mdone=false;btn.disabled=true;btn.querySelector('.lbl').textContent='Sjekker...';
   $('hxDomain').textContent=h;$('hxType').textContent='';state.textContent='Sjekker';note.hidden=true;bud.hidden=true;ver.hidden=true;$('hxOffer').hidden=true;$('hxOd').textContent=h;
   [].forEach.call(res.querySelectorAll('li[data-k]'),function(li){li.className='';li.querySelector('em').textContent='';li.querySelector('small').textContent='';});
   [].forEach.call(document.querySelectorAll('input[name=hxb]'),function(r){r.checked=false;});
@@ -1665,18 +1677,13 @@ f.addEventListener('submit',function(e){
     $('hxType').textContent=R.ok?((R.shop?'Nettbutikk':R.form?'Tjenestebedrift':'Nettside')+(R.plat?', '+R.plat:'')):'';
     var x=trk(R);show('trk',x[0],x[1],x[2],150);t1=400;});
   var pG=fetchGoogle(h).then(function(d){G=gAnalyse(d);},function(){G=null;}).then(function(){var x=goo(G);show('goo',x[0],x[1],x[2],400);t2=650;setTimeout(function(){adsShow(G,h);},rm?0:700);});
-  show('met','mb','Henter …','Leser Metas annonsebibliotek, tar 15–30 sekunder',500);
-  fetchMeta(h).then(function(m){M=m;},function(){M=null;}).then(function(){if(h!==host)return;var x=met(M);row('met',x[0],x[1],x[2]);setTimeout(function(){madsShow(M,h);},rm?0:300);logg('meta');});
+  row('met','mb','Henter …','Leser Metas annonsebibliotek, tar 15–30 sekunder');
+  fetchMeta(h).then(function(m){M=m;},function(){M=null;}).then(function(){if(h!==host)return;Mdone=true;stampSet();var x=met(M);row('met',x[0],x[1],x[2]);setTimeout(function(){madsShow(M,h);},rm?0:300);logg('meta');});
   Promise.all([pS,pG]).then(function(){
     busy=false;btn.disabled=false;btn.querySelector('.lbl').textContent='Sjekk nå';
     setTimeout(function(){
       state.textContent='Ferdig';logg('sjekk');
-      var c1=R.ok?(R.meta&&R.ads&&R.ga&&(R.cmode||!!R.cmp)):null,c2=G?(G.act>0&&(G.nw>=4||G.capped)):null;
-      var st=$('hxStamp'),pass=[c1,c2].filter(function(x){return x===true;}).length;
-      if(c1===null||c2===null){st.className='hx-stamp na';$('hxStampH').textContent='Delvis sjekket';$('hxStampP').textContent='Vi fikk ikke lest '+(c1===null&&c2===null?'nettsiden eller Google-annonsene':c1===null?'nettsiden':'Google-annonsene')+' automatisk, så vi ser på det selv før vi gir en vurdering.';}
-      else if(c1&&c2){st.className='hx-stamp ok';$('hxStampH').textContent='✓ Arcads-godkjent';$('hxStampP').textContent='Sporingen er bekreftet, og annonsene på Google fornyes jevnlig. Sterkt utgangspunkt.';}
-      else{st.className='hx-stamp no';$('hxStampH').textContent='Ikke godkjent ennå';$('hxStampP').textContent=pass+' av 2 krav oppfylt. Kravene er bekreftet sporing og annonser på Google med minst 4 nye siste 30 dager.';}
-      st.hidden=false;window.__hxOk=!!(c1&&c2);
+      baseDone=true;stampSet();
       var nt=[];
       if(!R.ok)nt.push('Vi fikk ikke lest nettsiden automatisk. Sjekk at adressen er riktig. Stemmer den, ser vi på siden selv, noen sider stenger ute slike sjekker.');
       else{
